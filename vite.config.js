@@ -6,9 +6,10 @@ import react from '@vitejs/plugin-react';
 const port = process.env.PORT ? Number(process.env.PORT) : undefined;
 
 export default defineConfig({
-  // Served from https://jmync.github.io/nakama-battle/ on GitHub Pages,
-  // so assets must resolve under that subpath.
-  base: '/nakama-battle/',
+  // Root-served deployment (custom domain / Vercel / Netlify / Node host).
+  // NOTE: GitHub Pages serves from /nakama-battle/ — switch this back to
+  // '/nakama-battle/' if deploying there, or assets will 404.
+  base: '/',
   plugins: [react()],
   server: {
     port,
