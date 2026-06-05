@@ -6,9 +6,7 @@ import react from '@vitejs/plugin-react';
 const port = process.env.PORT ? Number(process.env.PORT) : undefined;
 
 export default defineConfig({
-  // Root-served deployment (custom domain / Vercel / Netlify / Node host).
-  // NOTE: GitHub Pages serves from /nakama-battle/ — switch this back to
-  // '/nakama-battle/' if deploying there, or assets will 404.
+  // Root-served deployment (Render / Node host serving at /).
   base: '/',
   plugins: [react()],
   server: {
@@ -17,5 +15,9 @@ export default defineConfig({
   },
   preview: {
     port,
+    // Bind to 0.0.0.0 so the platform (Render) can route to the server,
+    // and accept the host header it forwards (e.g. *.onrender.com).
+    host: true,
+    allowedHosts: true,
   },
 });
