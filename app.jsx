@@ -419,8 +419,8 @@ function Prizes() {
 
       <div className="form-cta" style={{ marginTop: 26 }}>
         <div>
-          <div className="t">Survival of the fittest.</div>
-          <div className="d">Only the strongest trios make it out alive. No mercy, no backing out. Register now and prove you belong among the last standing.</div>
+          <div className="t">Dare to take the stage?</div>
+          <div className="d">The lights are hot and the bracket is waiting. Rally your trio, find your voice, and see how far you can climb. Everyone's welcome, but only the bold step up.</div>
         </div>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
           <a className="btn btn-primary" href="https://forms.gle/beS1DQGHGpst4zJ39" target="_blank" rel="noopener">REGISTER ↗</a>
