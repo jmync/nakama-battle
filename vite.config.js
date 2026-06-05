@@ -15,9 +15,5 @@ export default defineConfig({
   },
   preview: {
     port,
-    // Bind to 0.0.0.0 so the platform (Render) can route to the server,
-    // and accept the host header it forwards (e.g. *.onrender.com).
-    host: true,
-    allowedHosts: true,
   },
 });
