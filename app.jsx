@@ -486,7 +486,7 @@ function App() {
           <span className="ln"></span>
         </div>
         <p className="tagline">"Sing beyond limits. <span className="q">This is your challenge.</span>"</p>
-        <p className="subline">Smutaites · #NKMA_TRIOBATTLE</p>
+        <p className="subline">#smule · #smutaites · #NKMA_TRIOBATTLE</p>
 
         <div className="cta-row">
           <a className="btn btn-primary" href="https://forms.gle/beS1DQGHGpst4zJ39" target="_blank" rel="noopener">REGISTER TEAM ↗</a>
