@@ -143,7 +143,7 @@ function Mechanics() {
         <div className="card outline">
           <span className="tag">Song picks</span>
           <h3>Roulette System</h3>
-          <p>Roulette runs the show. It spins the group draw, your <strong>Group Rounds genre</strong>, the <strong>Knockout songs</strong>, and the <strong>Finals theme</strong>. We hand-pick songs in the <strong>Knockout</strong>, while <strong>Semi-Final</strong> rivals choose for each other.</p>
+          <p>Roulette runs the show. A <strong>genre</strong> roulette and a <strong>song</strong> roulette decide the picks across the stages.</p>
         </div>
       </div>
 
