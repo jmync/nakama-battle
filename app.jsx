@@ -531,7 +531,7 @@ function App() {
           <a className="btn btn-primary" href="https://forms.gle/beS1DQGHGpst4zJ39" target="_blank" rel="noopener">REGISTER ↗</a>
           <a className="btn btn-ghost" href="https://discord.gg/YujuKC9WXP" target="_blank" rel="noopener">DISCORD ↗</a>
         </div>
-        <small className="sponsor">This event is sponsored. · #NKMA_TRIOBATTLE</small>
+        <small className="sponsor">This event is sponsored.</small>
       </footer>
     </React.Fragment>
   );
