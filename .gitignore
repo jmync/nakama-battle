@@ -9,10 +9,11 @@ dist/
 dev-out.log
 dev-err.log
 
-# Editor / OS
+# Editor / OS / tooling
 .DS_Store
 .vscode/
 .idea/
+.claude/
 
 # Archives / misc
 *.zip
