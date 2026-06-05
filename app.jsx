@@ -352,7 +352,7 @@ function Judging() {
               </svg>
             </span>
           </h3>
-          <p>A mix of trusted singers and friends from inside and outside YouTube score every battle.</p>
+          <p>A mix of trusted singers and friends score every battle.</p>
           <div style={{ height: 16 }}></div>
           <span className="tag" style={{ color: 'var(--pink-soft)' }}>Fair &amp; pressure-free</span>
           <p style={{ marginTop: 8 }}>To keep things fair and stress-free, <strong>judges remain anonymous</strong>. It's all about the voices.</p>
