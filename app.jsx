@@ -138,7 +138,7 @@ function Mechanics() {
         <div className="card outline">
           <span className="tag">Time limit</span>
           <div className="big">2:00</div>
-          <p style={{ marginTop: 8 }}>Short version (max <strong>2 minutes</strong>) through the <strong>Semi-Finals</strong>. Only the <strong>Finals</strong> are sung <strong>full version</strong>.</p>
+          <p style={{ marginTop: 8 }}>Short version (max <strong>2 minutes</strong>) through the <strong>Showdown</strong>. The <strong>Semi-Finals &amp; Finals</strong> are sung <strong>full version</strong>.</p>
         </div>
         <div className="card outline">
           <span className="tag">Song picks</span>
@@ -173,7 +173,7 @@ function Rules() {
   const donts = [
     ['No late entries', 'Late entries will not be accepted under any circumstances.'],
     ['No outside vocals', 'Pre-recorded or externally edited vocals are not allowed.'],
-    ['Short version (through Semi-Finals)', 'Full-length recordings are not allowed through the Semi-Finals. Only the Finals are sung full version.'],
+    ['Short version (through Showdown)', 'Full-length recordings are not allowed through the Showdown. The Semi-Finals & Finals are sung full version.'],
   ];
   const others = [
     "Once you join, there's no backing out. The mechanics are tough, so make sure your team is fully committed before you register.",
@@ -493,7 +493,7 @@ function App() {
         <div className="hero-stats">
           <div className="s"><div className="n">16</div><div className="k">Teams advancing</div></div>
           <div className="s"><div className="n">5</div><div className="k">Stages</div></div>
-          <div className="s"><div className="n">2:00</div><div className="k">Round cap</div></div>
+          <div className="s"><div className="n">2:00</div><div className="k">Early-round cap</div></div>
         </div>
 
         <div className="scroll-hint" aria-hidden="true">
