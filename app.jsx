@@ -265,17 +265,15 @@ function Format() {
                 <path d="M60 8 C72 26 80 30 70 46 C65 53 53 53 49 45 C41 30 48 24 60 8 Z" fill="#ff5630"></path>
                 <path d="M40 24 C47 35 50 40 43 50 C39 55 30 52 31 44 C32 35 34 30 40 24 Z" fill="#ff8a3c"></path>
                 <path d="M80 24 C73 35 70 40 77 50 C81 55 90 52 89 44 C88 35 86 30 80 24 Z" fill="#ff8a3c"></path>
-                <g stroke="#ff2d2d" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" fill="none">
-                  <circle cx="34" cy="58" r="10"></circle>
-                  <circle cx="86" cy="58" r="10"></circle>
-                  <circle cx="60" cy="82" r="31"></circle>
-                  <ellipse cx="47" cy="78" rx="7.5" ry="10.5" transform="rotate(-12 47 78)"></ellipse>
-                  <ellipse cx="73" cy="78" rx="7.5" ry="10.5" transform="rotate(12 73 78)"></ellipse>
-                  <path d="M54 98 q6 6 12 0"></path>
-                </g>
-                <circle cx="48" cy="80" r="2.6" fill="#ff2d2d"></circle>
-                <circle cx="72" cy="80" r="2.6" fill="#ff2d2d"></circle>
-                <circle cx="60" cy="92" r="2.8" fill="#ff2d2d"></circle>
+                <circle cx="34" cy="58" r="12" fill="#ff2d2d" stroke="none"></circle>
+                <circle cx="86" cy="58" r="12" fill="#ff2d2d" stroke="none"></circle>
+                <circle cx="60" cy="82" r="32" fill="#ff2d2d" stroke="none"></circle>
+                <ellipse cx="47" cy="77" rx="8.5" ry="11.5" transform="rotate(-18 47 77)" fill="var(--ink)" stroke="none"></ellipse>
+                <ellipse cx="73" cy="77" rx="8.5" ry="11.5" transform="rotate(18 73 77)" fill="var(--ink)" stroke="none"></ellipse>
+                <circle cx="48" cy="78" r="3.4" fill="#fff" stroke="none"></circle>
+                <circle cx="72" cy="78" r="3.4" fill="#fff" stroke="none"></circle>
+                <ellipse cx="60" cy="92" rx="4.6" ry="3.3" fill="var(--ink)" stroke="none"></ellipse>
+                <path d="M60 95 v3 M60 98 q-5 4 -9 1 M60 98 q5 4 9 1" fill="none" stroke="var(--ink)" strokeWidth="2" strokeLinecap="round"></path>
               </svg>
             </span>
             7 Deadly Sins
