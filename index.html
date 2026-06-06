@@ -8,8 +8,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<!-- Preload custom fonts so they arrive ASAP and the loader can hide the swap -->
+<link rel="preload" href="/fonts/PerfectAction.ttf" as="font" type="font/ttf" crossorigin />
+<link rel="preload" href="/fonts/Haruto.ttf" as="font" type="font/ttf" crossorigin />
+<!-- Loader styles are inline so the loader itself never flashes unstyled -->
+<style>
+  #loader{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;
+    background:#140a0e;transition:opacity .5s ease;}
+  #loader.hide{opacity:0;pointer-events:none;}
+  #loader .ring{width:64px;height:64px;border-radius:50%;
+    border:3px solid rgba(255,56,56,.18);border-top-color:#ff3838;
+    box-shadow:0 0 18px rgba(255,56,56,.45);
+    animation:nkma-spin .9s linear infinite;}
+  @keyframes nkma-spin{to{transform:rotate(360deg)}}
+</style>
 </head>
 <body>
+  <div id="loader"><div class="ring"></div></div>
+
   <canvas id="bg-canvas"></canvas>
   <div class="bg-glow"></div>
   <div class="bg-grain"></div>
@@ -17,5 +33,30 @@
   <div id="root"></div>
 
   <script type="module" src="/main.jsx"></script>
+  <script>
+    // Hide the loader once the page is ready and custom fonts have loaded,
+    // so the font swap happens behind the loader (no visible FOUT).
+    (function () {
+      var loader = document.getElementById('loader');
+      function hide() {
+        if (!loader) return;
+        loader.classList.add('hide');
+        setTimeout(function () { loader.remove(); }, 600);
+      }
+      var done = false;
+      function ready() { if (done) return; done = true; hide(); }
+      var fontsReady = document.fonts && document.fonts.ready
+        ? document.fonts.ready : Promise.resolve();
+      Promise.all([
+        fontsReady,
+        new Promise(function (res) {
+          if (document.readyState === 'complete') res();
+          else window.addEventListener('load', res, { once: true });
+        })
+      ]).then(ready);
+      // Safety: never let the loader hang longer than 4s
+      setTimeout(ready, 4000);
+    })();
+  </script>
 </body>
 </html>
