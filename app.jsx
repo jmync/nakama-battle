@@ -384,7 +384,7 @@ function Prizes() {
             </svg>
           </div>
           <div className="pl">1st Place</div>
-          <div className="amt">$120</div>
+          <div className="amt">$160</div>
           <p style={{ color: 'var(--muted)', fontSize: 14 }}>Winner takes the crown, and the cash.</p>
         </div>
         <div className="prize silver">
