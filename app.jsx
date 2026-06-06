@@ -493,7 +493,7 @@ function App() {
         <div className="hero-stats">
           <div className="s"><div className="n">16</div><div className="k">Teams advancing</div></div>
           <div className="s"><div className="n">5</div><div className="k">Stages</div></div>
-          <div className="s"><div className="n">2:00</div><div className="k">Early-round cap</div></div>
+          <div className="s"><div className="n">2:00</div><div className="k">Time cap</div></div>
         </div>
 
         <div className="scroll-hint" aria-hidden="true">

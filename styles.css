@@ -177,7 +177,8 @@ body{
   color:transparent;-webkit-text-stroke:2.5px var(--gold);
   text-shadow:0 0 16px rgba(255,56,56,.32);
   animation:flicker 4.5s infinite steps(1)}
-.title .l2 em{font-style:normal;color:var(--gold);-webkit-text-stroke:0}
+.title .l2 em{font-style:normal;color:var(--gold);-webkit-text-stroke:0;
+  filter:drop-shadow(0 0 10px rgba(255,56,56,.45)) drop-shadow(0 0 20px rgba(255,56,56,.28))}
 .title-badge{position:absolute;top:-18px;right:-6px;font-family:var(--display);font-size:13px;
   background:var(--ember);color:#fff;padding:7px 12px;border-radius:8px;transform:rotate(7deg);
   box-shadow:3px 3px 0 var(--ink);letter-spacing:1px}
@@ -211,7 +212,7 @@ body{
 .hero-stats .s{padding:14px 24px;text-align:center;border-right:1px solid var(--panel-line)}
 .hero-stats .s:last-child{border-right:none}
 .hero-stats .s .n{font-family:var(--display);font-size:22px;color:var(--gold);line-height:1}
-.hero-stats .s .k{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.hero-stats .s .k{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:6px;white-space:nowrap}
 
 .scroll-hint{display:flex;align-items:center;justify-content:center;gap:16px;width:min(380px,64%);margin:12px auto 0}
 .scroll-hint .ln{flex:1;height:1px;background:rgba(255,255,255,.16)}
