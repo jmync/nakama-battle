@@ -235,7 +235,7 @@ function Rules() {
 /* ---------- FORMAT ---------- */
 function Format() {
   const stages = [
-    ['STAGE 01', 'Qualifiers', 'Pick a short-sized song performed by teams in chorus battles from 2016–2021 (YouTube or Smule). Top 16 advances.'],
+    ['STAGE 01', 'Qualifiers', 'Pick a song performed by teams in chorus battles from 2016–2021 (YouTube or Smule). Top 16 advances.'],
     ['STAGE 02', 'Group Rounds', 'A genre is spun via roulette for each group. Any song works, but stick to your group’s genre. Top 8 advance.'],
     ['STAGE 03', 'Knockout', 'Head-to-head group deciders. Songs are picked by us, and groups are assigned via roulette. Winners advance to the Semi-Finals.'],
     ['STAGE 04', 'Semi-Finals', 'A genre is spun via roulette, then head-to-head rivals pick a song within that genre for each other. Same genre for both, so every pick stays fair.'],
