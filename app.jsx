@@ -462,12 +462,16 @@ function App() {
                 <span className="mascot-ring">
                   <span className="mascot-hint">
                     <svg viewBox="0 0 120 120" fill="none" stroke="#ff2d2d" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
-                      <ellipse cx="44" cy="54" rx="13" ry="17" transform="rotate(-20 44 54)" fill="#ff2d2d" stroke="none"></ellipse>
-                      <ellipse cx="76" cy="54" rx="13" ry="17" transform="rotate(20 76 54)" fill="#ff2d2d" stroke="none"></ellipse>
-                      <circle cx="45" cy="55" r="5.4" fill="#fff" stroke="none"></circle>
-                      <circle cx="75" cy="55" r="5.4" fill="#fff" stroke="none"></circle>
-                      <ellipse cx="60" cy="76" rx="7" ry="5" fill="#ff2d2d" stroke="none"></ellipse>
-                      <path d="M60 80 v5 M60 85 q-7 6 -13 1 M60 85 q7 6 13 1" fill="none" stroke="#ff2d2d" strokeWidth="2.8" strokeLinecap="round"></path>
+                      <g className="panda-body">
+                        <ellipse cx="44" cy="54" rx="13" ry="17" transform="rotate(-20 44 54)" fill="#ff2d2d" stroke="none"></ellipse>
+                        <ellipse cx="76" cy="54" rx="13" ry="17" transform="rotate(20 76 54)" fill="#ff2d2d" stroke="none"></ellipse>
+                        <ellipse cx="60" cy="74" rx="7" ry="5" fill="#ff2d2d" stroke="none"></ellipse>
+                        <path d="M60 78 v4 M60 82 q-7 6 -13 1 M60 82 q7 6 13 1" fill="none" stroke="#ff2d2d" strokeWidth="2.8" strokeLinecap="round"></path>
+                      </g>
+                      <g className="panda-eyes">
+                        <circle className="eye" cx="45" cy="55" r="5.4" fill="#fff" stroke="none"></circle>
+                        <circle className="eye" cx="75" cy="55" r="5.4" fill="#fff" stroke="none"></circle>
+                      </g>
                     </svg>
                   </span>
                 </span>
