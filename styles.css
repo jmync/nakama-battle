@@ -84,13 +84,18 @@ body{
 .title-wrap{position:relative;margin-top:clamp(64px,12vh,150px)}
 /* The mascot ring stands in for the "O" of CHORUS: an inline letter sized
    in em so it scales with the title and never overlaps the text. */
-.o-mascot{display:inline-block;width:.78em;aspect-ratio:1;line-height:0;vertical-align:-.06em;margin:0 .03em}
-.o-letter{display:none}
-.mascot-ring{display:block;position:relative;width:100%;aspect-ratio:1;border-radius:50%;padding:.07em;box-sizing:border-box;
-  background:radial-gradient(circle at 50% 40%, #320e14, #0a0406 72%);border:.045em solid var(--gold);
-  box-shadow:0 0 0 .07em var(--bg);animation:tilt 3s ease-in-out infinite}
-.mascot-hint{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
-.mascot-hint svg{width:66%;height:66%}
+/* The "O" of CHORUS is the real letter (Perfect Action + gold outline, inherited
+   from .l2). The panda overlays inside the letter's hole, sized to fill it. */
+.o-mascot{position:relative;display:inline-block}
+.o-letter{display:inline}
+.mascot-overlay{position:absolute;left:50%;top:48%;width:.6em;height:.6em;transform:translate(-50%,-50%);
+  display:flex;align-items:center;justify-content:center;pointer-events:none}
+.mascot-ring{display:flex;align-items:center;justify-content:center;width:100%;height:100%;
+  transform:rotate(9deg);
+  filter:drop-shadow(0 0 16px rgba(255,56,56,.45)) drop-shadow(0 0 30px rgba(255,56,56,.25));
+  animation:flicker-fade 4.5s infinite steps(1)}
+.mascot-hint{display:flex;align-items:center;justify-content:center;width:100%;height:100%}
+.mascot-hint svg{width:100%;height:100%}
 .mascot-tag{font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--gold-soft);text-transform:uppercase}
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
@@ -111,6 +116,28 @@ body{
   padding:8px 16px;background:rgba(8,6,15,.4)}
 .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--ember);box-shadow:0 0 10px var(--ember);animation:pulse 1.6s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+/* Damaged-neon flicker: mostly lit, with sudden irregular dropouts. */
+@keyframes flicker{
+  0%,18%,20%,42%,44%,84%,100%{
+    -webkit-text-stroke-color:var(--gold);
+    text-shadow:0 0 16px rgba(255,56,56,.45), 0 0 30px rgba(255,56,56,.25)}
+  19%,43%,72%,74%{
+    -webkit-text-stroke-color:rgba(255,56,56,.35);
+    text-shadow:0 0 4px rgba(255,56,56,.12)}
+  73%{
+    -webkit-text-stroke-color:rgba(255,56,56,.6);
+    text-shadow:0 0 8px rgba(255,56,56,.2)}
+}
+/* Same timing as flicker so the mascot 'O' + panda dim and lose their
+   red glow in sync with CHORUS BATTLE. */
+@keyframes flicker-fade{
+  0%,18%,20%,42%,44%,84%,100%{opacity:1;
+    filter:drop-shadow(0 0 16px rgba(255,56,56,.45)) drop-shadow(0 0 30px rgba(255,56,56,.25))}
+  19%,43%,72%,74%{opacity:.28;
+    filter:drop-shadow(0 0 4px rgba(255,56,56,.12))}
+  73%{opacity:.55;
+    filter:drop-shadow(0 0 8px rgba(255,56,56,.2))}
+}
 
 .title-wrap{position:relative}
 .title{font-family:var(--display);line-height:.92;letter-spacing:1px;
@@ -119,9 +146,10 @@ body{
   font-size:1em;line-height:1;-webkit-text-stroke:2px var(--ink);paint-order:stroke fill;
   text-shadow:4px 4px 0 var(--ink)}
 .title .l2{display:block;font-family:"Perfect Action",var(--display);
-  font-size:.9em;margin-top:.12em;
+  font-size:.9em;margin-top:.12em;white-space:nowrap;
   color:transparent;-webkit-text-stroke:2.5px var(--gold);
-  text-shadow:0 0 16px rgba(255,56,56,.32)}
+  text-shadow:0 0 16px rgba(255,56,56,.32);
+  animation:flicker 4.5s infinite steps(1)}
 .title .l2 em{font-style:normal;color:var(--gold);-webkit-text-stroke:0}
 .title-badge{position:absolute;top:-18px;right:-6px;font-family:var(--display);font-size:13px;
   background:var(--ember);color:#fff;padding:7px 12px;border-radius:8px;transform:rotate(7deg);
@@ -333,8 +361,8 @@ strong, b{font-weight:600;color:#ddc9ce}
   /* Title shadows are sized in px for the big desktop title; on the small
      mobile title they bloom far too much. Scale them down here. */
   .title .l1{text-shadow:2px 2px 0 var(--ink)}
-  .title .l2{text-shadow:0 0 12px rgba(255,56,56,.35);-webkit-text-stroke-width:1.6px}
-  /* Mobile: hide the mascot 'O'; show a normal "O" so CHORUS reads as text. */
-  .o-mascot{display:none}
-  .o-letter{display:inline}
+  /* Keep CHORUS BATTLE on one line: shrink it so it fits the phone width. */
+  .title .l2{text-shadow:0 0 12px rgba(255,56,56,.35);-webkit-text-stroke-width:1.6px;font-size:.66em}
+  /* Mobile: hide the panda overlay; the real "O" stays so CHORUS reads as text. */
+  .mascot-overlay{display:none}
 }

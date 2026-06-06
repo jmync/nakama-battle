@@ -207,15 +207,15 @@ function Rules() {
       <div className="banner" style={{ marginBottom: 22 }}>
         <span className="ic">
           <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="33" cy="36" r="12"></circle>
-            <circle cx="87" cy="36" r="12"></circle>
-            <circle cx="60" cy="64" r="37"></circle>
-            <ellipse cx="46" cy="60" rx="8.5" ry="12" transform="rotate(-12 46 60)"></ellipse>
-            <ellipse cx="74" cy="60" rx="8.5" ry="12" transform="rotate(12 74 60)"></ellipse>
-            <circle cx="47" cy="62" r="3" fill="currentColor" stroke="none"></circle>
-            <circle cx="73" cy="62" r="3" fill="currentColor" stroke="none"></circle>
-            <circle cx="60" cy="74" r="3.4" fill="currentColor" stroke="none"></circle>
-            <path d="M53 81 q7 7 14 0"></path>
+            <circle cx="31" cy="34" r="16" fill="currentColor" stroke="none"></circle>
+            <circle cx="89" cy="34" r="16" fill="currentColor" stroke="none"></circle>
+            <circle cx="60" cy="63" r="40" fill="currentColor" stroke="none"></circle>
+            <ellipse cx="45" cy="58" rx="11" ry="14.5" transform="rotate(-20 45 58)" fill="var(--ink)" stroke="none"></ellipse>
+            <ellipse cx="75" cy="58" rx="11" ry="14.5" transform="rotate(20 75 58)" fill="var(--ink)" stroke="none"></ellipse>
+            <circle cx="45" cy="59" r="4.5" fill="#fff" stroke="none"></circle>
+            <circle cx="75" cy="59" r="4.5" fill="#fff" stroke="none"></circle>
+            <ellipse cx="60" cy="73" rx="6" ry="4.3" fill="var(--ink)" stroke="none"></ellipse>
+            <path d="M60 77 v5 M60 82 q-7 6 -13 1 M60 82 q7 6 13 1" fill="none" stroke="var(--ink)" strokeWidth="2.6" strokeLinecap="round"></path>
           </svg>
         </span>
         <span>Any violation of the above rules will result in <b>disqualification</b>.</span>
@@ -286,15 +286,15 @@ function Format() {
               <span className="sin" key={s}>
                 <span className="sin-ic">
                   <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="33" cy="36" r="12"></circle>
-                    <circle cx="87" cy="36" r="12"></circle>
-                    <circle cx="60" cy="64" r="37"></circle>
-                    <ellipse cx="46" cy="60" rx="8.5" ry="12" transform="rotate(-12 46 60)"></ellipse>
-                    <ellipse cx="74" cy="60" rx="8.5" ry="12" transform="rotate(12 74 60)"></ellipse>
-                    <circle cx="47" cy="62" r="3" fill="currentColor" stroke="none"></circle>
-                    <circle cx="73" cy="62" r="3" fill="currentColor" stroke="none"></circle>
-                    <circle cx="60" cy="74" r="3.4" fill="currentColor" stroke="none"></circle>
-                    <path d="M53 81 q7 7 14 0"></path>
+                    <circle cx="31" cy="34" r="16" fill="currentColor" stroke="none"></circle>
+                    <circle cx="89" cy="34" r="16" fill="currentColor" stroke="none"></circle>
+                    <circle cx="60" cy="63" r="40" fill="currentColor" stroke="none"></circle>
+                    <ellipse cx="45" cy="58" rx="11" ry="14.5" transform="rotate(-20 45 58)" fill="var(--ink)" stroke="none"></ellipse>
+                    <ellipse cx="75" cy="58" rx="11" ry="14.5" transform="rotate(20 75 58)" fill="var(--ink)" stroke="none"></ellipse>
+                    <circle cx="45" cy="59" r="4.5" fill="#fff" stroke="none"></circle>
+                    <circle cx="75" cy="59" r="4.5" fill="#fff" stroke="none"></circle>
+                    <ellipse cx="60" cy="73" rx="6" ry="4.3" fill="var(--ink)" stroke="none"></ellipse>
+                    <path d="M60 77 v5 M60 82 q-7 6 -13 1 M60 82 q7 6 13 1" fill="none" stroke="var(--ink)" strokeWidth="2.6" strokeLinecap="round"></path>
                   </svg>
                 </span>
                 {s}
@@ -341,15 +341,15 @@ function Judging() {
             Judged by our nakama
             <span className="panda-ic">
               <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="33" cy="36" r="12"></circle>
-                <circle cx="87" cy="36" r="12"></circle>
-                <circle cx="60" cy="64" r="37"></circle>
-                <ellipse cx="46" cy="60" rx="8.5" ry="12" transform="rotate(-12 46 60)"></ellipse>
-                <ellipse cx="74" cy="60" rx="8.5" ry="12" transform="rotate(12 74 60)"></ellipse>
-                <circle cx="47" cy="62" r="3" fill="currentColor" stroke="none"></circle>
-                <circle cx="73" cy="62" r="3" fill="currentColor" stroke="none"></circle>
-                <circle cx="60" cy="74" r="3.4" fill="currentColor" stroke="none"></circle>
-                <path d="M53 81 q7 7 14 0"></path>
+                <circle cx="31" cy="34" r="16" fill="currentColor" stroke="none"></circle>
+                <circle cx="89" cy="34" r="16" fill="currentColor" stroke="none"></circle>
+                <circle cx="60" cy="63" r="40" fill="currentColor" stroke="none"></circle>
+                <ellipse cx="45" cy="58" rx="11" ry="14.5" transform="rotate(-20 45 58)" fill="var(--ink)" stroke="none"></ellipse>
+                <ellipse cx="75" cy="58" rx="11" ry="14.5" transform="rotate(20 75 58)" fill="var(--ink)" stroke="none"></ellipse>
+                <circle cx="45" cy="59" r="4.5" fill="#fff" stroke="none"></circle>
+                <circle cx="75" cy="59" r="4.5" fill="#fff" stroke="none"></circle>
+                <ellipse cx="60" cy="73" rx="6" ry="4.3" fill="var(--ink)" stroke="none"></ellipse>
+                <path d="M60 77 v5 M60 82 q-7 6 -13 1 M60 82 q7 6 13 1" fill="none" stroke="var(--ink)" strokeWidth="2.6" strokeLinecap="round"></path>
               </svg>
             </span>
           </h3>
@@ -458,23 +458,20 @@ function App() {
           <h1 className="title">
             <span className="l1">NAKAMA</span>
             <span className="l2">
-              CH<span className="o-letter">O</span><span className="o-mascot" aria-hidden="true">
+              CH<span className="o-mascot"><span className="o-letter">O</span><span className="mascot-overlay" aria-hidden="true">
                 <span className="mascot-ring">
                   <span className="mascot-hint">
                     <svg viewBox="0 0 120 120" fill="none" stroke="#ff2d2d" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="33" cy="36" r="12"></circle>
-                      <circle cx="87" cy="36" r="12"></circle>
-                      <circle cx="60" cy="64" r="37"></circle>
-                      <ellipse cx="46" cy="60" rx="8.5" ry="12" transform="rotate(-12 46 60)"></ellipse>
-                      <ellipse cx="74" cy="60" rx="8.5" ry="12" transform="rotate(12 74 60)"></ellipse>
-                      <circle cx="47" cy="62" r="3" fill="#ff2d2d" stroke="none"></circle>
-                      <circle cx="73" cy="62" r="3" fill="#ff2d2d" stroke="none"></circle>
-                      <circle cx="60" cy="74" r="3.4" fill="#ff2d2d" stroke="none"></circle>
-                      <path d="M53 81 q7 7 14 0"></path>
+                      <ellipse cx="44" cy="54" rx="13" ry="17" transform="rotate(-20 44 54)" fill="#ff2d2d" stroke="none"></ellipse>
+                      <ellipse cx="76" cy="54" rx="13" ry="17" transform="rotate(20 76 54)" fill="#ff2d2d" stroke="none"></ellipse>
+                      <circle cx="45" cy="55" r="5.4" fill="#fff" stroke="none"></circle>
+                      <circle cx="75" cy="55" r="5.4" fill="#fff" stroke="none"></circle>
+                      <ellipse cx="60" cy="76" rx="7" ry="5" fill="#ff2d2d" stroke="none"></ellipse>
+                      <path d="M60 80 v5 M60 85 q-7 6 -13 1 M60 85 q7 6 13 1" fill="none" stroke="#ff2d2d" strokeWidth="2.8" strokeLinecap="round"></path>
                     </svg>
                   </span>
                 </span>
-              </span>RUS <em>Battle</em>
+              </span></span>RUS <em>Battle</em>
             </span>
           </h1>
         </div>
@@ -524,11 +521,7 @@ function App() {
 
       {/* FOOTER */}
       <footer className="foot">
-        <div className="marquee">SING BEYOND LIMITS</div>
-        <div className="links">
-          <a className="btn btn-primary" href="https://forms.gle/beS1DQGHGpst4zJ39" target="_blank" rel="noopener">REGISTER ↗</a>
-          <a className="btn btn-ghost" href="https://discord.gg/YujuKC9WXP" target="_blank" rel="noopener">DISCORD ↗</a>
-        </div>
+        <div className="marquee">#NKMA</div>
         <small className="sponsor">This event is sponsored.</small>
       </footer>
     </React.Fragment>
