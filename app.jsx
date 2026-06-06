@@ -177,7 +177,7 @@ function Rules() {
   ];
   const others = [
     "Once you join, there's no backing out. The mechanics are tough, so make sure your trio is fully committed before you register.",
-    'Watch party for the group rounds may be streamed by VTuber friends. Details soon.',
+    'Entries will have a watch party on Discord or elsewhere. Announcements soon.',
     'Respect all participants.',
     "Let's keep it short, enjoyable, and stress-free.",
   ];
