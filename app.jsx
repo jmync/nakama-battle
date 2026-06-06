@@ -74,7 +74,7 @@ function Bracket() {
   return (
     <div className="card fmt-wide">
       <span className="tag">Tournament Bracket · Head-to-Head</span>
-      <h3 style={{ marginBottom: 4 }}>Showdown <span style={{ margin: '0 8px' }}>→</span> Semi-Finals <span style={{ margin: '0 8px' }}>→</span> Finals</h3>
+      <h3 style={{ marginBottom: 4 }}>Group Clash <span style={{ margin: '0 8px' }}>→</span> Showdown <span style={{ margin: '0 8px' }}>→</span> Semi-Finals <span style={{ margin: '0 8px' }}>→</span> Finals</h3>
       <p>Before the battle begins, all teams are drawn into Groups A–D via a live roulette. Group winners then climb the ladder to the Finals.</p>
       <div className="bk-legend">
         {['A', 'B', 'C', 'D'].map((g) => (
@@ -457,25 +457,26 @@ function App() {
         <div className="title-wrap">
           <h1 className="title">
             <span className="l1">NAKAMA</span>
-            <span className="l2">Chorus <em>Battle</em></span>
+            <span className="l2">
+              CH<span className="o-mascot" aria-hidden="true">
+                <span className="mascot-ring">
+                  <span className="mascot-hint">
+                    <svg viewBox="0 0 120 120" fill="none" stroke="#ff2d2d" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="33" cy="36" r="12"></circle>
+                      <circle cx="87" cy="36" r="12"></circle>
+                      <circle cx="60" cy="64" r="37"></circle>
+                      <ellipse cx="46" cy="60" rx="8.5" ry="12" transform="rotate(-12 46 60)"></ellipse>
+                      <ellipse cx="74" cy="60" rx="8.5" ry="12" transform="rotate(12 74 60)"></ellipse>
+                      <circle cx="47" cy="62" r="3" fill="#ff2d2d" stroke="none"></circle>
+                      <circle cx="73" cy="62" r="3" fill="#ff2d2d" stroke="none"></circle>
+                      <circle cx="60" cy="74" r="3.4" fill="#ff2d2d" stroke="none"></circle>
+                      <path d="M53 81 q7 7 14 0"></path>
+                    </svg>
+                  </span>
+                </span>
+              </span>RUS <em>Battle</em>
+            </span>
           </h1>
-          <div className="hero-mascot">
-            <div className="mascot-ring">
-              <span className="mascot-hint">
-                <svg viewBox="0 0 120 120" fill="none" stroke="#ff2d2d" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="33" cy="36" r="12"></circle>
-                  <circle cx="87" cy="36" r="12"></circle>
-                  <circle cx="60" cy="64" r="37"></circle>
-                  <ellipse cx="46" cy="60" rx="8.5" ry="12" transform="rotate(-12 46 60)"></ellipse>
-                  <ellipse cx="74" cy="60" rx="8.5" ry="12" transform="rotate(12 74 60)"></ellipse>
-                  <circle cx="47" cy="62" r="3" fill="#ff2d2d" stroke="none"></circle>
-                  <circle cx="73" cy="62" r="3" fill="#ff2d2d" stroke="none"></circle>
-                  <circle cx="60" cy="74" r="3.4" fill="#ff2d2d" stroke="none"></circle>
-                  <path d="M53 81 q7 7 14 0"></path>
-                </svg>
-              </span>
-            </div>
-          </div>
         </div>
         <div className="act">
           <span className="ln"></span>

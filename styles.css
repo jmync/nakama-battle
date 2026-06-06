@@ -69,16 +69,18 @@ body{
   text-align:center;padding:60px clamp(16px,5vw,48px) 80px;gap:26px}
 .hero-mascot{display:flex;flex-direction:column;align-items:center;gap:9px;margin-bottom:-2px}
 .title-wrap{position:relative;margin-top:clamp(30px,7vh,84px)}
-.title-wrap .hero-mascot{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:6;margin:0;gap:0;pointer-events:none}
-.mascot-ring{position:relative;width:clamp(98px,12.5vw,132px);height:clamp(98px,12.5vw,132px);border-radius:50%;padding:5px;
-  background:radial-gradient(circle at 50% 40%, #320e14, #0a0406 72%);border:3px solid var(--gold);
-  box-shadow:0 0 0 7px var(--bg);animation:spin 6s linear infinite}
-.mascot-ring image-slot{position:relative;z-index:1;width:100%;height:100%;display:block}
-.mascot-hint{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+/* The mascot ring stands in for the "O" of CHORUS: an inline letter sized
+   in em so it scales with the title and never overlaps the text. */
+.o-mascot{display:inline-block;width:.78em;aspect-ratio:1;line-height:0;vertical-align:-.06em;margin:0 .03em}
+.mascot-ring{display:block;position:relative;width:100%;aspect-ratio:1;border-radius:50%;padding:.07em;box-sizing:border-box;
+  background:radial-gradient(circle at 50% 40%, #320e14, #0a0406 72%);border:.045em solid var(--gold);
+  box-shadow:0 0 0 .07em var(--bg);animation:tilt 3s ease-in-out infinite}
+.mascot-hint{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
 .mascot-hint svg{width:66%;height:66%}
 .mascot-tag{font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--gold-soft);text-transform:uppercase}
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes tilt{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
 @keyframes orbit{
   0%{transform:translate(9px,0)}
   12.5%{transform:translate(6.4px,6.4px)}
@@ -312,8 +314,4 @@ strong, b{font-weight:600;color:#ddc9ce}
   .hero-stats .s{padding:11px 16px}
   .tl{grid-template-columns:90px 1fr;gap:12px}
   .topbar .follow a.follow-h{display:none}
-  /* Mascot kept overlapping the title on phones because its size floor
-     (98px) stayed put while the title shrank. Let it scale down with the
-     viewport so it sits behind the title without covering the text. */
-  .mascot-ring{width:clamp(56px,16vw,80px);height:clamp(56px,16vw,80px)}
 }
