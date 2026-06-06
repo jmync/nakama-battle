@@ -183,7 +183,7 @@ body{
   background:var(--ember);color:#fff;padding:7px 12px;border-radius:8px;transform:rotate(7deg);
   box-shadow:3px 3px 0 var(--ink);letter-spacing:1px}
 
-.tagline{font-family:var(--body);font-weight:700;font-size:clamp(14px,3vw,28px);white-space:nowrap;
+.tagline{font-family:var(--body);font-weight:700;font-size:clamp(17px,3.6vw,34px);white-space:nowrap;
   color:var(--paper)}
 .tagline .q{color:var(--pink-soft)}
 .subline{font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:1px}
