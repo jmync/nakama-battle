@@ -72,6 +72,7 @@ body{
 /* The mascot ring stands in for the "O" of CHORUS: an inline letter sized
    in em so it scales with the title and never overlaps the text. */
 .o-mascot{display:inline-block;width:.78em;aspect-ratio:1;line-height:0;vertical-align:-.06em;margin:0 .03em}
+.o-letter{display:none}
 .mascot-ring{display:block;position:relative;width:100%;aspect-ratio:1;border-radius:50%;padding:.07em;box-sizing:border-box;
   background:radial-gradient(circle at 50% 40%, #320e14, #0a0406 72%);border:.045em solid var(--gold);
   box-shadow:0 0 0 .07em var(--bg);animation:tilt 3s ease-in-out infinite}
@@ -318,6 +319,7 @@ strong, b{font-weight:600;color:#ddc9ce}
      mobile title they bloom far too much. Scale them down here. */
   .title .l1{text-shadow:2px 2px 0 var(--ink), 3px 3px 0 rgba(212,38,59,.6)}
   .title .l2{text-shadow:0 0 12px rgba(255,56,56,.35);-webkit-text-stroke-width:1.6px}
-  /* Drop the mascot 'O' so it lines up with the CHORUS cap-height. */
-  .o-mascot{width:.74em;vertical-align:-.2em}
+  /* Mobile: hide the mascot 'O'; show a normal "O" so CHORUS reads as text. */
+  .o-mascot{display:none}
+  .o-letter{display:inline}
 }

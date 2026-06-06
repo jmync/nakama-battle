@@ -458,7 +458,7 @@ function App() {
           <h1 className="title">
             <span className="l1">NAKAMA</span>
             <span className="l2">
-              CH<span className="o-mascot" aria-hidden="true">
+              CH<span className="o-letter">O</span><span className="o-mascot" aria-hidden="true">
                 <span className="mascot-ring">
                   <span className="mascot-hint">
                     <svg viewBox="0 0 120 120" fill="none" stroke="#ff2d2d" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
