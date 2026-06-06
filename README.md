@@ -1,6 +1,6 @@
-# NAKAMA Trio Battle
+# NAKAMA Chorus Battle
 
-Landing page for the **NKMA Trio Battle** — a Smule trio singing tournament. Built with React + Vite.
+Landing page for the **NKMA Chorus Battle** — a Smule chorus singing tournament (teams of up to 4). Built with React + Vite.
 
 ## Tech
 
@@ -40,9 +40,9 @@ vite.config.js    Vite + React plugin config
 
 ## Event
 
-- **Format:** Trio Battle, recorded in Smule
-- **Stages:** Qualifiers → Group Rounds → Knockout → Semi-Finals → Finals
+- **Format:** Chorus Battle (teams of up to 4), recorded in Smule
+- **Stages:** Qualifiers → Genre Clash → Showdown → Semi-Finals → Finals
 - **Register:** https://forms.gle/beS1DQGHGpst4zJ39
 - **Discord:** https://discord.gg/YujuKC9WXP
 
-`#NKMA_TRIOBATTLE`
+`#NKMA_CHORUSBATTLE`

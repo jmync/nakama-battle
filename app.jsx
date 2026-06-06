@@ -3,13 +3,13 @@ import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 /* ---------- BRACKET (4 groups) ---------- */
 const GROUP_COLOR = { A: '#ff4d6d', B: '#ffffff', C: '#ff2d2d', D: '#b23bff' };
 const BK_COLS = [
-  { label: 'GROUP ROUNDS', ids: ['A1', 'A2', 'B1', 'B2'] },
-  { label: 'KNOCKOUT', ids: ['GFA', 'GFB'] },
+  { label: 'GENRE CLASH', ids: ['A1', 'A2', 'B1', 'B2'] },
+  { label: 'SHOWDOWN', ids: ['GFA', 'GFB'] },
   { label: 'SEMI-FINAL', ids: ['SF1'] },
   { label: 'FINALS', ids: ['F'] },
   { label: 'SEMI-FINAL', ids: ['SF2'] },
-  { label: 'KNOCKOUT', ids: ['GFC', 'GFD'] },
-  { label: 'GROUP ROUNDS', ids: ['C1', 'C2', 'D1', 'D2'] },
+  { label: 'SHOWDOWN', ids: ['GFC', 'GFD'] },
+  { label: 'GENRE CLASH', ids: ['C1', 'C2', 'D1', 'D2'] },
 ];
 const BK = {
   A1: { g: 'A', title: 'A · Match 1' }, A2: { g: 'A', title: 'A · Match 2' },
@@ -74,7 +74,7 @@ function Bracket() {
   return (
     <div className="card fmt-wide">
       <span className="tag">Tournament Bracket · Head-to-Head</span>
-      <h3 style={{ marginBottom: 4 }}>Knockout <span style={{ margin: '0 8px' }}>→</span> Semi-Finals <span style={{ margin: '0 8px' }}>→</span> Finals</h3>
+      <h3 style={{ marginBottom: 4 }}>Showdown <span style={{ margin: '0 8px' }}>→</span> Semi-Finals <span style={{ margin: '0 8px' }}>→</span> Finals</h3>
       <p>Before the battle begins, all teams are drawn into Groups A–D via a live roulette. Group winners then climb the ladder to the Finals.</p>
       <div className="bk-legend">
         {['A', 'B', 'C', 'D'].map((g) => (
@@ -132,8 +132,8 @@ function Mechanics() {
       <div className="grid three" style={{ marginBottom: 16 }}>
         <div className="card outline">
           <span className="tag">Format</span>
-          <h3>Trio Battle</h3>
-          <p>Three voices, one stage. Recorded inside <strong>Smule</strong>.</p>
+          <h3>Chorus Battle</h3>
+          <p>Up to four voices, one stage. Recorded inside <strong>Smule</strong>.</p>
         </div>
         <div className="card outline">
           <span className="tag">Time limit</span>
@@ -156,7 +156,7 @@ function Mechanics() {
         <div className="card">
           <span className="tag">Creative freedom</span>
           <h3>Remix? Go ahead.</h3>
-          <p>Reinterpret, rearrange, restyle. Remixes are welcome and you're free to adjust the key to fit your trio's range.</p>
+          <p>Reinterpret, rearrange, restyle. Remixes are welcome and you're free to adjust the key to fit your team's range.</p>
         </div>
       </div>
     </div>
@@ -166,9 +166,9 @@ function Mechanics() {
 /* ---------- RULES ---------- */
 function Rules() {
   const dos = [
-    ['One team only', 'A contestant may join only ONE trio team.'],
+    ['One team only', 'A contestant may join only ONE team.'],
     ['Record in Smule', 'All entries must be recorded within Smule.'],
-    ['Tag your entry', 'Every entry must include #NKMA_TRIOBATTLE in the description.'],
+    ['Tag your entry', 'Every entry must include #NKMA_CHORUSBATTLE in the description.'],
   ];
   const donts = [
     ['No late entries', 'Late entries will not be accepted under any circumstances.'],
@@ -176,9 +176,9 @@ function Rules() {
     ['Short version (through Semi-Finals)', 'Full-length recordings are not allowed through the Semi-Finals. Only the Finals are sung full version.'],
   ];
   const others = [
-    "Once you join, there's no backing out. The mechanics are tough, so make sure your trio is fully committed before you register.",
+    "Once you join, there's no backing out. The mechanics are tough, so make sure your team is fully committed before you register.",
     'Entries will have a watch party on Discord or elsewhere. Announcements soon.',
-    'From the Knockout stage onward, every team gets judges’ critiques and feedback, not just a score.',
+    'From the Showdown stage onward, every team gets judges’ critiques and feedback, not just a score.',
     'Respect all participants.',
     "Let's keep it short, enjoyable, and stress-free.",
   ];
@@ -237,8 +237,8 @@ function Rules() {
 function Format() {
   const stages = [
     ['STAGE 01', 'Qualifiers', 'Pick a song performed by teams in chorus battles from 2016–2021 (YouTube or Smule). Top 16 advances.'],
-    ['STAGE 02', 'Group Rounds', 'A genre is spun via roulette for each group. Any song works, but stick to your group’s genre. Top 8 advance.'],
-    ['STAGE 03', 'Knockout', 'Head-to-head group deciders. Songs are picked by us, and groups are assigned via roulette. Winners advance to the Semi-Finals.'],
+    ['STAGE 02', 'Genre Clash', 'A genre is spun via roulette for each group. Any song works, but stick to your group’s genre. Top 8 advance.'],
+    ['STAGE 03', 'Showdown', 'Group winners go head-to-head. Songs are picked by us, and matchups are assigned via roulette. Winners advance to the Semi-Finals.'],
     ['STAGE 04', 'Semi-Finals', 'A genre is spun via roulette, then head-to-head rivals pick a song within that genre for each other. Same genre for both, so every pick stays fair.'],
     ['STAGE 05', 'Finals', 'Theme: 7 Deadly Sins (#RRTB-inspired). Pick your own song for the theme. Full version, with a touch of mashup to unleash your creativity.'],
   ];
@@ -384,7 +384,7 @@ function Prizes() {
             </svg>
           </div>
           <div className="pl">1st Place</div>
-          <div className="amt">$150</div>
+          <div className="amt">$120</div>
           <p style={{ color: 'var(--muted)', fontSize: 14 }}>Winner takes the crown, and the cash.</p>
         </div>
         <div className="prize silver">
@@ -397,7 +397,7 @@ function Prizes() {
             </svg>
           </div>
           <div className="pl">2nd Place</div>
-          <div className="amt">$60</div>
+          <div className="amt">$80</div>
           <p style={{ color: 'var(--muted)', fontSize: 14 }}>Second place still walks away rewarded.</p>
         </div>
       </div>
@@ -417,7 +417,7 @@ function Prizes() {
       <div className="form-cta" style={{ marginTop: 26 }}>
         <div>
           <div className="t">Dare to take the stage?</div>
-          <div className="d">The lights are hot and the bracket is waiting. Rally your trio, find your voice, and see how far you can climb. Everyone's welcome, but only the bold step up.</div>
+          <div className="d">The lights are hot and the bracket is waiting. Rally your team, find your voice, and see how far you can climb. Everyone's welcome, but only the bold step up.</div>
         </div>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
           <a className="btn btn-primary" href="https://forms.gle/beS1DQGHGpst4zJ39" target="_blank" rel="noopener">REGISTER ↗</a>
@@ -457,7 +457,7 @@ function App() {
         <div className="title-wrap">
           <h1 className="title">
             <span className="l1">NAKAMA</span>
-            <span className="l2">Trio <em>Battle</em></span>
+            <span className="l2">Chorus <em>Battle</em></span>
           </h1>
           <div className="hero-mascot">
             <div className="mascot-ring">
@@ -483,7 +483,7 @@ function App() {
           <span className="ln"></span>
         </div>
         <p className="tagline">"Sing beyond limits. <span className="q">This is your challenge.</span>"</p>
-        <p className="subline">#SMULE · #SMUTAITES · #NKMA_TRIOBATTLE</p>
+        <p className="subline">#SMULE · #SMUTAITES · #NKMA_CHORUSBATTLE</p>
 
         <div className="cta-row">
           <a className="btn btn-primary" href="https://forms.gle/beS1DQGHGpst4zJ39" target="_blank" rel="noopener">REGISTER TEAM ↗</a>
