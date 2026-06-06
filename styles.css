@@ -319,5 +319,5 @@ strong, b{font-weight:600;color:#ddc9ce}
   .title .l1{text-shadow:2px 2px 0 var(--ink), 3px 3px 0 rgba(212,38,59,.6)}
   .title .l2{text-shadow:0 0 12px rgba(255,56,56,.35);-webkit-text-stroke-width:1.6px}
   /* Drop the mascot 'O' so it lines up with the CHORUS cap-height. */
-  .o-mascot{width:.74em;vertical-align:-.14em}
+  .o-mascot{width:.74em;vertical-align:-.2em}
 }
