@@ -133,7 +133,7 @@ function Mechanics() {
         <div className="card outline">
           <span className="tag">Format</span>
           <h3>Chorus Battle</h3>
-          <p>Up to four voices, one stage. Recorded inside <strong>Smule</strong>.</p>
+          <p>Four voices, one stage. Recorded inside <strong>Smule</strong>.</p>
         </div>
         <div className="card outline">
           <span className="tag">Time limit</span>
