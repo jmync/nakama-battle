@@ -178,6 +178,7 @@ function Rules() {
   const others = [
     "Once you join, there's no backing out. The mechanics are tough, so make sure your trio is fully committed before you register.",
     'Entries will have a watch party on Discord or elsewhere. Announcements soon.',
+    'From the Knockout stage onward, every team gets judges’ critiques and feedback, not just a score.',
     'Respect all participants.',
     "Let's keep it short, enjoyable, and stress-free.",
   ];
@@ -385,10 +386,6 @@ function Prizes() {
           <div className="pl">1st Place</div>
           <div className="amt">$150</div>
           <p style={{ color: 'var(--muted)', fontSize: 14 }}>Winner takes the crown, and the cash.</p>
-          <div className="prize-extra">
-            <span className="x-tag">Plus</span>
-            <span className="x-text">Personalized cute emotes / emojis / stickers <b>(2 each member)</b></span>
-          </div>
         </div>
         <div className="prize silver">
           <div className="medal">
