@@ -483,7 +483,7 @@ function App() {
           <span className="act-txt">ACT <em>1</em></span>
           <span className="ln"></span>
         </div>
-        <p className="tagline">"Sing beyond limits. <span className="q">This is your challenge.</span>"</p>
+        <p className="tagline">"Sing beyond limits."</p>
         <p className="subline">#SMULE · #SMUTAITES · #NKMA_CHORUSBATTLE</p>
 
         <div className="cta-row">

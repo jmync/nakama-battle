@@ -20,6 +20,19 @@
   --mono:"Space Mono", ui-monospace, monospace;
 }
 
+@font-face{
+  font-family:"Haruto";
+  src:url("/fonts/Haruto.ttf") format("truetype");
+  font-weight:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:"Perfect Action";
+  src:url("/fonts/PerfectAction.ttf") format("truetype");
+  font-weight:normal;
+  font-display:swap;
+}
+
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
@@ -65,10 +78,10 @@ body{
 .topbar .follow a.disc:hover{border-color:var(--blue);box-shadow:0 0 0 3px rgba(95,184,255,.15)}
 
 /* ============ HERO ============ */
-.hero{position:relative;min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+.hero{position:relative;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;justify-content:center;align-items:center;
   text-align:center;padding:60px clamp(16px,5vw,48px) 80px;gap:26px}
 .hero-mascot{display:flex;flex-direction:column;align-items:center;gap:9px;margin-bottom:-2px}
-.title-wrap{position:relative;margin-top:clamp(30px,7vh,84px)}
+.title-wrap{position:relative;margin-top:clamp(64px,12vh,150px)}
 /* The mascot ring stands in for the "O" of CHORUS: an inline letter sized
    in em so it scales with the title and never overlaps the text. */
 .o-mascot{display:inline-block;width:.78em;aspect-ratio:1;line-height:0;vertical-align:-.06em;margin:0 .03em}
@@ -101,12 +114,14 @@ body{
 
 .title-wrap{position:relative}
 .title{font-family:var(--display);line-height:.92;letter-spacing:1px;
-  font-size:clamp(48px,11vw,150px);text-transform:uppercase}
-.title .l1{display:block;color:var(--paper);
-  text-shadow:5px 5px 0 var(--ink), 8px 8px 0 rgba(212,38,59,.6)}
-.title .l2{display:block;
+  font-size:clamp(42px,9.8vw,132px);text-transform:uppercase}
+.title .l1{display:block;color:var(--paper);font-family:"Haruto",var(--display);letter-spacing:0;
+  font-size:1em;line-height:1;-webkit-text-stroke:2px var(--ink);paint-order:stroke fill;
+  text-shadow:4px 4px 0 var(--ink)}
+.title .l2{display:block;font-family:"Perfect Action",var(--display);
+  font-size:.9em;margin-top:.12em;
   color:transparent;-webkit-text-stroke:2.5px var(--gold);
-  text-shadow:0 0 34px rgba(255,56,56,.45)}
+  text-shadow:0 0 16px rgba(255,56,56,.32)}
 .title .l2 em{font-style:normal;color:var(--gold);-webkit-text-stroke:0}
 .title-badge{position:absolute;top:-18px;right:-6px;font-family:var(--display);font-size:13px;
   background:var(--ember);color:#fff;padding:7px 12px;border-radius:8px;transform:rotate(7deg);
@@ -317,7 +332,7 @@ strong, b{font-weight:600;color:#ddc9ce}
   .topbar .follow a.follow-h{display:none}
   /* Title shadows are sized in px for the big desktop title; on the small
      mobile title they bloom far too much. Scale them down here. */
-  .title .l1{text-shadow:2px 2px 0 var(--ink), 3px 3px 0 rgba(212,38,59,.6)}
+  .title .l1{text-shadow:2px 2px 0 var(--ink)}
   .title .l2{text-shadow:0 0 12px rgba(255,56,56,.35);-webkit-text-stroke-width:1.6px}
   /* Mobile: hide the mascot 'O'; show a normal "O" so CHORUS reads as text. */
   .o-mascot{display:none}
