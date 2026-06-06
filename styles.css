@@ -177,7 +177,7 @@ body{
   color:transparent;-webkit-text-stroke:2.5px var(--gold);
   text-shadow:0 0 16px rgba(255,56,56,.32);
   animation:flicker 4.5s infinite steps(1)}
-.title .l2 em{font-style:normal;color:var(--gold);-webkit-text-stroke:0;
+.title .l2 em{font-style:normal;color:var(--gold);-webkit-text-stroke:2.5px var(--gold);
   filter:drop-shadow(0 0 10px rgba(255,56,56,.45)) drop-shadow(0 0 20px rgba(255,56,56,.28))}
 .title-badge{position:absolute;top:-18px;right:-6px;font-family:var(--display);font-size:13px;
   background:var(--ember);color:#fff;padding:7px 12px;border-radius:8px;transform:rotate(7deg);
@@ -392,6 +392,8 @@ strong, b{font-weight:600;color:#ddc9ce}
   /* Keep CHORUS BATTLE on one line: shrink it so it fits the phone width. */
   .title .l2{text-shadow:0 0 12px rgba(255,56,56,.35);-webkit-text-stroke-width:1.6px;font-size:.66em;
     animation:flicker-sm 4.5s infinite steps(1)}
+  /* Match BATTLE's stroke weight to CHORUS on mobile. */
+  .title .l2 em{-webkit-text-stroke-width:1.6px}
   /* Mobile: hide the panda overlay; the real "O" stays so CHORUS reads as text. */
   .mascot-overlay{display:none}
 }
