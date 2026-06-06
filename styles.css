@@ -312,4 +312,8 @@ strong, b{font-weight:600;color:#ddc9ce}
   .hero-stats .s{padding:11px 16px}
   .tl{grid-template-columns:90px 1fr;gap:12px}
   .topbar .follow a.follow-h{display:none}
+  /* Mascot kept overlapping the title on phones because its size floor
+     (98px) stayed put while the title shrank. Let it scale down with the
+     viewport so it sits behind the title without covering the text. */
+  .mascot-ring{width:clamp(56px,16vw,80px);height:clamp(56px,16vw,80px)}
 }
