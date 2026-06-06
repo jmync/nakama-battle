@@ -41,7 +41,7 @@ vite.config.js    Vite + React plugin config
 ## Event
 
 - **Format:** Chorus Battle (teams of up to 4), recorded in Smule
-- **Stages:** Qualifiers → Genre Clash → Showdown → Semi-Finals → Finals
+- **Stages:** Qualifiers → Group Clash → Showdown → Semi-Finals → Finals
 - **Register:** https://forms.gle/beS1DQGHGpst4zJ39
 - **Discord:** https://discord.gg/YujuKC9WXP
 

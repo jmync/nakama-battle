@@ -3,13 +3,13 @@ import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 /* ---------- BRACKET (4 groups) ---------- */
 const GROUP_COLOR = { A: '#ff4d6d', B: '#ffffff', C: '#ff2d2d', D: '#b23bff' };
 const BK_COLS = [
-  { label: 'GENRE CLASH', ids: ['A1', 'A2', 'B1', 'B2'] },
+  { label: 'GROUP CLASH', ids: ['A1', 'A2', 'B1', 'B2'] },
   { label: 'SHOWDOWN', ids: ['GFA', 'GFB'] },
   { label: 'SEMI-FINAL', ids: ['SF1'] },
   { label: 'FINALS', ids: ['F'] },
   { label: 'SEMI-FINAL', ids: ['SF2'] },
   { label: 'SHOWDOWN', ids: ['GFC', 'GFD'] },
-  { label: 'GENRE CLASH', ids: ['C1', 'C2', 'D1', 'D2'] },
+  { label: 'GROUP CLASH', ids: ['C1', 'C2', 'D1', 'D2'] },
 ];
 const BK = {
   A1: { g: 'A', title: 'A · Match 1' }, A2: { g: 'A', title: 'A · Match 2' },
@@ -237,7 +237,7 @@ function Rules() {
 function Format() {
   const stages = [
     ['STAGE 01', 'Qualifiers', 'Pick a song performed by teams in chorus battles from 2016–2021 (YouTube or Smule). Top 16 advances.'],
-    ['STAGE 02', 'Genre Clash', 'A genre is spun via roulette for each group. Any song works, but stick to your group’s genre. Top 8 advance.'],
+    ['STAGE 02', 'Group Clash', 'A genre is spun via roulette for each group. Any song works, but stick to your group’s genre. Top 8 advance.'],
     ['STAGE 03', 'Showdown', 'Group winners go head-to-head. Songs are picked by us, and matchups are assigned via roulette. Winners advance to the Semi-Finals.'],
     ['STAGE 04', 'Semi-Finals', 'A genre is spun via roulette, then head-to-head rivals pick a song within that genre for each other. Same genre for both, so every pick stays fair.'],
     ['STAGE 05', 'Finals', 'Theme: 7 Deadly Sins (#RRTB-inspired). Pick your own song for the theme. Full version, with a touch of mashup to unleash your creativity.'],
