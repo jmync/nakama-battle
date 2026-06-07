@@ -311,7 +311,7 @@ function Format() {
 const JUDGES = [
   { name: 'Pikoyin', platform: 'YouTube', url: 'https://www.youtube.com/@Pikoyinn', img: '/judges/pikoyin.png' },
   { name: 'Furiyachan', platform: 'Smule', url: 'https://www.smule.com/Furiyachan', img: '/judges/furiyachan.jpg' },
-  { pending: true },
+  { name: 'Noon', platform: 'X', url: 'https://x.com/noon0096_', img: '/judges/N00N.png', zoom: 2.4, pos: '33% 28%' },
   { pending: true },
 ];
 
@@ -373,7 +373,7 @@ function Judging() {
             </div>
           ) : (
             <a className="judge-card" href={j.url} target="_blank" rel="noopener" key={i}>
-              <div className="judge-ava"><img src={j.img} alt={j.name} loading="lazy" /></div>
+              <div className="judge-ava"><img src={j.img} alt={j.name} loading="lazy" style={{ transform: j.zoom ? `scale(${j.zoom})` : undefined, transformOrigin: j.pos || 'center', objectPosition: j.pos || 'center' }} /></div>
               <div className="judge-name">{j.name}</div>
               <div className="judge-link">{j.platform} ↗</div>
             </a>
