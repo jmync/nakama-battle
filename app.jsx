@@ -388,7 +388,7 @@ function Judging() {
 function Prizes() {
   const sched = [
     ['Opens', 'Registration opens', 'The moment the Open Call is posted on Smule. 20 to 30 slots, and may be adjusted if lots of teams want to join.'],
-    ['Jul 1', 'Registration closes', 'Last call.'],
+    ['Jul 11', 'Registration closes', 'Last call.'],
     ['Jul – Sep', 'Battle window', 'Qualifiers through Finals run across this estimated window.'],
   ];
   return (
