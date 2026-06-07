@@ -313,6 +313,10 @@ strong, b{font-weight:600;color:#ddc9ce}
 .prize.gold .amt{color:var(--gold)}
 .prize.silver .amt{color:var(--blue-soft)}
 .prize .pl{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.payout-note{margin:0 0 30px;padding:16px 20px;border:1px solid var(--panel-line);border-radius:14px;
+  background:var(--panel)}
+.payout-note p{font-size:14px;color:var(--muted)}
+.payout-note strong{color:var(--paper)}
 .prize-extra{margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.13);display:flex;flex-direction:column;gap:6px}
 .prize-extra .x-tag{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
 .prize-extra .x-text{font-size:14px;color:var(--paper);line-height:1.45}

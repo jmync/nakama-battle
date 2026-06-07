@@ -137,8 +137,8 @@ function Mechanics() {
         </div>
         <div className="card outline">
           <span className="tag">Time limit</span>
-          <div className="big">2:00</div>
-          <p style={{ marginTop: 8 }}>Short version (max <strong>2 minutes</strong>) through the <strong>Showdown</strong>. The <strong>Semi-Finals &amp; Finals</strong> are sung <strong>full version</strong>.</p>
+          <div className="big">TV-SIZE</div>
+          <p style={{ marginTop: 8 }}>Short (TV-size) version through the <strong>Showdown</strong>. Sing the verses and pre-choruses, then end after the <strong>first chorus</strong>. The <strong>Semi-Finals &amp; Finals</strong> are sung <strong>full version</strong>.</p>
         </div>
         <div className="card outline">
           <span className="tag">Song picks</span>
@@ -173,11 +173,11 @@ function Rules() {
   const donts = [
     ['No late entries', 'Late entries will not be accepted under any circumstances.'],
     ['No outside vocals', 'Pre-recorded or externally edited vocals are not allowed.'],
-    ['Short version (through Showdown)', 'Full-length recordings are not allowed through the Showdown. The Semi-Finals & Finals are sung full version.'],
+    ['Short version (through Showdown)', 'Through the Showdown, sing the TV-size version: verses and pre-choruses, ending after the first chorus. Full-length is not allowed until the Semi-Finals & Finals.'],
   ];
   const others = [
     "Once you join, there's no backing out. The mechanics are tough, so make sure your team is fully committed before you register.",
-    'Entries will have a watch party on Discord or elsewhere. Announcements soon.',
+    'A watch party happens as results drop, so everyone watches together while the advancing teams are announced.',
     'From the Showdown stage onward, every team gets judges’ critiques and feedback, not just a score.',
     'Respect all participants.',
     "Let's keep it short, enjoyable, and stress-free.",
@@ -423,6 +423,11 @@ function Prizes() {
         </div>
       </div>
 
+      <div className="payout-note">
+        <span className="tag" style={{ color: 'var(--gold-soft)' }}>Payout</span>
+        <p style={{ marginTop: 8 }}>Prizes are sent via <strong>PayPal</strong>. If every member of the winning team is Filipino, <strong>GCash</strong> is also an option.</p>
+      </div>
+
       <div className="card outline">
         <span className="tag">Schedule · Estimated Jul – Sep · UPDATE!</span>
         <div className="timeline" style={{ marginTop: 8 }}>
@@ -516,7 +521,7 @@ function App() {
         <div className="hero-stats">
           <div className="s"><div className="n">16</div><div className="k">Teams advancing</div></div>
           <div className="s"><div className="n">5</div><div className="k">Stages</div></div>
-          <div className="s"><div className="n">2:00</div><div className="k">Time cap</div></div>
+          <div className="s"><div className="n">TV-size</div><div className="k">Format</div></div>
         </div>
 
         <div className="scroll-hint" aria-hidden="true">
