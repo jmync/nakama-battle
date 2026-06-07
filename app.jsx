@@ -384,6 +384,29 @@ function Judging() {
   );
 }
 
+/* ---------- VISIT COUNTER ---------- */
+function VisitCounter() {
+  const [count, setCount] = useState(null);
+  useEffect(() => {
+    let alive = true;
+    fetch('https://abacus.jasoncameron.dev/hit/nkma-chorus-battle/visits')
+      .then((r) => r.json())
+      .then((d) => { if (alive && typeof d.value === 'number') setCount(d.value); })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, []);
+  if (count === null) return null;
+  return (
+    <div className="visits">
+      <svg className="visits-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M1.5 12 C4 6.5 8 4 12 4 C16 4 20 6.5 22.5 12 C20 17.5 16 20 12 20 C8 20 4 17.5 1.5 12 Z"></path>
+        <circle cx="12" cy="12" r="3.2"></circle>
+      </svg>
+      <span className="visits-n">{count.toLocaleString()}</span>
+    </div>
+  );
+}
+
 /* ---------- PRIZES ---------- */
 function Prizes() {
   const sched = [
@@ -523,6 +546,7 @@ function App() {
           <div className="s"><div className="n">5</div><div className="k">Stages</div></div>
           <div className="s"><div className="n">TV-size</div><div className="k">Format</div></div>
         </div>
+        <VisitCounter />
 
         <div className="scroll-hint" aria-hidden="true">
           <span className="ln"></span>
