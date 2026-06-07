@@ -206,10 +206,9 @@ body{
 .hero-stats .s:last-child{border-right:none}
 .hero-stats .s .n{font-family:var(--display);font-size:22px;color:var(--gold);line-height:1}
 .hero-stats .s .k{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:6px;white-space:nowrap}
-.visits{display:inline-flex;align-items:center;gap:8px;margin-top:14px;
-  padding:7px 16px;border:1px solid var(--panel-line);border-radius:999px;background:rgba(8,6,15,.4)}
-.visits-ic{width:15px;height:15px;color:var(--gold);flex:none;filter:drop-shadow(0 0 6px rgba(255,56,56,.4))}
-.visits-n{font-family:var(--display);font-size:16px;color:var(--gold);line-height:1}
+.visits{display:flex;align-items:center;justify-content:center;gap:7px;margin:0 0 16px}
+.visits-ic{width:13px;height:13px;color:var(--gold-soft);flex:none;opacity:.85}
+.visits-n{font-family:var(--mono);font-size:12px;letter-spacing:1px;color:var(--muted)}
 
 .scroll-hint{display:flex;align-items:center;justify-content:center;gap:16px;width:min(380px,64%);margin:12px auto 0}
 .scroll-hint .ln{flex:1;height:1px;background:rgba(255,255,255,.16)}

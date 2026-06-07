@@ -546,7 +546,6 @@ function App() {
           <div className="s"><div className="n">5</div><div className="k">Stages</div></div>
           <div className="s"><div className="n">TV-size</div><div className="k">Format</div></div>
         </div>
-        <VisitCounter />
 
         <div className="scroll-hint" aria-hidden="true">
           <span className="ln"></span>
@@ -576,6 +575,7 @@ function App() {
       {/* FOOTER */}
       <footer className="foot">
         <div className="marquee">#NKMA</div>
+        <VisitCounter />
         <small className="sponsor">This event is sponsored.</small>
       </footer>
     </React.Fragment>
