@@ -364,6 +364,26 @@ strong, b{font-weight:600;color:#ddc9ce}
 .fire-ic svg{width:34px;height:34px;display:block}
 .panda-ic{display:inline-flex;flex:none;color:var(--gold)}
 .panda-ic svg{width:30px;height:30px;display:block}
+
+/* Judges reveal grid */
+.judges-title{font-family:var(--display);font-size:clamp(20px,3vw,30px);margin-top:30px;text-align:center;
+  color:var(--paper);text-transform:uppercase;letter-spacing:1px}
+.judges-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px}
+.judge-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;
+  padding:20px 14px;border:1px solid var(--panel-line);border-radius:16px;background:var(--panel);
+  text-decoration:none;color:var(--paper);transition:transform .16s, box-shadow .16s, border-color .16s}
+.judge-card:not(.pending):hover{transform:translateY(-3px);border-color:var(--pink);
+  box-shadow:0 0 0 3px rgba(255,95,162,.15)}
+.judge-ava{width:104px;height:104px;border-radius:50%;overflow:hidden;border:2px solid var(--gold);
+  box-shadow:0 0 16px rgba(255,56,56,.3);background:var(--ink);display:flex;align-items:center;justify-content:center}
+.judge-ava img{width:100%;height:100%;object-fit:cover;display:block}
+.judge-ava span{font-family:var(--display);font-size:40px;color:var(--gold-soft);opacity:.6}
+.judge-name{font-family:var(--display);font-size:17px;letter-spacing:.5px}
+.judge-link{font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.judge-card:not(.pending):hover .judge-link{color:var(--pink-soft)}
+.judge-card.pending{border-style:dashed;opacity:.6}
+.judge-card.pending .judge-ava{border-color:var(--panel-line);box-shadow:none}
+@media(max-width:760px){.judges-grid{grid-template-columns:repeat(2,1fr)}}
 .fmt-wide{width:min(98vw,1220px);margin-left:50%;transform:translateX(-50%);max-width:none}
 
 /* footer */

@@ -308,6 +308,13 @@ function Format() {
 }
 
 /* ---------- JUDGING ---------- */
+const JUDGES = [
+  { name: 'Pikoyin', platform: 'YouTube', url: 'https://www.youtube.com/@Pikoyinn', img: '/judges/pikoyin.png' },
+  { name: 'Furiyachan', platform: 'Smule', url: 'https://www.smule.com/Furiyachan', img: '/judges/furiyachan.jpg' },
+  { pending: true },
+  { pending: true },
+];
+
 function Judging() {
   const crit = [
     ['Vocal Blend, Timing & Tune', 40, 'var(--pink)'],
@@ -352,10 +359,26 @@ function Judging() {
             </span>
           </h3>
           <p>A mix of trusted singers and friends score every battle.</p>
-          <div style={{ height: 16 }}></div>
-          <span className="tag" style={{ color: 'var(--pink-soft)' }}>Stay tuned</span>
-          <p style={{ marginTop: 8 }}>Our judges will be revealed soon.</p>
         </div>
+      </div>
+
+      <h3 className="judges-title">Meet the Judges</h3>
+      <div className="judges-grid">
+        {JUDGES.map((j, i) => (
+          j.pending ? (
+            <div className="judge-card pending" key={i}>
+              <div className="judge-ava"><span>?</span></div>
+              <div className="judge-name">Pending</div>
+              <div className="judge-link">To be revealed</div>
+            </div>
+          ) : (
+            <a className="judge-card" href={j.url} target="_blank" rel="noopener" key={i}>
+              <div className="judge-ava"><img src={j.img} alt={j.name} loading="lazy" /></div>
+              <div className="judge-name">{j.name}</div>
+              <div className="judge-link">{j.platform} ↗</div>
+            </a>
+          )
+        ))}
       </div>
     </div>
   );
