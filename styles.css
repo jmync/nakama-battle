@@ -245,7 +245,7 @@ body{
 .card{background:var(--panel);border:1px solid var(--panel-line);border-radius:16px;padding:22px 24px;
   position:relative;overflow:hidden}
 .card.outline{border:2px solid var(--ink);box-shadow:5px 5px 0 var(--ink)}
-.card .tag{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue-soft)}
+.card .tag,.payout-note .tag{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue-soft)}
 .card h3{font-family:var(--display);font-size:19px;margin:8px 0 10px;line-height:1.15}
 .card p{color:var(--muted);font-size:14.5px}
 .card p strong{color:#ddc9ce}
