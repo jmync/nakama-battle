@@ -136,7 +136,7 @@ function Mechanics() {
           <p>Four voices, one stage. Recorded inside <strong>Smule</strong>.</p>
         </div>
         <div className="card outline">
-          <span className="tag">Time limit</span>
+          <span className="tag">Song length</span>
           <div className="big">TV-SIZE</div>
           <p style={{ marginTop: 8 }}>Short (TV-size) version through the <strong>Showdown</strong>. Sing the verses and pre-choruses, then end after the <strong>first chorus</strong>. The <strong>Semi-Finals &amp; Finals</strong> are sung <strong>full version</strong>.</p>
         </div>
