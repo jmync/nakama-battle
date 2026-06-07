@@ -168,7 +168,7 @@ function Rules() {
   const dos = [
     ['One team only', 'A contestant may join only ONE team.'],
     ['Record in Smule', 'All entries must be recorded within Smule.'],
-    ['Tag your entry', 'Every entry must include #NKMA_CHORUSBATTLE in the description.'],
+    ['Tag your entry', 'Every entry must include #NKMACB1 in the description.'],
   ];
   const donts = [
     ['No late entries', 'Late entries will not be accepted under any circumstances.'],
@@ -511,7 +511,7 @@ function App() {
           <span className="ln"></span>
         </div>
         <p className="tagline">"Sing beyond limits."</p>
-        <p className="subline">#SMULE · #SMUTAITES · #NKMA_CHORUSBATTLE</p>
+        <p className="subline">#SMULE · #SMUTAITES · #NKMACB1</p>
 
         <div className="cta-row">
           <a className="btn btn-primary" href="https://forms.gle/beS1DQGHGpst4zJ39" target="_blank" rel="noopener">REGISTER TEAM ↗</a>

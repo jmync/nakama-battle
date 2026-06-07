@@ -45,4 +45,4 @@ vite.config.js    Vite + React plugin config
 - **Register:** https://forms.gle/beS1DQGHGpst4zJ39
 - **Discord:** https://discord.gg/YujuKC9WXP
 
-`#NKMA_CHORUSBATTLE`
+`#NKMACB1`
