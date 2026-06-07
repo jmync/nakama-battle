@@ -133,27 +133,21 @@ body{
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 /* Damaged-neon flicker: mostly lit, with sudden irregular dropouts. */
 @keyframes flicker{
-  0%,18%,20%,42%,44%,84%,100%{
-    -webkit-text-stroke-color:var(--gold);
-    text-shadow:0 0 16px rgba(255,56,56,.45), 0 0 30px rgba(255,56,56,.25)}
-  19%,43%,72%,74%{
-    -webkit-text-stroke-color:rgba(255,56,56,.35);
-    text-shadow:0 0 4px rgba(255,56,56,.12)}
-  73%{
-    -webkit-text-stroke-color:rgba(255,56,56,.6);
-    text-shadow:0 0 8px rgba(255,56,56,.2)}
+  0%,18%,20%,42%,44%,84%,100%{opacity:1;
+    filter:drop-shadow(0 0 7px rgba(255,56,56,.32)) drop-shadow(0 0 15px rgba(255,56,56,.18))}
+  19%,43%,72%,74%{opacity:.4;
+    filter:drop-shadow(0 0 2px rgba(255,56,56,.1))}
+  73%{opacity:.7;
+    filter:drop-shadow(0 0 4px rgba(255,56,56,.18))}
 }
 /* Mobile flicker: smaller glow so it stays consistent and not overblown. */
 @keyframes flicker-sm{
-  0%,18%,20%,42%,44%,84%,100%{
-    -webkit-text-stroke-color:var(--gold);
-    text-shadow:0 0 10px rgba(255,56,56,.35)}
-  19%,43%,72%,74%{
-    -webkit-text-stroke-color:rgba(255,56,56,.35);
-    text-shadow:0 0 3px rgba(255,56,56,.12)}
-  73%{
-    -webkit-text-stroke-color:rgba(255,56,56,.6);
-    text-shadow:0 0 5px rgba(255,56,56,.18)}
+  0%,18%,20%,42%,44%,84%,100%{opacity:1;
+    filter:drop-shadow(0 0 5px rgba(255,56,56,.3)) drop-shadow(0 0 11px rgba(255,56,56,.16))}
+  19%,43%,72%,74%{opacity:.4;
+    filter:drop-shadow(0 0 2px rgba(255,56,56,.1))}
+  73%{opacity:.7;
+    filter:drop-shadow(0 0 3px rgba(255,56,56,.16))}
 }
 /* Same timing as flicker so the mascot 'O' + panda dim and lose their
    red glow in sync with CHORUS BATTLE. */
@@ -175,10 +169,9 @@ body{
 .title .l2{display:block;font-family:"Perfect Action",var(--display);
   font-size:.9em;margin-top:.12em;white-space:nowrap;
   color:transparent;-webkit-text-stroke:2.5px var(--gold);
-  text-shadow:0 0 16px rgba(255,56,56,.32);
+  filter:drop-shadow(0 0 7px rgba(255,56,56,.32)) drop-shadow(0 0 15px rgba(255,56,56,.18));
   animation:flicker 4.5s infinite steps(1)}
-.title .l2 em{font-style:normal;color:var(--gold);-webkit-text-stroke:2.5px var(--gold);
-  filter:drop-shadow(0 0 10px rgba(255,56,56,.45)) drop-shadow(0 0 20px rgba(255,56,56,.28))}
+.title .l2 em{font-style:normal;color:var(--gold);-webkit-text-stroke:2.5px var(--gold)}
 .title-badge{position:absolute;top:-18px;right:-6px;font-family:var(--display);font-size:13px;
   background:var(--ember);color:#fff;padding:7px 12px;border-radius:8px;transform:rotate(7deg);
   box-shadow:3px 3px 0 var(--ink);letter-spacing:1px}
@@ -390,7 +383,7 @@ strong, b{font-weight:600;color:#ddc9ce}
      mobile title they bloom far too much. Scale them down here. */
   .title .l1{text-shadow:2px 2px 0 var(--ink)}
   /* Keep CHORUS BATTLE on one line: shrink it so it fits the phone width. */
-  .title .l2{text-shadow:0 0 12px rgba(255,56,56,.35);-webkit-text-stroke-width:1.6px;font-size:.66em;
+  .title .l2{-webkit-text-stroke-width:1.6px;font-size:.66em;
     animation:flicker-sm 4.5s infinite steps(1)}
   /* Match BATTLE's stroke weight to CHORUS on mobile. */
   .title .l2 em{-webkit-text-stroke-width:1.6px}
