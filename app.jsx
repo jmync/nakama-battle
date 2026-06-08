@@ -169,6 +169,7 @@ function Rules() {
     ['One team only', 'A contestant may join only ONE team.'],
     ['Record in Smule', 'All entries must be recorded within Smule.'],
     ['Tag your entry', 'Every entry must include #NKMACB1 in the description.'],
+    ['Follow us on Smule', 'All team members must follow @nakama_battle on Smule.'],
   ];
   const donts = [
     ['No late entries', 'Late entries will not be accepted under any circumstances.'],
@@ -206,16 +207,14 @@ function Rules() {
 
       <div className="banner" style={{ marginBottom: 22 }}>
         <span className="ic">
-          <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="31" cy="34" r="16" fill="currentColor" stroke="none"></circle>
-            <circle cx="89" cy="34" r="16" fill="currentColor" stroke="none"></circle>
-            <circle cx="60" cy="63" r="40" fill="currentColor" stroke="none"></circle>
-            <ellipse cx="45" cy="58" rx="11" ry="14.5" transform="rotate(-20 45 58)" fill="var(--ink)" stroke="none"></ellipse>
-            <ellipse cx="75" cy="58" rx="11" ry="14.5" transform="rotate(20 75 58)" fill="var(--ink)" stroke="none"></ellipse>
-            <circle cx="45" cy="59" r="4.5" fill="#fff" stroke="none"></circle>
-            <circle cx="75" cy="59" r="4.5" fill="#fff" stroke="none"></circle>
-            <ellipse cx="60" cy="73" rx="6" ry="4.3" fill="var(--ink)" stroke="none"></ellipse>
-            <path d="M60 77 v5 M60 82 q-7 6 -13 1 M60 82 q7 6 13 1" fill="none" stroke="var(--ink)" strokeWidth="2.6" strokeLinecap="round"></path>
+          <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="39" cy="37" r="15" fill="var(--ink)"></circle>
+            <circle cx="81" cy="37" r="15" fill="var(--ink)"></circle>
+            <path d="M60 29 C84 29 98 46 98 66 C98 88 82 100 60 100 C38 100 22 88 22 66 C22 46 36 29 60 29 Z" fill="var(--ink)"></path>
+            <path d="M37 59 L56 64 A10.5 12 0 0 1 37 66 Z" fill="currentColor" stroke="none"></path>
+            <path d="M83 59 L64 64 A10.5 12 0 0 0 83 66 Z" fill="currentColor" stroke="none"></path>
+            <ellipse cx="60" cy="79" rx="5.5" ry="4" fill="currentColor" stroke="none"></ellipse>
+            <path d="M60 83 q-4.5 4.5 -8 1.5 M60 83 q4.5 4.5 8 1.5" fill="none" stroke="currentColor" strokeWidth="2.4"></path>
           </svg>
         </span>
         <span>Any violation of the above rules will result in <b>disqualification</b>.</span>
@@ -236,7 +235,7 @@ function Rules() {
 /* ---------- FORMAT ---------- */
 function Format() {
   const stages = [
-    ['STAGE 01', 'Qualifiers', 'An artist or producer is spun via roulette for each team (K-pop, J-pop, etc). Sing any song by them. Top 16 advance to the main bracket.'],
+    ['STAGE 01', 'Qualifiers', 'An artist or producer is spun via roulette for each team (K-pop, J-pop, etc). Sing any song by them. Top 16 advance to the bracket.'],
     ['STAGE 02', 'Group Clash', 'A genre is spun via roulette for each group. Any song works, but stick to your group’s genre. Top 8 advance.'],
     ['STAGE 03', 'Showdown', 'Group winners go head-to-head. Songs are picked by us, and matchups are assigned via roulette. Winners advance to the Semi-Finals.'],
     ['STAGE 04', 'Semi-Finals', 'A genre is spun via roulette, then head-to-head rivals pick a song within that genre for each other. Same genre for both, so every pick stays fair.'],
@@ -265,15 +264,15 @@ function Format() {
                 <path d="M60 8 C72 26 80 30 70 46 C65 53 53 53 49 45 C41 30 48 24 60 8 Z" fill="#ff5630"></path>
                 <path d="M40 24 C47 35 50 40 43 50 C39 55 30 52 31 44 C32 35 34 30 40 24 Z" fill="#ff8a3c"></path>
                 <path d="M80 24 C73 35 70 40 77 50 C81 55 90 52 89 44 C88 35 86 30 80 24 Z" fill="#ff8a3c"></path>
-                <circle cx="34" cy="58" r="12" fill="#ff2d2d" stroke="none"></circle>
-                <circle cx="86" cy="58" r="12" fill="#ff2d2d" stroke="none"></circle>
-                <circle cx="60" cy="82" r="32" fill="#ff2d2d" stroke="none"></circle>
-                <ellipse cx="47" cy="77" rx="8.5" ry="11.5" transform="rotate(-18 47 77)" fill="var(--ink)" stroke="none"></ellipse>
-                <ellipse cx="73" cy="77" rx="8.5" ry="11.5" transform="rotate(18 73 77)" fill="var(--ink)" stroke="none"></ellipse>
-                <circle cx="48" cy="78" r="3.4" fill="#fff" stroke="none"></circle>
-                <circle cx="72" cy="78" r="3.4" fill="#fff" stroke="none"></circle>
-                <ellipse cx="60" cy="92" rx="4.6" ry="3.3" fill="var(--ink)" stroke="none"></ellipse>
-                <path d="M60 95 v3 M60 98 q-5 4 -9 1 M60 98 q5 4 9 1" fill="none" stroke="var(--ink)" strokeWidth="2" strokeLinecap="round"></path>
+                <g stroke="#ff2d2d" strokeWidth="4.5" strokeLinejoin="round">
+                  <circle cx="36" cy="58" r="13" fill="var(--ink)"></circle>
+                  <circle cx="84" cy="58" r="13" fill="var(--ink)"></circle>
+                  <path d="M60 50 C80 50 92 64 92 81 C92 100 78 110 60 110 C42 110 28 100 28 81 C28 64 40 50 60 50 Z" fill="var(--ink)"></path>
+                </g>
+                <path d="M40 76 L56 81 A9 10.5 0 0 1 40 83 Z" fill="#ff2d2d" stroke="none"></path>
+                <path d="M80 76 L64 81 A9 10.5 0 0 0 80 83 Z" fill="#ff2d2d" stroke="none"></path>
+                <ellipse cx="60" cy="94" rx="5" ry="3.6" fill="#ff2d2d" stroke="none"></ellipse>
+                <path d="M60 98 q-4 4 -7 1.3 M60 98 q4 4 7 1.3" fill="none" stroke="#ff2d2d" strokeWidth="2.2" strokeLinecap="round"></path>
               </svg>
             </span>
             7 Deadly Sins
@@ -284,15 +283,13 @@ function Format() {
               <span className="sin" key={s}>
                 <span className="sin-ic">
                   <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="31" cy="34" r="16" fill="currentColor" stroke="none"></circle>
-                    <circle cx="89" cy="34" r="16" fill="currentColor" stroke="none"></circle>
-                    <circle cx="60" cy="63" r="40" fill="currentColor" stroke="none"></circle>
-                    <ellipse cx="45" cy="58" rx="11" ry="14.5" transform="rotate(-20 45 58)" fill="var(--ink)" stroke="none"></ellipse>
-                    <ellipse cx="75" cy="58" rx="11" ry="14.5" transform="rotate(20 75 58)" fill="var(--ink)" stroke="none"></ellipse>
-                    <circle cx="45" cy="59" r="4.5" fill="#fff" stroke="none"></circle>
-                    <circle cx="75" cy="59" r="4.5" fill="#fff" stroke="none"></circle>
-                    <ellipse cx="60" cy="73" rx="6" ry="4.3" fill="var(--ink)" stroke="none"></ellipse>
-                    <path d="M60 77 v5 M60 82 q-7 6 -13 1 M60 82 q7 6 13 1" fill="none" stroke="var(--ink)" strokeWidth="2.6" strokeLinecap="round"></path>
+                    <circle cx="39" cy="37" r="15" fill="var(--ink)"></circle>
+                    <circle cx="81" cy="37" r="15" fill="var(--ink)"></circle>
+                    <path d="M60 29 C84 29 98 46 98 66 C98 88 82 100 60 100 C38 100 22 88 22 66 C22 46 36 29 60 29 Z" fill="var(--ink)"></path>
+                    <path d="M37 59 L56 64 A10.5 12 0 0 1 37 66 Z" fill="currentColor" stroke="none"></path>
+                    <path d="M83 59 L64 64 A10.5 12 0 0 0 83 66 Z" fill="currentColor" stroke="none"></path>
+                    <ellipse cx="60" cy="79" rx="5.5" ry="4" fill="currentColor" stroke="none"></ellipse>
+                    <path d="M60 83 q-4.5 4.5 -8 1.5 M60 83 q4.5 4.5 8 1.5" fill="none" stroke="currentColor" strokeWidth="2.4"></path>
                   </svg>
                 </span>
                 {s}
@@ -346,15 +343,13 @@ function Judging() {
             Judged by our nakama
             <span className="panda-ic">
               <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="31" cy="34" r="16" fill="currentColor" stroke="none"></circle>
-                <circle cx="89" cy="34" r="16" fill="currentColor" stroke="none"></circle>
-                <circle cx="60" cy="63" r="40" fill="currentColor" stroke="none"></circle>
-                <ellipse cx="45" cy="58" rx="11" ry="14.5" transform="rotate(-20 45 58)" fill="var(--ink)" stroke="none"></ellipse>
-                <ellipse cx="75" cy="58" rx="11" ry="14.5" transform="rotate(20 75 58)" fill="var(--ink)" stroke="none"></ellipse>
-                <circle cx="45" cy="59" r="4.5" fill="#fff" stroke="none"></circle>
-                <circle cx="75" cy="59" r="4.5" fill="#fff" stroke="none"></circle>
-                <ellipse cx="60" cy="73" rx="6" ry="4.3" fill="var(--ink)" stroke="none"></ellipse>
-                <path d="M60 77 v5 M60 82 q-7 6 -13 1 M60 82 q7 6 13 1" fill="none" stroke="var(--ink)" strokeWidth="2.6" strokeLinecap="round"></path>
+                <circle cx="39" cy="37" r="15" fill="var(--ink)"></circle>
+                <circle cx="81" cy="37" r="15" fill="var(--ink)"></circle>
+                <path d="M60 29 C84 29 98 46 98 66 C98 88 82 100 60 100 C38 100 22 88 22 66 C22 46 36 29 60 29 Z" fill="var(--ink)"></path>
+                <path d="M37 59 L56 64 A10.5 12 0 0 1 37 66 Z" fill="currentColor" stroke="none"></path>
+                <path d="M83 59 L64 64 A10.5 12 0 0 0 83 66 Z" fill="currentColor" stroke="none"></path>
+                <ellipse cx="60" cy="79" rx="5.5" ry="4" fill="currentColor" stroke="none"></ellipse>
+                <path d="M60 83 q-4.5 4.5 -8 1.5 M60 83 q4.5 4.5 8 1.5" fill="none" stroke="currentColor" strokeWidth="2.4"></path>
               </svg>
             </span>
           </h3>
@@ -512,14 +507,10 @@ function App() {
                   <span className="mascot-hint">
                     <svg viewBox="0 0 120 120" fill="none" stroke="#ff2d2d" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
                       <g className="panda-body">
-                        <ellipse cx="44" cy="54" rx="13" ry="17" transform="rotate(-20 44 54)" fill="#ff2d2d" stroke="none"></ellipse>
-                        <ellipse cx="76" cy="54" rx="13" ry="17" transform="rotate(20 76 54)" fill="#ff2d2d" stroke="none"></ellipse>
-                        <ellipse cx="60" cy="74" rx="7" ry="5" fill="#ff2d2d" stroke="none"></ellipse>
-                        <path d="M60 78 v4 M60 82 q-7 6 -13 1 M60 82 q7 6 13 1" fill="none" stroke="#ff2d2d" strokeWidth="2.8" strokeLinecap="round"></path>
-                      </g>
-                      <g className="panda-eyes">
-                        <circle className="eye" cx="45" cy="55" r="5.4" fill="#fff" stroke="none"></circle>
-                        <circle className="eye" cx="75" cy="55" r="5.4" fill="#fff" stroke="none"></circle>
+                        <path d="M37 51 L56 56 A10.5 12 0 0 1 37 58 Z" fill="#ff2d2d" stroke="none"></path>
+                        <path d="M83 51 L64 56 A10.5 12 0 0 0 83 58 Z" fill="#ff2d2d" stroke="none"></path>
+                        <ellipse cx="60" cy="74" rx="6.5" ry="4.6" fill="#ff2d2d" stroke="none"></ellipse>
+                        <path d="M60 78 q-4.5 4.5 -8 1.5 M60 78 q4.5 4.5 8 1.5" fill="none" stroke="#ff2d2d" strokeWidth="2.6" strokeLinecap="round"></path>
                       </g>
                     </svg>
                   </span>

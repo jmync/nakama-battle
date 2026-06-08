@@ -1,0 +1,26 @@
+<svg width="1024" height="1024" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+  <!-- NKMA panda mark — clean style, red outline + white face on dark bg -->
+  <defs>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#ff2d2d" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+  <rect width="240" height="240" fill="#0a0a0a"/>
+  <g filter="url(#glow)">
+    <g stroke="#ff2d2d" stroke-width="9" stroke-linejoin="round" stroke-linecap="round">
+      <!-- ears -->
+      <circle cx="78" cy="74" r="30" fill="#0a0406"/>
+      <circle cx="162" cy="74" r="30" fill="#0a0406"/>
+      <!-- head: soft rounded shape -->
+      <path fill="#0a0406" d="M120 58 C168 58 196 92 196 132 C196 176 164 200 120 200 C76 200 44 176 44 132 C44 92 72 58 120 58 Z"/>
+    </g>
+    <!-- eye-patches -->
+    <!-- psycho eyes: slanted half eye-patches, flat top + curved bottom, no pupil -->
+    <path d="M74 118 L112 128 A21 24 0 0 1 74 132 Z" fill="#ff2d2d"/>
+    <path d="M166 118 L128 128 A21 24 0 0 0 166 132 Z" fill="#ff2d2d"/>
+    <!-- nose -->
+    <ellipse cx="120" cy="158" rx="11" ry="8" fill="#ff2d2d"/>
+    <!-- mouth -->
+    <path d="M120 166 q-9 9 -16 3 M120 166 q9 9 16 3" stroke="#ff2d2d" stroke-width="6" stroke-linecap="round" fill="none"/>
+  </g>
+</svg>

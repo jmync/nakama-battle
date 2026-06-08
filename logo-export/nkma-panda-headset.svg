@@ -1,0 +1,38 @@
+<svg width="1024" height="1024" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+  <!-- NKMA panda mark wearing a headset — red outline + dark face on dark bg -->
+  <defs>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#ff2d2d" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+  <rect width="240" height="240" fill="#0a0a0a"/>
+  <g filter="url(#glow)">
+    <!-- headset band: a clean arc that lands on the tops of both ear-cups -->
+    <path d="M40 124 C40 52 96 34 120 34 C144 34 200 52 200 124"
+          stroke="#ff2d2d" stroke-width="12" stroke-linecap="round" fill="none"/>
+
+    <g stroke="#ff2d2d" stroke-width="9" stroke-linejoin="round" stroke-linecap="round">
+      <!-- ears -->
+      <circle cx="80" cy="80" r="27" fill="#0a0406"/>
+      <circle cx="160" cy="80" r="27" fill="#0a0406"/>
+      <!-- head: soft rounded shape -->
+      <path fill="#0a0406" d="M120 64 C167 64 195 95 195 134 C195 177 163 201 120 201 C77 201 45 177 45 134 C45 95 73 64 120 64 Z"/>
+    </g>
+
+    <!-- ear-cups: centered on the head's vertical midline, band ends meet their tops -->
+    <g>
+      <rect x="30" y="112" width="30" height="52" rx="15" fill="#ff2d2d"/>
+      <rect x="37" y="121" width="16" height="34" rx="8" fill="#0a0406"/>
+      <rect x="180" y="112" width="30" height="52" rx="15" fill="#ff2d2d"/>
+      <rect x="187" y="121" width="16" height="34" rx="8" fill="#0a0406"/>
+    </g>
+
+    <!-- psycho eyes: slanted half eye-patches, flat top + curved bottom, no pupil -->
+    <path d="M75 124 L113 134 A21 24 0 0 1 75 138 Z" fill="#ff2d2d"/>
+    <path d="M167 124 L129 134 A21 24 0 0 0 167 138 Z" fill="#ff2d2d"/>
+    <!-- nose -->
+    <ellipse cx="120" cy="162" rx="11" ry="8" fill="#ff2d2d"/>
+    <!-- mouth -->
+    <path d="M120 170 q-9 9 -16 3 M120 170 q9 9 16 3" stroke="#ff2d2d" stroke-width="6" stroke-linecap="round" fill="none"/>
+  </g>
+</svg>

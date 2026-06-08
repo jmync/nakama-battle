@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<style>
+  html,body{margin:0;padding:0;background:#140a0e}
+  #wrap{width:1024px;height:1024px;display:flex;align-items:center;justify-content:center}
+  svg{width:760px;height:760px;filter:drop-shadow(0 0 26px rgba(255,45,45,.5))}
+</style>
+</head>
+<body>
+  <div id="wrap">
+    <!-- Clean, simple panda: red outline + white face, refined like the reference -->
+    <svg viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#ff2d2d" stroke-width="9" stroke-linejoin="round" stroke-linecap="round">
+        <!-- ears (white fill, red outline) -->
+        <circle cx="78" cy="74" r="30" fill="#faf5f5"/>
+        <circle cx="162" cy="74" r="30" fill="#faf5f5"/>
+        <!-- head: soft rounded shape, white fill, red outline -->
+        <path fill="#faf5f5" d="M120 58
+          C168 58 196 92 196 132
+          C196 176 164 200 120 200
+          C76 200 44 176 44 132
+          C44 92 72 58 120 58 Z"/>
+      </g>
+      <!-- eye-patches: angled almonds, solid red -->
+      <ellipse cx="93" cy="128" rx="20" ry="27" transform="rotate(20 93 128)" fill="#ff2d2d"/>
+      <ellipse cx="147" cy="128" rx="20" ry="27" transform="rotate(-20 147 128)" fill="#ff2d2d"/>
+      <!-- tiny white eye highlights -->
+      <circle cx="96" cy="120" r="6" fill="#faf5f5"/>
+      <circle cx="144" cy="120" r="6" fill="#faf5f5"/>
+      <!-- nose -->
+      <ellipse cx="120" cy="158" rx="11" ry="8" fill="#ff2d2d"/>
+      <!-- small mouth -->
+      <path d="M120 166 q-9 9 -16 3 M120 166 q9 9 16 3" stroke="#ff2d2d" stroke-width="6" stroke-linecap="round" fill="none"/>
+    </svg>
+  </div>
+</body>
+</html>
