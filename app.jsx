@@ -143,7 +143,7 @@ function Mechanics() {
         <div className="card outline">
           <span className="tag">Song picks</span>
           <h3>Roulette System</h3>
-          <p>Roulette runs the show. A <strong>genre</strong> roulette and a <strong>song</strong> roulette decide the picks across the stages.</p>
+          <p>Roulette runs the show. Spins decide your <strong>artist</strong>, <strong>genre</strong>, <strong>songs</strong>, and <strong>matchups</strong> across the stages.</p>
         </div>
       </div>
 
@@ -236,7 +236,7 @@ function Rules() {
 /* ---------- FORMAT ---------- */
 function Format() {
   const stages = [
-    ['STAGE 01', 'Qualifiers', 'Pick a song performed by teams in chorus battles from 2016–2021 (YouTube or Smule). Top 16 advances.'],
+    ['STAGE 01', 'Qualifiers', 'An artist is spun via roulette for each team (K-pop, J-pop, etc). Sing any song by that artist. Top 16 advances.'],
     ['STAGE 02', 'Group Clash', 'A genre is spun via roulette for each group. Any song works, but stick to your group’s genre. Top 8 advance.'],
     ['STAGE 03', 'Showdown', 'Group winners go head-to-head. Songs are picked by us, and matchups are assigned via roulette. Winners advance to the Semi-Finals.'],
     ['STAGE 04', 'Semi-Finals', 'A genre is spun via roulette, then head-to-head rivals pick a song within that genre for each other. Same genre for both, so every pick stays fair.'],
