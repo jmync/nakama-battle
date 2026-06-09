@@ -169,7 +169,7 @@ function Rules() {
     ['One team only', 'A contestant may join only ONE team.'],
     ['Record in Smule', 'All entries must be recorded within Smule.'],
     ['Tag your entry', 'Every entry must include #NKMACB1 in the description.'],
-    ['Follow us on Smule', 'All team members must follow @we_nakama on Smule.'],
+    ['Follow us on Smule', 'All team members must follow @nkma_chorus on Smule.'],
   ];
   const donts = [
     ['No late entries', 'Late entries will not be accepted under any circumstances.'],
