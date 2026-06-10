@@ -237,7 +237,7 @@ function Rules() {
 /* ---------- FORMAT ---------- */
 function Format() {
   const stages = [
-    ['STAGE 01', 'Qualifiers', 'An artist or producer is spun via roulette for each team (K-pop, J-pop, etc). Sing any song by them. Top 16 advance to the bracket.'],
+    ['STAGE 01', 'Qualifiers', 'Free pick. Sing any JP song you want. Only the top 16 advance to the bracket, so give it all you’ve got.'],
     ['STAGE 02', 'Group Clash', 'A genre is spun via roulette for each group. Any song works, but stick to your group’s genre. Top 8 advance.'],
     ['STAGE 03', 'Showdown', 'Group winners go head-to-head. JP songs are picked by us, and matchups are assigned via roulette. Winners advance to the Semi-Finals.'],
     ['STAGE 04', 'Semi-Finals', 'A genre is spun via roulette, then head-to-head rivals pick a song within that genre for each other. Same genre for both, so every pick stays fair.'],
