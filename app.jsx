@@ -133,7 +133,7 @@ function Mechanics() {
         <div className="card outline">
           <span className="tag">Format</span>
           <h3>Chorus Battle</h3>
-          <p>Four voices, one stage. Recorded inside <strong>Smule</strong>.</p>
+          <p>Three to four voices, one stage. Recorded inside <strong>Smule</strong>.</p>
         </div>
         <div className="card outline">
           <span className="tag">Song length</span>
@@ -170,6 +170,8 @@ function Rules() {
     ['Record in Smule', 'All entries must be recorded within Smule.'],
     ['Tag your entry', 'Every entry must include #NKMACB1 in the description.'],
     ['Follow us on Smule', 'All team members must follow @nkma_chorus on Smule.'],
+    ['Finalists on record', 'Finalist entries get an empty track from our official account, so they stay saved on our Smule profile as the permanent record of the Act 1 finalists.'],
+    ['Cover photo', 'Finalists use the custom graphic we provide as their entry’s cover photo.'],
   ];
   const donts = [
     ['No late entries', 'Late entries will not be accepted under any circumstances.'],
@@ -237,7 +239,7 @@ function Format() {
   const stages = [
     ['STAGE 01', 'Qualifiers', 'An artist or producer is spun via roulette for each team (K-pop, J-pop, etc). Sing any song by them. Top 16 advance to the bracket.'],
     ['STAGE 02', 'Group Clash', 'A genre is spun via roulette for each group. Any song works, but stick to your group’s genre. Top 8 advance.'],
-    ['STAGE 03', 'Showdown', 'Group winners go head-to-head. Songs are picked by us, and matchups are assigned via roulette. Winners advance to the Semi-Finals.'],
+    ['STAGE 03', 'Showdown', 'Group winners go head-to-head. JP songs are picked by us, and matchups are assigned via roulette. Winners advance to the Semi-Finals.'],
     ['STAGE 04', 'Semi-Finals', 'A genre is spun via roulette, then head-to-head rivals pick a song within that genre for each other. Same genre for both, so every pick stays fair.'],
     ['STAGE 05', 'Finals', 'Theme: 7 Deadly Sins (#RRTB-inspired). Pick your own song for the theme. Full version, with a touch of mashup to unleash your creativity.'],
   ];

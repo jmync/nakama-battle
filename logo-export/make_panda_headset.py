@@ -4,9 +4,9 @@ from PIL import Image, ImageDraw, ImageFilter
 import math
 
 CANVAS = 1024
-BG = (10, 10, 10, 255)         # #0a0a0a
-RED = (255, 45, 45, 255)
-FACE = (10, 4, 6, 255)         # #0a0406
+BG = (212, 38, 59, 255)        # #d4263b red-pink
+RED = (15, 6, 8, 255)          # dark panda
+FACE = (212, 38, 59, 255)      # face = bg red-pink
 
 S = 4
 W = CANVAS * S
@@ -81,13 +81,17 @@ stroke(head + [head[0]], RED, OW)
 rrect(22, 104, 38, 64, 18, RED); rrect(30, 115, 22, 42, 11, FACE)
 rrect(180, 104, 38, 64, 18, RED); rrect(188, 115, 22, 42, 11, FACE)
 
+# --- smile below the bandana so it reads as a panda face ---
+stroke(quad((96,176),(120,190),(144,176)), RED, 7)
+# little nose just above the smile
+ellipse(120, 168, 7, 5, RED)
+
 # --- bandana band across the eye level (robber mask), with #NKMA text ---
 from PIL import ImageFont
 # band: a red rectangle spanning the face at eye level, slight downward sag at center
 by0, by1 = 114, 154
-d.rectangle([X(45), X(by0), X(195), X(by1)], fill=RED)
-# little knot tails at the right edge
-d.polygon([(X(195),X(by0)),(X(212),X(by0-6)),(X(212),X(by1+6)),(X(195),X(by1))], fill=RED)
+# band sits BETWEEN the ear-cups so it does not cover them
+d.rectangle([X(40), X(by0), X(200), X(by1)], fill=RED)  # extend ends under the cups so they tuck behind
 # #NKMA text in dark, centered on the band
 fpath = None
 for f in ("ariblk.ttf","arialbd.ttf","impact.ttf"):
@@ -99,13 +103,31 @@ tb = d.textbbox((0,0), txt, font=font)
 tw, th = tb[2]-tb[0], tb[3]-tb[1]
 d.text((X(120)-tw/2-tb[0], X((by0+by1)/2)-th/2-tb[1]), txt, font=font, fill=FACE)
 
+# redraw ear-cups on top so the bandana never covers them
+rrect(22, 104, 38, 64, 18, RED); rrect(30, 115, 22, 42, 11, FACE)
+rrect(180, 104, 38, 64, 18, RED); rrect(188, 115, 22, 42, 11, FACE)
+
+# --- smile below the bandana so it reads as a panda face ---
+stroke(quad((96,176),(120,190),(144,176)), RED, 7)
+# little nose just above the smile
+ellipse(120, 168, 7, 5, RED)
+
 img = img.resize((CANVAS, CANVAS), Image.LANCZOS)
-a = img.split()[3]
-red = Image.new("RGBA", (CANVAS, CANVAS), (255,45,45,0)); red.putalpha(a)
-glow = red.filter(ImageFilter.GaussianBlur(20))
+# center the panda content vertically/horizontally in the square
+bbox = img.split()[3].getbbox()
 out = Image.new("RGBA", (CANVAS, CANVAS), BG)
-blank = Image.new("RGBA", (CANVAS, CANVAS), (0,0,0,0))
-out = Image.alpha_composite(out, Image.blend(blank, glow, 0.4))
-out = Image.alpha_composite(out, img)
+if bbox:
+    cropped = img.crop(bbox)
+    cw, ch = cropped.size
+    out.alpha_composite(cropped, ((CANVAS - cw) // 2, (CANVAS - ch) // 2))
+else:
+    out = Image.alpha_composite(out, img)
 out.convert("RGB").save("nkma-panda-headset.png")
 print("saved nkma-panda-headset.png")
+
+
+
+
+
+
+

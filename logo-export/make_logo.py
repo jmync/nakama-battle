@@ -1,67 +1,53 @@
-"""Render a #NKMA logo. 'NKMA' uses the Perfect Action font (CHORUS BATTLE font);
-the '#' uses a clean bold fallback (the demo font watermarks its # glyph).
-Gold/red outline + soft red glow on a transparent background."""
+"""Wide '#NKMA' logo styled like nkma-icon: red-pink background (#d4263b),
+bold dark text (#0a0406). NKMA in Perfect Action, # in a bold fallback.
+Strokes thickened via dilation."""
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 PA_FONT = "../public/fonts/PerfectAction.ttf"
+PINK = (212, 38, 59)      # #d4263b
+INK = (10, 4, 6)          # #0a0406
 SIZE = 320
-GOLD = (255, 56, 56, 255)
-GLOW = (255, 56, 56)
-STROKE = 9
 PAD = 130
-GAP = 24  # space between # and NKMA
+GAP = 30
+DILATE = 5
 
 pa = ImageFont.truetype(PA_FONT, SIZE)
-# Fallback bold font for the '#'. Try a few common Windows fonts.
 hash_font = None
 for f in ("ariblk.ttf", "arialbd.ttf", "impact.ttf", "segoeuib.ttf"):
     try:
-        hash_font = ImageFont.truetype("C:/Windows/Fonts/" + f, int(SIZE * 0.82))
-        break
+        hash_font = ImageFont.truetype("C:/Windows/Fonts/" + f, int(SIZE * 0.82)); break
     except OSError:
         continue
 if hash_font is None:
-    hash_font = ImageFont.truetype(PA_FONT, SIZE)  # last resort
+    hash_font = ImageFont.truetype(PA_FONT, SIZE)
 
 scratch = ImageDraw.Draw(Image.new("RGBA", (10, 10)))
-
 def measure(txt, font):
-    b = scratch.textbbox((0, 0), txt, font=font, stroke_width=STROKE)
+    b = scratch.textbbox((0, 0), txt, font=font)
     return b, b[2] - b[0], b[3] - b[1]
 
 hb, hw, hh = measure("#", hash_font)
 nb, nw, nh = measure("NKMA", pa)
-
 content_w = hw + GAP + nw
 content_h = max(hh, nh)
 W = content_w + PAD * 2
 H = content_h + PAD * 2
 
-# baseline-ish vertical centering per piece
 hx = PAD - hb[0]
 hy = PAD - hb[1] + (content_h - hh) // 2
 nx = PAD + hw + GAP - nb[0]
 ny = PAD - nb[1] + (content_h - nh) // 2
 
-def draw_layer(fill, stroke_fill):
-    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    d = ImageDraw.Draw(img)
-    d.text((hx, hy), "#", font=hash_font, fill=fill, stroke_width=STROKE, stroke_fill=stroke_fill)
-    d.text((nx, ny), "NKMA", font=pa, fill=fill, stroke_width=STROKE, stroke_fill=stroke_fill)
-    return img
+# draw text as a mask, then dilate to fatten the thin Perfect Action strokes
+mask = Image.new("L", (W, H), 0)
+md = ImageDraw.Draw(mask)
+md.text((hx, hy), "#", font=hash_font, fill=255)
+md.text((nx, ny), "NKMA", font=pa, fill=255)
+for _ in range(DILATE):
+    mask = mask.filter(ImageFilter.MaxFilter(3))
 
-# glow: solid red, blurred
-glow = draw_layer(GLOW + (255,), GLOW + (255,))
-glow_big = glow.filter(ImageFilter.GaussianBlur(34))
-glow_sm = glow.filter(ImageFilter.GaussianBlur(14))
-
-# main: hollow (transparent fill), gold outline
-main = draw_layer((0, 0, 0, 0), GOLD)
-
-out = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-out = Image.alpha_composite(out, Image.blend(Image.new("RGBA", (W, H), (0, 0, 0, 0)), glow_big, 0.30))
-out = Image.alpha_composite(out, Image.blend(Image.new("RGBA", (W, H), (0, 0, 0, 0)), glow_sm, 0.45))
-out = Image.alpha_composite(out, main)
-
-out.save("nkma-logo.png")
-print(f"saved nkma-logo.png  ({W}x{H})  hash_font={hash_font.path}")
+img = Image.new("RGB", (W, H), PINK)
+ink = Image.new("RGB", (W, H), INK)
+img = Image.composite(ink, img, mask)
+img.save("nkma-logo.png")
+print(f"saved nkma-logo.png  ({W}x{H})  pink bg, bold dark text")
