@@ -169,9 +169,10 @@ function Rules() {
     ['One team only', 'A contestant may join only ONE team.'],
     ['Record in Smule', 'All entries must be recorded within Smule.'],
     ['Tag your entry', 'Every entry must include #NKMACB1 in the description.'],
+    ['Songbook format', 'Title your entry exactly like this: 【#NKMACB1】song_name 【team_name】.'],
     ['Follow us on Smule', 'All team members must follow @nkma_chorus on Smule.'],
     ['Finalists on record', 'Finalist entries get an empty track from our official account, so they stay saved on our Smule profile as the permanent record of the Act 1 finalists.'],
-    ['Cover photo', 'Finalists use the custom graphic we provide as their entry’s cover photo.'],
+    ['Finalists cover photo', 'Finalists use the custom graphic we provide as their entry’s cover photo.'],
   ];
   const donts = [
     ['No late entries', 'Late entries will not be accepted under any circumstances.'],
@@ -237,7 +238,7 @@ function Rules() {
 /* ---------- FORMAT ---------- */
 function Format() {
   const stages = [
-    ['STAGE 01', 'Qualifiers', 'Free pick. Sing any JP song you want. Only the top 16 advance to the bracket, so give it all you’ve got.'],
+    ['STAGE 01', 'Qualifiers', 'A category is spun via roulette: JPOP, KPOP, or English. Pick any song within the category you land on. Only the top 16 advance to the bracket, so give it all you’ve got.'],
     ['STAGE 02', 'Group Clash', 'A genre is spun via roulette for each group. Any song works, but stick to your group’s genre. Top 8 advance.'],
     ['STAGE 03', 'Showdown', 'Group winners go head-to-head. JP songs are picked by us, and matchups are assigned via roulette. Winners advance to the Semi-Finals.'],
     ['STAGE 04', 'Semi-Finals', 'A genre is spun via roulette, then head-to-head rivals pick a song within that genre for each other. Same genre for both, so every pick stays fair.'],
@@ -485,92 +486,105 @@ const TABS = [
 
 function App() {
   const [tab, setTab] = useState(0);
-  const tabsRef = useRef(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
-  function go(i) {
-    setTab(i);
-    if (tabsRef.current) {
-      const y = tabsRef.current.getBoundingClientRect().top + window.scrollY - 8;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
+  function openModal(i) {
+    if (typeof i === 'number') setTab(i);
+    setModalOpen(true);
   }
+  useEffect(() => {
+    document.body.style.overflow = modalOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [modalOpen]);
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') setModalOpen(false); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
   const Active = TABS[tab][2];
 
   return (
     <React.Fragment>
-      {/* HERO */}
-      <section className="hero" data-screen-label="Hero">
-        <div className="title-wrap">
-          <h1 className="title">
-            <span className="l1">NAKAMA</span>
-            <span className="l2">
-              CH<span className="o-mascot"><span className="o-letter">O</span><span className="mascot-overlay" aria-hidden="true">
-                <span className="mascot-ring">
-                  <span className="mascot-hint">
-                    <svg viewBox="0 0 120 120" fill="none" stroke="#ff2d2d" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
-                      <g className="panda-body">
-                        <path d="M37 51 L56 56 A10.5 12 0 0 1 37 58 Z" fill="#ff2d2d" stroke="none"></path>
-                        <path d="M83 51 L64 56 A10.5 12 0 0 0 83 58 Z" fill="#ff2d2d" stroke="none"></path>
-                        <ellipse cx="60" cy="74" rx="6.5" ry="4.6" fill="#ff2d2d" stroke="none"></ellipse>
-                        <path d="M60 78 q-4.5 4.5 -8 1.5 M60 78 q4.5 4.5 8 1.5" fill="none" stroke="#ff2d2d" strokeWidth="2.6" strokeLinecap="round"></path>
-                      </g>
-                    </svg>
-                  </span>
-                </span>
-              </span></span>RUS <em>Battle</em>
-            </span>
-          </h1>
-        </div>
-        <div className="act">
-          <span className="ln"></span>
-          <span className="act-txt">ACT <em>1</em></span>
-          <span className="ln"></span>
-        </div>
-        <p className="tagline">"Sing beyond limits."</p>
-        <p className="subline">#SMULE · #SMUTAITES · #NKMACB1</p>
+      {/* ====== HERO ====== */}
+      <section className="hero2" data-screen-label="Hero">
+        <div className="hero2-halftone" aria-hidden="true"></div>
+        <div className="hero2-grain" aria-hidden="true"></div>
+        <div className="hero2-beam hero2-beam-l" aria-hidden="true"></div>
+        <div className="hero2-beam hero2-beam-r" aria-hidden="true"></div>
+        <div className="hero2-vinyl hero2-vinyl-1" aria-hidden="true"></div>
+        <div className="hero2-vinyl hero2-vinyl-2" aria-hidden="true"></div>
+        <span className="hero2-spark s1" aria-hidden="true"></span>
+        <span className="hero2-spark s2" aria-hidden="true"></span>
+        <span className="hero2-spark s3" aria-hidden="true"></span>
+        <span className="hero2-spark s4" aria-hidden="true"></span>
+        <div className="hero2-edge hero2-edge-l" aria-hidden="true">EST &middot; 2026</div>
+        <div className="hero2-edge hero2-edge-r" aria-hidden="true">SMULE &middot; CHORUS</div>
 
-        <div className="cta-row">
-          <a className="btn btn-primary" href="https://forms.gle/beS1DQGHGpst4zJ39" target="_blank" rel="noopener">REGISTER TEAM ↗</a>
-          <a className="btn btn-ghost" href="https://discord.gg/YujuKC9WXP" target="_blank" rel="noopener">JOIN DISCORD ↗</a>
+        <div className="hero2-center">
+          <div className="hero2-badge">
+            <div className="hero2-glow" aria-hidden="true"></div>
+            <img className="hero2-seal" src="/badge.png" alt="Nakama Chorus Battle seal" />
+            <div className="hero2-ruler" aria-hidden="true">
+              <div className="hero2-ruler-trail"></div>
+              <div className="hero2-ruler-tick"></div>
+            </div>
+          </div>
+
+          <div className="hero2-tagwrap">
+            <div className="hero2-divider" aria-hidden="true">
+              <span className="hero2-divline l"></span>
+              <span className="hero2-diamond"></span>
+              <span className="hero2-divline r"></span>
+            </div>
+            <div className="hero2-tag">SING&nbsp;BEYOND&nbsp;<span className="hot">LIMITS.</span></div>
+          </div>
+
+          <div className="hero2-tags">#SMULE&nbsp;&nbsp;&middot;&nbsp;&nbsp;#SMUTAITES&nbsp;&nbsp;&middot;&nbsp;&nbsp;#NKMACB1</div>
+
+          <div className="hero2-cta">
+            <a className="hero2-btn primary" href="https://forms.gle/beS1DQGHGpst4zJ39" target="_blank" rel="noopener">REGISTER TEAM &#8599;</a>
+            <a className="hero2-btn ghost" href="https://discord.gg/YujuKC9WXP" target="_blank" rel="noopener">JOIN DISCORD &#8599;</a>
+          </div>
+
+          <div className="hero2-how" onClick={() => openModal(0)} role="button" tabIndex={0}
+               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openModal(0); }}>
+            <span className="hero2-how-dash"></span>HOW IT WORKS &#8599;
+          </div>
+
+          <div className="hero2-stats">
+            <div className="s"><div className="n">16</div><div className="k">Teams advancing</div></div>
+            <div className="s"><div className="n">5</div><div className="k">Stages</div></div>
+            <div className="s"><div className="n">TV-size</div><div className="k">Format</div></div>
+          </div>
         </div>
 
-        <div className="hero-stats">
-          <div className="s"><div className="n">16</div><div className="k">Teams advancing</div></div>
-          <div className="s"><div className="n">5</div><div className="k">Stages</div></div>
-          <div className="s"><div className="n">TV-size</div><div className="k">Format</div></div>
-        </div>
-
-        <div className="scroll-hint" aria-hidden="true">
-          <span className="ln"></span>
-          <span className="chev">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M5 9l7 7 7-7"></path></svg>
-          </span>
-          <span className="ln"></span>
+        <div className="hero2-footer">
+          <span className="hero2-marquee">#NKMA</span>
+          <VisitCounter />
+          <span className="hero2-sponsor">This event is sponsored.</span>
         </div>
       </section>
 
-      {/* TABS */}
-      <div className="tabs-wrap" ref={tabsRef}>
-        <div className="tabs">
-          {TABS.map(([name, c], i) => (
-            <button key={name} className={'tab ' + c + (tab === i ? ' active' : '')} onClick={() => go(i)}>
-              <span className="num">{String(i + 1).padStart(2, '0')}</span>{name}
-            </button>
-          ))}
+      {/* ====== HOW IT WORKS MODAL ====== */}
+      {modalOpen && (
+        <div className="hiw-modal" role="dialog" aria-modal="true">
+          <div className="hiw-backdrop" onClick={() => setModalOpen(false)}></div>
+          <div className="hiw-panel">
+            <button className="hiw-close" onClick={() => setModalOpen(false)} aria-label="Close">&times;</button>
+            <div className="hiw-tag">ACT 1 // RULEBOOK</div>
+            <div className="hiw-tabs">
+              {TABS.map(([name, c], i) => (
+                <button key={name} className={'hiw-tab' + (tab === i ? ' active' : '')} onClick={() => setTab(i)}>
+                  <span className="hiw-tab-num">{String(i + 1).padStart(2, '0')}</span>{name}
+                </button>
+              ))}
+            </div>
+            <div className="hiw-body" data-screen-label={TABS[tab][0]}>
+              <Active key={tab} />
+            </div>
+          </div>
         </div>
-      </div>
-
-      {/* PANELS */}
-      <main className="panel-area" data-screen-label={TABS[tab][0]}>
-        <Active key={tab} />
-      </main>
-
-      {/* FOOTER */}
-      <footer className="foot">
-        <div className="marquee">#NKMA</div>
-        <VisitCounter />
-        <small className="sponsor">This event is sponsored.</small>
-      </footer>
+      )}
     </React.Fragment>
   );
 }

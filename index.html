@@ -7,7 +7,7 @@
 <title>NKMA Chorus Battle · Smule</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Oswald:wght@600;700&family=Zen+Kaku+Gothic+New:wght@400;500;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bungee&family=Dela+Gothic+One&family=JetBrains+Mono:wght@500;700&family=Oswald:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 <!-- Preload custom fonts so they arrive ASAP and the loader can hide the swap -->
 <link rel="preload" href="/fonts/PerfectAction.ttf" as="font" type="font/ttf" crossorigin />
 <link rel="preload" href="/fonts/Haruto.ttf" as="font" type="font/ttf" crossorigin />
@@ -21,6 +21,29 @@
     box-shadow:0 0 18px rgba(255,56,56,.45);
     animation:nkma-spin .9s linear infinite;}
   @keyframes nkma-spin{to{transform:rotate(360deg)}}
+
+  /* Site-in-progress curtain: blur everything behind, show a notice on top. */
+  #wip-blur{position:fixed;inset:0;z-index:9990;pointer-events:none;
+    backdrop-filter:blur(14px) saturate(.9) brightness(.7);
+    -webkit-backdrop-filter:blur(14px) saturate(.9) brightness(.7);
+    background:rgba(10,4,6,.55);}
+  #wip-notice{position:fixed;inset:0;z-index:9991;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;padding:24px;
+    font-family:'Oswald',system-ui,sans-serif;color:#ede6da;}
+  #wip-notice .badge{width:96px;height:96px;border-radius:50%;margin-bottom:26px;
+    background:url("/favicon.png") center/cover no-repeat;
+    box-shadow:0 0 0 2px rgba(255,56,56,.4),0 0 38px rgba(255,56,56,.45);
+    animation:nkma-pulse 2.6s ease-in-out infinite;}
+  @keyframes nkma-pulse{0%,100%{transform:scale(1);opacity:.92}50%{transform:scale(1.05);opacity:1}}
+  #wip-notice h1{font-family:'Bungee','Oswald',system-ui,sans-serif;
+    font-size:clamp(26px,6vw,46px);letter-spacing:1px;color:#fff;margin:0 0 12px;
+    text-shadow:0 0 24px rgba(255,40,55,.5);}
+  #wip-notice p{font-weight:500;font-size:clamp(13px,2.4vw,16px);letter-spacing:.18em;
+    text-transform:uppercase;color:#c6a0a6;margin:0;}
+  #wip-notice .dot{display:inline-block;width:7px;height:7px;border-radius:50%;
+    margin:0 6px 1px;background:#ff3838;box-shadow:0 0 10px #ff3838;
+    animation:nkma-blink 1.6s infinite;vertical-align:middle;}
+  @keyframes nkma-blink{0%,100%{opacity:1}50%{opacity:.3}}
 </style>
 </head>
 <body>
@@ -31,6 +54,14 @@
   <div class="bg-grain"></div>
 
   <div id="root"></div>
+
+  <!-- Site-in-progress curtain (remove these two divs to take the site live) -->
+  <div id="wip-blur"></div>
+  <div id="wip-notice">
+    <div class="badge"></div>
+    <h1>Site in progress</h1>
+    <p><span class="dot"></span>Coming soon<span class="dot"></span></p>
+  </div>
 
   <script type="module" src="/main.jsx"></script>
   <script>
