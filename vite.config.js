@@ -12,6 +12,10 @@ export default defineConfig({
   server: {
     port,
     open: true,
+    // forward registration API to the local Node server during dev
+    proxy: {
+      '/api': 'http://localhost:3000',
+    },
   },
   preview: {
     port,

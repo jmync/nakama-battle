@@ -22,28 +22,20 @@
     animation:nkma-spin .9s linear infinite;}
   @keyframes nkma-spin{to{transform:rotate(360deg)}}
 
-  /* Site-in-progress curtain: blur everything behind, show a notice on top. */
-  #wip-blur{position:fixed;inset:0;z-index:9990;pointer-events:none;
-    backdrop-filter:blur(14px) saturate(.9) brightness(.7);
-    -webkit-backdrop-filter:blur(14px) saturate(.9) brightness(.7);
-    background:rgba(10,4,6,.55);}
-  #wip-notice{position:fixed;inset:0;z-index:9991;display:flex;flex-direction:column;
+  /* Site-in-progress lock: minimalist, techy mono. */
+  #wip-lock{position:fixed;inset:0;z-index:9991;display:flex;flex-direction:column;
     align-items:center;justify-content:center;text-align:center;padding:24px;
-    font-family:'Oswald',system-ui,sans-serif;color:#ede6da;}
-  #wip-notice .badge{width:96px;height:96px;border-radius:50%;margin-bottom:26px;
-    background:url("/favicon.png") center/cover no-repeat;
-    box-shadow:0 0 0 2px rgba(255,56,56,.4),0 0 38px rgba(255,56,56,.45);
-    animation:nkma-pulse 2.6s ease-in-out infinite;}
-  @keyframes nkma-pulse{0%,100%{transform:scale(1);opacity:.92}50%{transform:scale(1.05);opacity:1}}
-  #wip-notice h1{font-family:'Bungee','Oswald',system-ui,sans-serif;
-    font-size:clamp(26px,6vw,46px);letter-spacing:1px;color:#fff;margin:0 0 12px;
-    text-shadow:0 0 24px rgba(255,40,55,.5);}
-  #wip-notice p{font-weight:500;font-size:clamp(13px,2.4vw,16px);letter-spacing:.18em;
-    text-transform:uppercase;color:#c6a0a6;margin:0;}
-  #wip-notice .dot{display:inline-block;width:7px;height:7px;border-radius:50%;
-    margin:0 6px 1px;background:#ff3838;box-shadow:0 0 10px #ff3838;
-    animation:nkma-blink 1.6s infinite;vertical-align:middle;}
-  @keyframes nkma-blink{0%,100%{opacity:1}50%{opacity:.3}}
+    background:radial-gradient(125% 100% at 50% 35%, #15090c 0%, #0a0507 55%, #050304 100%);
+    color:#ede6da;font-family:'JetBrains Mono','Space Mono',ui-monospace,monospace;}
+  #wip-lock .badge{width:74px;height:74px;border-radius:50%;margin-bottom:34px;opacity:.9;
+    background:url("/favicon.png") center/cover no-repeat;}
+  #wip-lock .tag{font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:#7d6f72;margin-bottom:18px;}
+  #wip-lock h1{font-weight:700;font-size:clamp(22px,5vw,40px);letter-spacing:.08em;color:#f4ece4;margin:0;}
+  #wip-lock h1 .br{color:#e0354a;}
+  #wip-lock .cur{display:inline-block;width:.6ch;height:1em;margin-left:.12em;vertical-align:-2px;
+    background:#e0354a;animation:wip-cur 1.1s steps(1) infinite;}
+  @keyframes wip-cur{0%,50%{opacity:1}51%,100%{opacity:0}}
+  #wip-lock .line{margin-top:22px;font-size:12px;letter-spacing:.12em;color:#8a7c7f;}
 </style>
 </head>
 <body>
@@ -55,14 +47,11 @@
 
   <div id="root"></div>
 
-  <!-- Site-in-progress curtain: re-enable by uncommenting the two divs below.
-  <div id="wip-blur"></div>
-  <div id="wip-notice">
-    <div class="badge"></div>
-    <h1>Site in progress</h1>
-    <p><span class="dot"></span>Coming soon<span class="dot"></span></p>
+  <!-- Site-in-progress lock (PREVIEW ON — comment out this div to take the site live) -->
+  <div id="wip-lock">
+    <div class="tag">NKMA Chorus Battle</div>
+    <h1>SITE IN <span class="br">PROGRESS</span><span class="cur"></span></h1>
   </div>
-  -->
 
   <script type="module" src="/main.jsx"></script>
   <script>

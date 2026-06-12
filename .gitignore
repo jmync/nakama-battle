@@ -17,3 +17,7 @@ dev-err.log
 
 # Archives / misc
 *.zip
+
+# Env / secrets
+.env
+.env.local

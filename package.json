@@ -4,12 +4,14 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "sirv dist --host 0.0.0.0 --single",
+    "start": "node server.js",
     "dev": "vite",
+    "server": "node server.js",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "express": "^4.22.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sirv-cli": "^3.0.1"

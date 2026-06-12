@@ -479,6 +479,8 @@ function RegisterModal({ onClose }) {
   const [agree, setAgree] = useState(false);
   const [error, setError] = useState(false);
   const [sealed, setSealed] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitErr, setSubmitErr] = useState('');
 
   function updateMember(i, key, val) {
     setMembers((p) => p.map((m, j) => (j === i ? { ...m, [key]: val } : m)));
@@ -490,11 +492,25 @@ function RegisterModal({ onClose }) {
   function removeMember(i) {
     setMembers((p) => (p.length <= 1 ? p : p.filter((_, j) => j !== i)));
   }
-  function submit() {
+  async function submit() {
     const hasMember = members.some((m) => m.smule.trim() && m.discord.trim());
     const ok = teamName.trim() && leader.trim() && hasMember && agree;
     if (!ok) { setError(false); setTimeout(() => setError(true), 0); return; }
-    setSealed(true); setError(false);
+    setError(false); setSubmitErr(''); setSubmitting(true);
+    try {
+      const res = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ teamName, leader, members }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) throw new Error(data.error || 'Failed to save.');
+      setSealed(true);
+    } catch (e) {
+      setSubmitErr(e.message || 'Something went wrong. Try again.');
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   const canRemove = members.length > 1;
@@ -559,10 +575,11 @@ function RegisterModal({ onClose }) {
             </div>
 
             {error && <div className="reg-err">Fill every required field and accept the commitment to seal your entry.</div>}
+            {submitErr && <div className="reg-err">{submitErr}</div>}
 
-            <div className={'reg-submit' + (agree ? '' : ' disabled')} onClick={() => { if (agree) submit(); }} aria-disabled={!agree}>
+            <div className={'reg-submit' + (agree && !submitting ? '' : ' disabled')} onClick={() => { if (agree && !submitting) submit(); }} aria-disabled={!agree || submitting}>
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6.6" stroke="#0d0709" strokeWidth="1.8"></circle><path d="M9 5.6v3.4l2.4 1.4" stroke="#0d0709" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"></path></svg>
-              <span>SEAL YOUR ENTRY</span>
+              <span>{submitting ? 'SEALING…' : 'SEAL YOUR ENTRY'}</span>
             </div>
           </div>
         </div>
