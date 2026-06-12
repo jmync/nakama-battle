@@ -669,6 +669,17 @@ strong, b{font-weight:600;color:#ddc9ce}
   animation:nk-hint 2.4s ease-in-out infinite;z-index:5;transition:color .2s ease;}
 /* cheeky hover: panda warns you off, with a little jitter */
 .sh-hint.nudge{color:#ff7a82;animation:nk-jitter .5s ease-in-out infinite;letter-spacing:.12em;}
+/* sad sob after the seal is shut */
+.sh-hint.sob{color:#9aa7c2;font-style:italic;letter-spacing:.18em;animation:nk-sob 2.2s ease both;}
+@keyframes nk-sob{
+  0%{opacity:0;transform:translateY(-6px)}
+  14%{opacity:1;transform:translateY(0)}
+  30%{transform:translateY(-2px)}
+  46%{transform:translateY(0)}
+  62%{transform:translateY(-2px)}
+  78%{transform:translateY(0)}
+  100%{opacity:0;transform:translateY(4px)}
+}
 @keyframes nk-jitter{0%,100%{transform:translateX(0) rotate(0)}25%{transform:translateX(-3px) rotate(-1deg)}75%{transform:translateX(3px) rotate(1deg)}}
 /* yelp on click: pop big then fade away */
 .sh-hint.agh{color:#ff3b47;font-family:'Bungee','Oswald',sans-serif;letter-spacing:.06em;

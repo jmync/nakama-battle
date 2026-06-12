@@ -697,6 +697,8 @@ function App() {
   const rbTimer = useRef(null);
   const [agh, setAgh] = useState(false);
   const aghTimer = useRef(null);
+  const [sobs, setSobs] = useState(false);
+  const sobsTimer = useRef(null);
 
   function sealClick() {
     // panda yelps, then the seal opens as it fades
@@ -721,6 +723,10 @@ function App() {
     } else {
       setOpened(false); setCrowdClosing(true);
       crowdTimer.current = setTimeout(() => { setCrowdShown(false); setCrowdClosing(false); }, 520);
+      // panda sobs after being shut again
+      setSobs(true);
+      if (sobsTimer.current) clearTimeout(sobsTimer.current);
+      sobsTimer.current = setTimeout(() => setSobs(false), 2200);
     }
   }
   function openReg() {
@@ -887,8 +893,8 @@ function App() {
 
           {/* CLOSED hint */}
           {!opened && (
-            <div className={'sh-hint' + (agh ? ' agh' : '') + (hover && !agh ? ' nudge' : '')} onClick={sealClick}>
-              {agh ? 'NOOOO' : hover ? "stoppp, you'll hurt me" : ''}
+            <div className={'sh-hint' + (agh ? ' agh' : '') + (sobs && !hover && !agh ? ' sob' : '') + (hover && !agh ? ' nudge' : '')} onClick={sealClick}>
+              {agh ? 'NOOOO' : hover ? "stoppp, you'll hurt me" : sobs ? '(sobs)' : ''}
             </div>
           )}
 
