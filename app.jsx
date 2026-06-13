@@ -728,26 +728,28 @@ const WAVE_SMALL = wavePath(212, 5, 34, 620);
 function SlotsFullModal({ onClose }) {
   const [voted, setVoted] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [pending, setPending] = useState('');
   const [err, setErr] = useState('');
   const [pollTeam, setPollTeam] = useState('');
 
   async function vote(choice) {
     if (busy || voted) return;
-    if (!pollTeam.trim()) { setErr('Please enter your team name first.'); return; }
-    setBusy(true); setErr('');
+    if (choice === 'yes' && !pollTeam.trim()) { setErr('Please enter your team name first.'); return; }
+    setBusy(true); setPending(choice); setErr('');
     try {
       const r = await fetch('/api/poll', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ vote: choice, teamName: pollTeam.trim() }),
+        body: JSON.stringify({ vote: choice, teamName: pollTeam.trim() || 'Anonymous' }),
       });
       const d = await r.json().catch(() => ({}));
       if (!r.ok || !d.ok) throw new Error(d.error || 'Could not record your vote.');
-      setVoted(true);
+      if (choice === 'no') { onClose(); return; }  // No = quiet tally, just close
+      setVoted(true);                                // Yes = show thank-you
     } catch (e) {
       setErr(e.message || 'Something went wrong.');
     } finally {
-      setBusy(false);
+      setBusy(false); setPending('');
     }
   }
 
@@ -769,17 +771,19 @@ function SlotsFullModal({ onClose }) {
           <React.Fragment>
             <div className="full-divider" aria-hidden="true"></div>
             <div className="full-poll-q">Should we open up more slots?</div>
-            <div className="full-poll-sub">Your vote helps us decide whether to give more teams a chance. One vote per team.</div>
+            <div className="full-poll-sub">Your vote helps us decide whether to give more teams a chance. Voting <b>Yes</b>? Enter your team name (one vote per team).</div>
             <input className="full-input" value={pollTeam} maxLength={60}
-              onChange={(e) => { setPollTeam(e.target.value); setErr(''); }} placeholder="Your team name" />
+              onChange={(e) => { setPollTeam(e.target.value); setErr(''); }} placeholder="Your team name (for Yes votes)" />
             <div className="full-poll-btns">
               <button className="full-vote yes" disabled={busy} onClick={() => vote('yes')}>
-                <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M4 9.5l3.2 3.2L14 5.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                Yes, open more!
+                {pending === 'yes'
+                  ? <><span className="full-spin" aria-hidden="true"></span>Casting…</>
+                  : <><svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M4 9.5l3.2 3.2L14 5.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>Yes, open more!</>}
               </button>
               <button className="full-vote no" disabled={busy} onClick={() => vote('no')}>
-                <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M5 5l8 8M13 5l-8 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
-                No, keep it 35
+                {pending === 'no'
+                  ? <><span className="full-spin dark" aria-hidden="true"></span>Casting…</>
+                  : <><svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M5 5l8 8M13 5l-8 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>No, keep it 35</>}
               </button>
             </div>
             {err && <div className="full-err">{err}</div>}
@@ -810,10 +814,13 @@ function App() {
   const [regShown, setRegShown] = useState(false);
   const [regClosing, setRegClosing] = useState(false);
   const [fullShown, setFullShown] = useState(false);
+  const [fullClosing, setFullClosing] = useState(false);
+  const fullTimer = useRef(null);
   const [slotsFull, setSlotsFull] = useState(false);
   const crowdTimer = useRef(null);
   const regTimer = useRef(null);
   const rbTimer = useRef(null);
+  const rbPanelRef = useRef(null);
   const [agh, setAgh] = useState(false);
   const aghTimer = useRef(null);
   const [sobs, setSobs] = useState(false);
@@ -861,7 +868,11 @@ function App() {
     setRegClosing(true);
     regTimer.current = setTimeout(() => { setRegShown(false); setRegClosing(false); }, 200);
   }
-  function closeFull() { setFullShown(false); }
+  function closeFull() {
+    setFullClosing(true);
+    if (fullTimer.current) clearTimeout(fullTimer.current);
+    fullTimer.current = setTimeout(() => { setFullShown(false); setFullClosing(false); }, 200);
+  }
 
   // fetch slot status in the background so REGISTER opens instantly
   useEffect(() => {
@@ -869,6 +880,26 @@ function App() {
     fetch('/api/slots').then((r) => r.json()).then((d) => { if (alive) setSlotsFull(!!d.full); }).catch(() => {});
     return () => { alive = false; };
   }, []);
+
+  // On mobile, skip the tap-to-open seal and show the content directly
+  // (the split animation doesn't fit small screens). No crowd/split drama.
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width:720px)');
+    const apply = () => {
+      setIsMobile(mq.matches);
+      if (mq.matches) { setOpened(true); setCrowdShown(true); setCrowdClosing(false); }
+      else { setOpened(false); setCrowdShown(false); }
+    };
+    apply();
+    mq.addEventListener('change', apply);
+    return () => mq.removeEventListener('change', apply);
+  }, []);
+
+  // reset the rulebook scroll to top whenever the tab changes
+  useEffect(() => {
+    if (rbPanelRef.current) rbPanelRef.current.scrollTop = 0;
+  }, [tab]);
 
   const anyModal = rulebook || regShown || fullShown;
   useEffect(() => {
@@ -890,7 +921,7 @@ function App() {
 
   return (
     <React.Fragment>
-      <section className={'sealhero' + (opened ? ' is-open' : '') + (anyModal ? ' modal-bg' : '')} data-screen-label="Hero">
+      <section className={'sealhero' + (opened ? ' is-open' : '') + (anyModal ? ' modal-bg' : '') + (isMobile ? ' mobile-direct' : '')} data-screen-label="Hero">
         <div className="sh-halftone" aria-hidden="true"></div>
         <div className="sh-grain" aria-hidden="true"></div>
         <div className="sh-dark" aria-hidden="true"></div>
@@ -1033,7 +1064,7 @@ function App() {
           {/* OPENED panel */}
           {opened && (
             <div className="sh-open">
-              <div className="sh-tag">SING&nbsp;BEYOND&nbsp;<span className="hot">LIMITS.</span></div>
+              <div className="sh-tag">SING BEYOND <span className="hot">LIMITS.</span></div>
               <div className="sh-hashes">#SMULE &nbsp;&middot;&nbsp; #SMUTAITES &nbsp;&middot;&nbsp; #NKMACB1</div>
               <div className="sh-actions">
                 <button className="sh-act primary" onClick={(e) => { e.stopPropagation(); openRulebook(); }}>
@@ -1076,7 +1107,7 @@ function App() {
               ))}
             </div>
           </div>
-          <div className="hiw-panel">
+          <div className="hiw-panel" ref={rbPanelRef}>
             <div className="hiw-body" key={tab} data-screen-label={TABS[tab][0]}>
               <Active />
             </div>
@@ -1098,7 +1129,7 @@ function App() {
       {fullShown && (
         <div className="reg-overlay" role="dialog" aria-modal="true">
           <div className="reg-backdrop" onClick={closeFull}></div>
-          <div className="full-card opening">
+          <div className={'full-card ' + (fullClosing ? 'closing' : 'opening')}>
             <SlotsFullModal onClose={closeFull} />
           </div>
         </div>

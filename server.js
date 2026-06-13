@@ -62,26 +62,46 @@ app.post('/api/poll', async (req, res) => {
     if (vote !== 'yes' && vote !== 'no') {
       return res.status(400).json({ ok: false, error: 'Invalid vote.' });
     }
-    if (!teamName) {
+    // "Yes" needs a team name (anti-spam + so we know who wants in).
+    // "No" is an anonymous tally — no team name required.
+    if (vote === 'yes' && !teamName) {
       return res.status(400).json({ ok: false, error: 'Please enter your team name.' });
     }
 
-    // anti-spam: one vote per team name
-    try {
-      const listUrl = `${NOCODB_BASE_URL}/api/v2/tables/${NOCODB_POLL_TABLE_ID}/records?limit=1000&fields=Team Name`;
-      const listRes = await fetch(listUrl, { headers: nocoHeaders });
-      if (listRes.ok) {
-        const data = await listRes.json();
-        const rows = Array.isArray(data?.list) ? data.list : [];
-        const wanted = teamName.toLowerCase();
-        if (rows.some((row) => String(row['Team Name'] || '').trim().toLowerCase() === wanted)) {
-          return res.status(409).json({ ok: false, error: 'Your team already voted. Thanks!' });
-        }
+    const wanted = teamName.toLowerCase();
+
+    if (vote === 'yes' && teamName) {
+      // if this team is already registered, no need to vote
+      if (NOCODB_TABLE_ID) {
+        try {
+          const regUrl = `${NOCODB_BASE_URL}/api/v2/tables/${NOCODB_TABLE_ID}/records?limit=1000&fields=Team Name`;
+          const regRes = await fetch(regUrl, { headers: nocoHeaders });
+          if (regRes.ok) {
+            const regData = await regRes.json();
+            const regRows = Array.isArray(regData?.list) ? regData.list : [];
+            if (regRows.some((row) => String(row['Team Name'] || '').trim().toLowerCase() === wanted)) {
+              return res.status(409).json({ ok: false, error: 'Hey, your team is already registered! No need to vote — see you on stage :)' });
+            }
+          }
+        } catch (e) { console.error('poll reg-check failed', e); }
       }
-    } catch (e) { console.error('poll pre-check failed', e); }
+
+      // anti-spam: one vote per team name
+      try {
+        const listUrl = `${NOCODB_BASE_URL}/api/v2/tables/${NOCODB_POLL_TABLE_ID}/records?limit=1000&fields=Team Name`;
+        const listRes = await fetch(listUrl, { headers: nocoHeaders });
+        if (listRes.ok) {
+          const data = await listRes.json();
+          const rows = Array.isArray(data?.list) ? data.list : [];
+          if (rows.some((row) => String(row['Team Name'] || '').trim().toLowerCase() === wanted)) {
+            return res.status(409).json({ ok: false, error: 'Your team already voted. Thanks!' });
+          }
+        }
+      } catch (e) { console.error('poll pre-check failed', e); }
+    }
 
     const record = {
-      'Team Name': teamName,
+      'Team Name': teamName || 'Anonymous',
       'Vote': vote === 'yes' ? 'Yes' : 'No',
       'Submitted At': new Date().toISOString(),
     };
