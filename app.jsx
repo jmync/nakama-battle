@@ -288,15 +288,15 @@ function StageIcon({ glyph }) {
 /* ---------- FORMAT ---------- */
 function Format() {
   const timeline = [
-    { num: 'STAGE 01', name: 'Qualifiers', glyph: 'star', run: 'July 01 – July 09', days: '9 days', judge: 'July 10 – July 12',
+    { num: 'STAGE 01', name: 'Qualifiers', glyph: 'star', run: 'July 01 – July 10', days: '10 days', judge: 'July 11 – July 17',
       body: 'A roulette picks the language: Japanese, Korean, or English. Pick any song in the language you land on. Only the Top 16 teams advance to the bracket, so give it everything you’ve got.' },
-    { num: 'STAGE 02', name: 'Group Clash', glyph: 'blades', run: 'July 13 – July 21', days: '9 days', judge: 'July 22 – July 24',
+    { num: 'STAGE 02', name: 'Group Clash', glyph: 'blades', run: 'July 19 – July 28', days: '10 days', judge: 'July 29 – August 04',
       body: 'Head-to-head begins here, all the way to the Finals. An artist or producer is spun via roulette for each group. Pick any song from the artist or producer you land on. The Top 8 teams advance.' },
-    { num: 'STAGE 03', name: 'Showdown', glyph: 'skull', run: 'July 25 – August 02', days: '9 days', judge: 'August 03 – August 05',
+    { num: 'STAGE 03', name: 'Showdown', glyph: 'skull', run: 'August 06 – August 15', days: '10 days', judge: 'August 16 – August 20',
       body: 'Group winners go head-to-head. Songs are picked by us, and matchups are assigned via roulette. Winners advance to the Semi-Finals.' },
-    { num: 'STAGE 04', name: 'Semi-Finals', glyph: 'fire', run: 'August 06 – August 19', days: '14 days', judge: 'August 20 – August 22',
+    { num: 'STAGE 04', name: 'Semi-Finals', glyph: 'fire', run: 'August 22 – September 04', days: '14 days', judge: 'September 05 – September 08',
       body: 'A genre is spun via roulette, then head-to-head rivals pick a song within that genre for each other. Same genre for both teams, keeping every pick fair.' },
-    { num: 'STAGE 05', name: 'Finals', glyph: 'crown', run: 'August 23 – September 05', days: '14 days', judge: 'September 06 – September 08', fin: true,
+    { num: 'STAGE 05', name: 'Finals', glyph: 'crown', run: 'September 10 – September 23', days: '14 days', judge: 'September 24 – September 27', fin: true,
       theme: '7 Deadly Sins',
       body: 'Theme: 7 Deadly Sins (#RRTB-inspired). Both teams choose their own song based on the theme assigned to them via roulette. Sung full version with a touch of mashup to unleash your creativity. You’ll also submit a short interpretation so we can see if you captured the theme.' },
   ];
