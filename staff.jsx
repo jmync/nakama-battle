@@ -52,7 +52,9 @@ function StaffApp() {
     return (
       <div className="staff-gate">
         <div className="staff-gate-box">
-          <div className="staff-lock">🔒</div>
+          <div className="staff-lock">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2" stroke="currentColor" strokeWidth="1.8"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/><circle cx="12" cy="15.2" r="1.5" fill="currentColor"/><path d="M12 16.4v1.8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>
+          </div>
           <div className="staff-gate-title">STAFF ACCESS</div>
           <div className="staff-gate-sub">Enter the passcode to continue.</div>
           <input
