@@ -245,6 +245,9 @@ function Rules() {
   );
 }
 
+// stage accent colors: gold -> amber -> orange -> red as they near the Finals
+const STAGE_ACCENTS = ['#ffc04d', '#ffaa3c', '#ff8a3c', '#ff6347', '#ff3b47'];
+
 /* ---------- STAGE ICONS (line-art, design set) ---------- */
 function StageIcon({ glyph }) {
   const c = { fill: 'none', stroke: 'currentColor', strokeWidth: 2.6, strokeLinejoin: 'round', strokeLinecap: 'round' };
@@ -327,9 +330,8 @@ function Format() {
       ) : (
       <React.Fragment>
       <div className="tline fmt-wide">
-        {timeline.map((s) => (
-          <div className={'tline-row' + (s.fin ? ' fin' : '')} key={s.num}>
-            <div className="tline-rail" aria-hidden="true"><img className="tline-dot" src={s.fin ? '/panda-mark.png' : '/panda-mark-gold.png'} alt="" /></div>
+        {timeline.map((s, i) => (
+          <div className={'tline-row' + (s.fin ? ' fin' : '')} key={s.num} style={{ '--accent': STAGE_ACCENTS[i] || '#ffc04d' }}>
             <div className="tline-card">
               <div className="tline-iconbox"><StageIcon glyph={s.glyph} /></div>
               <div className="tline-content">
