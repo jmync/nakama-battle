@@ -810,7 +810,7 @@ function App() {
   const [regShown, setRegShown] = useState(false);
   const [regClosing, setRegClosing] = useState(false);
   const [fullShown, setFullShown] = useState(false);
-  const [checkingSlots, setCheckingSlots] = useState(false);
+  const [slotsFull, setSlotsFull] = useState(false);
   const crowdTimer = useRef(null);
   const regTimer = useRef(null);
   const rbTimer = useRef(null);
@@ -848,17 +848,9 @@ function App() {
       sobsTimer.current = setTimeout(() => setSobs(false), 2200);
     }
   }
-  async function openReg() {
-    if (checkingSlots) return;
-    setCheckingSlots(true);
-    let full = false;
-    try {
-      const r = await fetch('/api/slots');
-      const d = await r.json();
-      full = !!d.full;
-    } catch { /* if check fails, let them through to the form */ }
-    setCheckingSlots(false);
-    if (full) {
+  function openReg() {
+    // use the slot status already fetched in the background — open instantly
+    if (slotsFull) {
       setFullShown(true);
       return;
     }
@@ -870,6 +862,13 @@ function App() {
     regTimer.current = setTimeout(() => { setRegShown(false); setRegClosing(false); }, 200);
   }
   function closeFull() { setFullShown(false); }
+
+  // fetch slot status in the background so REGISTER opens instantly
+  useEffect(() => {
+    let alive = true;
+    fetch('/api/slots').then((r) => r.json()).then((d) => { if (alive) setSlotsFull(!!d.full); }).catch(() => {});
+    return () => { alive = false; };
+  }, []);
 
   const anyModal = rulebook || regShown || fullShown;
   useEffect(() => {
@@ -891,7 +890,7 @@ function App() {
 
   return (
     <React.Fragment>
-      <section className={'sealhero' + (opened ? ' is-open' : '')} data-screen-label="Hero">
+      <section className={'sealhero' + (opened ? ' is-open' : '') + (anyModal ? ' modal-bg' : '')} data-screen-label="Hero">
         <div className="sh-halftone" aria-hidden="true"></div>
         <div className="sh-grain" aria-hidden="true"></div>
         <div className="sh-dark" aria-hidden="true"></div>

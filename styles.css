@@ -462,8 +462,8 @@ a.judge-link:hover{color:var(--pink-soft);border-color:var(--pink);box-shadow:0 
 
 
 /* ===== CB INFO modal: consistent design-aligned section styling ===== */
-@keyframes hiw-tabin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-.hiw-body{width:100%;max-width:1240px;margin:20px auto 0;animation:hiw-tabin .34s cubic-bezier(.22,1,.36,1) both;}
+@keyframes hiw-tabin{from{opacity:0}to{opacity:1}}
+.hiw-body{width:100%;max-width:1240px;margin:20px auto 0;animation:hiw-tabin .22s ease both;will-change:opacity;}
 .hiw-body .panel{animation:none;display:flex;flex-direction:column;gap:22px;}
 /* animate the tab pill highlight smoothly */
 .hiw-tab{transition:background .25s ease,color .25s ease,transform .15s ease;}
@@ -748,8 +748,8 @@ a.judge-link:hover{color:var(--pink-soft);border-color:var(--pink);box-shadow:0 
 @keyframes rg-fadeup { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
 
 .reg-overlay{position:fixed;inset:0;z-index:24;display:flex;align-items:center;justify-content:center;}
-.reg-backdrop{position:absolute;inset:0;background:rgba(5,3,4,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);animation:nk-fadein .25s ease both;}
-.reg-card{position:relative;z-index:2;width:min(680px,92vw);height:auto;max-height:92vh;border-radius:18px;overflow:hidden;border:1px solid rgba(237,230,218,.1);box-shadow:0 36px 100px rgba(0,0,0,.72),0 0 0 1px rgba(237,230,218,.04);transform-origin:50% 50%;display:flex;}
+.reg-backdrop{position:absolute;inset:0;background:rgba(5,3,4,.78);animation:nk-fadein .25s ease both;}
+.reg-card{position:relative;z-index:2;width:min(680px,92vw);height:auto;max-height:92vh;border-radius:18px;overflow:hidden;border:1px solid rgba(237,230,218,.1);transform-origin:50% 50%;display:flex;}
 .reg-card.opening{animation:nk-zoomin .26s cubic-bezier(.22,1,.36,1) both;}
 .reg-card.closing{animation:nk-zoomout .2s cubic-bezier(.55,0,.85,.45) both;}
 
@@ -930,16 +930,17 @@ a.judge-link:hover{color:var(--pink-soft);border-color:var(--pink);box-shadow:0 
 
 
 /* ============ PERF: modals + tabs only ============ */
-/* Promote the modal surfaces to their own GPU layer and isolate paint so
-   the zoom-in / tab-switch transitions stay smooth, and scrolling the
-   rulebook body doesn't repaint the rest of the page. */
-.hiw-modal,
-.reg-card,
-.full-card{ will-change:transform; transform:translateZ(0); backface-visibility:hidden; }
+/* When a modal is open it fully covers the hero, yet the hero keeps animating
+   (crowd, soundwaves, grain, glow) and compositing underneath — that's the
+   open/close lag, and it compounds over repeated cycles. While a modal is
+   open, take the hero out of rendering entirely with content-visibility:hidden
+   (a cheap, clean on/off — no per-element pause churn). Restored on close. */
+/* dim the hero and freeze its animations while a modal is open (no blur,
+   no per-frame churn) — keeps it visible-but-still behind the modal. */
+.sealhero.modal-bg{ filter:brightness(.4); }
+.sealhero.modal-bg *{ animation-play-state:paused !important; }
+
+/* isolate the scrolling regions so scrolling doesn't repaint the page */
 .hiw-panel,
-.reg-scroll{ contain:layout paint; -webkit-overflow-scrolling:touch; }
-/* the tab-switch content fade re-mounts on key change — composite it */
-.hiw-body{ will-change:opacity, transform; transform:translateZ(0); }
-/* tab pills: only transition the cheap properties */
-.hiw-tab{ will-change:background-color, color; }
+.reg-scroll{ -webkit-overflow-scrolling:touch; }
 
