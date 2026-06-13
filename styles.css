@@ -545,7 +545,7 @@ a.judge-link:hover{color:var(--pink-soft);border-color:var(--pink);box-shadow:0 
 /* ============ SEAL HERO (interactive ripped header) ============ */
 @keyframes nk-drift { from{background-position:0 0} to{background-position:140px 70px} }
 @keyframes nk-pulse { 0%,100%{filter:drop-shadow(0 0 22px rgba(224,53,74,.42)) drop-shadow(0 16px 36px rgba(0,0,0,.6))} 50%{filter:drop-shadow(0 0 44px rgba(224,53,74,.7)) drop-shadow(0 16px 36px rgba(0,0,0,.6))} }
-@keyframes nk-glow { 0%,100%{opacity:.55;transform:translate(-50%,-50%) scale(1)} 50%{opacity:.85;transform:translate(-50%,-50%) scale(1.06)} }
+@keyframes nk-glow { 0%,100%{opacity:.3;transform:translate(-50%,-50%) scale(1)} 50%{opacity:.5;transform:translate(-50%,-50%) scale(1.04)} }
 @keyframes nk-rot { to{transform:rotate(360deg)} }
 @keyframes nk-rot-rev { to{transform:rotate(-360deg)} }
 @keyframes nk-fadein { from{opacity:0;transform:scale(1.012)} to{opacity:1;transform:scale(1)} }
@@ -625,7 +625,7 @@ a.judge-link:hover{color:var(--pink-soft);border-color:var(--pink);box-shadow:0 
 .sh-behind{position:absolute;inset:0;pointer-events:none;opacity:1;transition:opacity .4s ease .95s;}
 .sh-behind.fade{opacity:0;transition:opacity .3s ease;}
 .sh-glow{position:absolute;left:50%;top:50%;width:430px;height:430px;max-width:83vw;max-height:83vw;border-radius:50%;transform:translate(-50%,-50%);
-  background:radial-gradient(circle, rgba(224,53,74,.32) 0%, rgba(224,53,74,.08) 45%, transparent 70%);animation:nk-glow 5s ease-in-out infinite;}
+  background:radial-gradient(circle, rgba(224,53,74,.2) 0%, rgba(224,53,74,.05) 45%, transparent 70%);animation:nk-glow 5s ease-in-out infinite;}
 .sh-waves{position:absolute;inset:0;transition:opacity .35s ease;}
 .sh-wave-spin{position:absolute;inset:0;}
 .sh-wave-svg{width:100%;height:100%;overflow:visible;}
@@ -817,8 +817,9 @@ a.judge-link:hover{color:var(--pink-soft);border-color:var(--pink);box-shadow:0 
 .reg-stamp-box{display:inline-block;border:4px solid #ff3b47;border-radius:10px;padding:13px 32px 9px;box-shadow:inset 0 0 0 2px rgba(255,59,71,.35),0 0 24px rgba(255,40,55,.35);}
 .reg-stamp-box span{font-family:'Black Ops One','Bungee',sans-serif;font-size:60px;line-height:1;letter-spacing:.12em;color:#ff3b47;text-shadow:0 0 18px rgba(255,40,55,.45);}
 .reg-seal-badge{position:relative;margin-top:30px;animation:rg-sealin .75s cubic-bezier(.2,.8,.3,1) .45s both;}
-.reg-seal-glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:300px;height:300px;border-radius:50%;background:radial-gradient(circle, rgba(224,53,74,.3) 0%, transparent 65%);}
-.reg-seal-badge img{position:relative;width:230px;height:230px;animation:rg-glow 4.5s ease-in-out infinite;}
+.reg-seal-glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:300px;height:300px;border-radius:50%;background:radial-gradient(circle, rgba(224,53,74,.22) 0%, transparent 65%);animation:rg-glowpulse 4.5s ease-in-out infinite;will-change:opacity;}
+@keyframes rg-glowpulse{0%,100%{opacity:.7}50%{opacity:1}}
+.reg-seal-badge img{position:relative;width:230px;height:230px;filter:drop-shadow(0 0 20px rgba(224,53,74,.5));}
 .reg-sealed-1{font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.04em;font-size:17px;color:#ddd2c8;margin-top:34px;animation:rg-fadeup .5s ease .95s both;}
 .reg-sealed-2{font-family:'Oswald',sans-serif;font-weight:400;font-size:14px;color:#8a8079;margin-top:8px;animation:rg-fadeup .5s ease 1.1s both;}
 .reg-gotit{margin-top:30px;cursor:pointer;border:none;font-family:'Bungee',sans-serif;font-size:14px;letter-spacing:.02em;
@@ -878,8 +879,8 @@ a.judge-link:hover{color:var(--pink-soft);border-color:var(--pink);box-shadow:0 
 .full-thanks-1{font-family:'Archivo Black',sans-serif;font-size:20px;color:#f4ece4;margin-bottom:8px;}
 .full-thanks-2{font-family:'Inter',sans-serif;font-size:14px;line-height:1.5;color:#9a8f86;max-width:340px;margin-bottom:24px;}
 .full-done{cursor:pointer;border:none;font-family:'Bungee',sans-serif;font-size:13px;letter-spacing:.02em;color:#0d0709;
-  background:#e0354a;padding:14px 34px 11px;border-radius:8px;box-shadow:0 8px 26px rgba(224,53,74,.4);transition:transform .18s,box-shadow .18s;}
-.full-done:hover{transform:translateY(-3px);box-shadow:0 12px 34px rgba(224,53,74,.6);}
+  background:#e0354a;padding:14px 34px 11px;border-radius:8px;box-shadow:0 6px 16px rgba(0,0,0,.35);transition:transform .18s,box-shadow .18s;}
+.full-done:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.4);}
 
 
 /* ============ FORMAT SUB-TABS (Schedule / Bracket) ============ */
