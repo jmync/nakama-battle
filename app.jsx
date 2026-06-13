@@ -156,7 +156,7 @@ function Mechanics() {
         <div className="card">
           <span className="tag">Creative freedom</span>
           <h3>Remix? Go ahead.</h3>
-          <p>Reinterpret, rearrange, restyle. Remixes are welcome and you're free to adjust the key to fit your team's range.</p>
+          <p>Reinterpret, rearrange, restyle. Remixes are welcome and you're free to adjust the key to fit your team's range. Translating the song into a different language is allowed too :)</p>
         </div>
       </div>
     </div>
@@ -235,82 +235,102 @@ function Rules() {
 
 /* ---------- FORMAT ---------- */
 function Format() {
-  const stages = [
-    ['STAGE 01', 'Qualifiers', 'A roulette picks the language: Japanese, Korean, or English. Pick any song in the language you land on. Only the top 16 advance to the bracket, so give it all you’ve got.'],
-    ['STAGE 02', 'Group Clash', 'An artist or producer is spun via roulette for each group. Pick any song from the artist or producer you land on. Top 8 advance.'],
-    ['STAGE 03', 'Showdown', 'Group winners go head-to-head. JP songs are picked by us, and matchups are assigned via roulette. Winners advance to the Semi-Finals.'],
-    ['STAGE 04', 'Semi-Finals', 'A genre is spun via roulette, then head-to-head rivals pick a song within that genre for each other. Same genre for both, so every pick stays fair.'],
-    ['STAGE 05', 'Finals', 'Theme: 7 Deadly Sins (#RRTB-inspired). Pick your own song for the theme. Full version, with a touch of mashup to unleash your creativity.'],
+  const timeline = [
+    { num: 'STAGE 01', name: 'Qualifiers', run: 'July 01 – July 09', judge: 'July 10 – July 12',
+      body: 'A roulette picks the language: Japanese, Korean, or English. Pick any song in the language you land on. Only the Top 16 teams advance to the bracket, so give it everything you’ve got.' },
+    { num: 'STAGE 02', name: 'Group Clash', run: 'July 13 – July 21', judge: 'July 22 – July 24',
+      body: 'An artist or producer is spun via roulette for each group. Pick any song from the artist or producer you land on. The Top 8 teams advance.' },
+    { num: 'STAGE 03', name: 'Showdown', run: 'July 25 – August 02', judge: 'August 03 – August 05',
+      body: 'Group winners go head-to-head. Songs are picked by us, and matchups are assigned via roulette. Winners advance to the Semi-Finals.' },
+    { num: 'STAGE 04', name: 'Semi-Finals', run: 'August 06 – August 19', judge: 'August 20 – August 22',
+      body: 'A genre is spun via roulette, then head-to-head rivals pick a song within that genre for each other. Same genre for both teams, keeping every pick fair.' },
+    { num: 'STAGE 05', name: 'Finals', run: 'August 23 – September 05', judge: 'September 06 – September 08', fin: true,
+      theme: '7 Deadly Sins',
+      body: 'Theme: 7 Deadly Sins (#RRTB-inspired). Both teams choose their own song based on the theme assigned to them via roulette. Sung full version with a touch of mashup to unleash your creativity. You’ll also submit a short interpretation so we can see if you captured the theme.' },
   ];
+  const [sub, setSub] = useState('schedule');
   return (
     <div className="panel">
       <SecHead idx="03" title="Event Format" wide />
 
-      <div className="roadmap fmt-wide">
-        {stages.map(([n, name, d], i) => (
-          <div className={'stage' + (i === 4 ? ' final' : '')} key={n}>
-            <div className="st-num">{n}</div>
-            <div className="st-name">{name}</div>
-            <div className="st-d">{d}</div>
+      <div className="fmt-subtabs fmt-wide">
+        <button className={'fmt-subtab' + (sub === 'schedule' ? ' active' : '')} onClick={() => setSub('schedule')}>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" strokeWidth="1.8"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>
+          Schedule
+        </button>
+        <button className={'fmt-subtab' + (sub === 'bracket' ? ' active' : '')} onClick={() => setSub('bracket')}>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 5h5v6h5v8M4 17h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><path d="M14 11h6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>
+          Tournament Bracket
+        </button>
+      </div>
+
+      {sub === 'bracket' ? (
+        <Bracket />
+      ) : (
+      <React.Fragment>
+      <div className="tline fmt-wide">
+        {timeline.map((s) => (
+          <div className={'tline-row' + (s.fin ? ' fin' : '')} key={s.num}>
+            <div className="tline-rail" aria-hidden="true"><img className="tline-dot" src={s.fin ? '/panda-mark.png' : '/panda-mark-gold.png'} alt="" /></div>
+            <div className="tline-card">
+              <div className="tline-head">
+                <span className="tline-num">{s.num}</span>
+                <span className="tline-name">{s.name}</span>
+              </div>
+              <div className="tline-dates">
+                <span className="tline-date"><b>Run</b>{s.run}</span>
+                <span className="tline-date"><b>{s.fin ? 'Final Judging' : 'Judging'}</b>{s.judge}</span>
+              </div>
+              <p className="tline-body">{s.body}</p>
+              {s.fin && (
+                <div className="tline-sins">
+                  <span className="tline-sins-label">{s.theme}</span>
+                  {['Pride', 'Greed', 'Lust', 'Envy', 'Gluttony', 'Wrath', 'Sloth'].map((sin) => (
+                    <span className="sin" key={sin}>
+                      <span className="sin-ic">
+                        <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="39" cy="37" r="15" fill="var(--ink)"></circle>
+                          <circle cx="81" cy="37" r="15" fill="var(--ink)"></circle>
+                          <path d="M60 29 C84 29 98 46 98 66 C98 88 82 100 60 100 C38 100 22 88 22 66 C22 46 36 29 60 29 Z" fill="var(--ink)"></path>
+                          <path d="M37 59 L56 64 A10.5 12 0 0 1 37 66 Z" fill="currentColor" stroke="none"></path>
+                          <path d="M83 59 L64 64 A10.5 12 0 0 0 83 66 Z" fill="currentColor" stroke="none"></path>
+                          <ellipse cx="60" cy="79" rx="5.5" ry="4" fill="currentColor" stroke="none"></ellipse>
+                          <path d="M60 83 q-4.5 4.5 -8 1.5 M60 83 q4.5 4.5 8 1.5" fill="none" stroke="currentColor" strokeWidth="2.4"></path>
+                        </svg>
+                      </span>
+                      {sin}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         ))}
       </div>
 
-      <div className="fmt-wide" style={{ marginBottom: 22 }}>
-        <div className="card outline" style={{ borderColor: 'var(--ember)' }}>
-          <span className="tag" style={{ color: 'var(--ember)' }}>Finals · Theme</span>
-          <h3 style={{ display: 'flex', alignItems: 'center', gap: '11px' }}>
-            <span className="fire-ic">
-              <svg viewBox="0 0 120 120" fill="none">
-                <path d="M60 8 C72 26 80 30 70 46 C65 53 53 53 49 45 C41 30 48 24 60 8 Z" fill="#ff5630"></path>
-                <path d="M40 24 C47 35 50 40 43 50 C39 55 30 52 31 44 C32 35 34 30 40 24 Z" fill="#ff8a3c"></path>
-                <path d="M80 24 C73 35 70 40 77 50 C81 55 90 52 89 44 C88 35 86 30 80 24 Z" fill="#ff8a3c"></path>
-                <g stroke="#ff2d2d" strokeWidth="4.5" strokeLinejoin="round">
-                  <circle cx="36" cy="58" r="13" fill="var(--ink)"></circle>
-                  <circle cx="84" cy="58" r="13" fill="var(--ink)"></circle>
-                  <path d="M60 50 C80 50 92 64 92 81 C92 100 78 110 60 110 C42 110 28 100 28 81 C28 64 40 50 60 50 Z" fill="var(--ink)"></path>
-                </g>
-                <path d="M40 76 L56 81 A9 10.5 0 0 1 40 83 Z" fill="#ff2d2d" stroke="none"></path>
-                <path d="M80 76 L64 81 A9 10.5 0 0 0 80 83 Z" fill="#ff2d2d" stroke="none"></path>
-                <ellipse cx="60" cy="94" rx="5" ry="3.6" fill="#ff2d2d" stroke="none"></ellipse>
-                <path d="M60 98 q-4 4 -7 1.3 M60 98 q4 4 7 1.3" fill="none" stroke="#ff2d2d" strokeWidth="2.2" strokeLinecap="round"></path>
-              </svg>
-            </span>
-            7 Deadly Sins
-          </h3>
-          <p>Both teams choose their own song based on the <strong>theme assigned to them</strong> via roulette. In the <strong>Finals</strong>, songs are sung full version. You'll also submit a short <strong>interpretation</strong> so we can see if you captured the theme.</p>
-          <div className="sins">
-            {['Pride', 'Greed', 'Lust', 'Envy', 'Gluttony', 'Wrath', 'Sloth'].map((s) => (
-              <span className="sin" key={s}>
-                <span className="sin-ic">
-                  <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="39" cy="37" r="15" fill="var(--ink)"></circle>
-                    <circle cx="81" cy="37" r="15" fill="var(--ink)"></circle>
-                    <path d="M60 29 C84 29 98 46 98 66 C98 88 82 100 60 100 C38 100 22 88 22 66 C22 46 36 29 60 29 Z" fill="var(--ink)"></path>
-                    <path d="M37 59 L56 64 A10.5 12 0 0 1 37 66 Z" fill="currentColor" stroke="none"></path>
-                    <path d="M83 59 L64 64 A10.5 12 0 0 0 83 66 Z" fill="currentColor" stroke="none"></path>
-                    <ellipse cx="60" cy="79" rx="5.5" ry="4" fill="currentColor" stroke="none"></ellipse>
-                    <path d="M60 83 q-4.5 4.5 -8 1.5 M60 83 q4.5 4.5 8 1.5" fill="none" stroke="currentColor" strokeWidth="2.4"></path>
-                  </svg>
-                </span>
-                {s}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <Bracket />
+      </React.Fragment>
+      )}
     </div>
   );
 }
 
 /* ---------- JUDGING ---------- */
 const JUDGES = [
-  { name: 'Pikoyin', platform: 'YouTube', url: 'https://www.youtube.com/@Pikoyinn', img: '/judges/pikoyin.png', zoom: 1.45, pos: '50% 46%' },
-  { name: 'Furiyachan', platform: 'Smule', url: 'https://www.smule.com/Furiyachan', img: '/judges/furiyachan.jpg' },
-  { name: 'Noon', platform: 'X', url: 'https://x.com/noon0096_', img: '/judges/N00N.png', zoom: 2.4, pos: '33% 28%' },
-  { pending: true },
+  { name: 'Pikoyin', img: '/judges/pikoyin.png', zoom: 1.45, pos: '50% 46%', links: [
+    { platform: 'YouTube', url: 'https://www.youtube.com/@Pikoyinn' },
+    { platform: 'X', url: 'https://x.com/pikoyin' },
+  ] },
+  { name: 'Furiyachan', img: '/judges/furiyachan.jpg', links: [
+    { platform: 'Smule', url: 'https://www.smule.com/Furiyachan' },
+  ] },
+  { name: 'Noon', img: '/judges/N00N.png', zoom: 2.4, pos: '33% 28%', links: [
+    { platform: 'X', url: 'https://x.com/noon0096_' },
+    { platform: 'YouTube', url: 'https://www.youtube.com/@noonofficiaI' },
+  ] },
+  { name: 'Jinx', img: '/judges/jinx.jpg', zoom: 2.1, pos: '50% 30%', links: [
+    { platform: 'X', url: 'https://x.com/juicy_jinxy' },
+    { platform: 'YouTube', url: 'https://www.youtube.com/@juicy_jinxy' },
+  ] },
 ];
 
 function Judging() {
@@ -368,11 +388,15 @@ function Judging() {
               <div className="judge-link">To be revealed</div>
             </div>
           ) : (
-            <a className="judge-card" href={j.url} target="_blank" rel="noopener" key={i}>
+            <div className="judge-card" key={i}>
               <div className="judge-ava"><img src={j.img} alt={j.name} loading="lazy" onLoad={(e) => e.currentTarget.classList.add('loaded')} style={{ transform: j.zoom ? `scale(${j.zoom})` : undefined, transformOrigin: j.pos || 'center', objectPosition: j.pos || 'center' }} /></div>
               <div className="judge-name">{j.name}</div>
-              <div className="judge-link">{j.platform} ↗</div>
-            </a>
+              <div className="judge-links">
+                {j.links.map((l) => (
+                  <a className="judge-link" href={l.url} target="_blank" rel="noopener" key={l.url}>{l.platform} ↗</a>
+                ))}
+              </div>
+            </div>
           )
         ))}
       </div>
@@ -406,8 +430,8 @@ function VisitCounter() {
 /* ---------- PRIZES ---------- */
 function Prizes() {
   const sched = [
-    ['Opens', 'Registration opens', 'Released during the CB opening. 20 to 35 slots, and may be adjusted if lots of teams want to join.'],
-    ['Jul 5', 'Registration closes', 'Last call.'],
+    ['Opens', 'Registration opens', 'Released during the CB opening. 20 to 35 slots.'],
+    ['Jul 1', 'Registration closes', 'Last call.'],
     ['Jul – Sep', 'Battle window', 'Qualifiers through Finals run across this estimated window.'],
   ];
   return (
@@ -532,6 +556,8 @@ function RegisterModal({ onClose }) {
             <h1 className="reg-h1">#NKMACB ACT&nbsp;1<br /><span className="hot">&ldquo;Sing Beyond Limits&rdquo;</span></h1>
             <p className="reg-lead">So, your team is ready to take on the challenge? Let&rsquo;s make it official.</p>
 
+            <div className="reg-divider" aria-hidden="true"></div>
+
             <div className="reg-field">
               <label className="reg-label">TEAM NAME <span className="req">*</span></label>
               <input className="reg-input" value={teamName} onChange={(e) => { setTeamName(e.target.value); setError(false); }} placeholder="Your answer" />
@@ -593,7 +619,7 @@ function RegisterModal({ onClose }) {
           </div>
           <div className="reg-seal-badge">
             <div className="reg-seal-glow"></div>
-            <img src="/badge.png" alt="Nakama Chorus Battle seal" />
+            <img src="/seal-full.png" alt="Nakama Chorus Battle seal" />
           </div>
           <div className="reg-sealed-1">Your team is locked in. No backing out now.</div>
           <div className="reg-sealed-2">We&rsquo;re so excited to hear your performance soon. Check Discord to keep you updated.</div>
@@ -699,6 +725,80 @@ const DEBRIS = buildDebris();
 const WAVE_BIG = wavePath(224, 9, 50, 620);
 const WAVE_SMALL = wavePath(212, 5, 34, 620);
 
+function SlotsFullModal({ onClose }) {
+  const [voted, setVoted] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState('');
+  const [pollTeam, setPollTeam] = useState('');
+
+  async function vote(choice) {
+    if (busy || voted) return;
+    if (!pollTeam.trim()) { setErr('Please enter your team name first.'); return; }
+    setBusy(true); setErr('');
+    try {
+      const r = await fetch('/api/poll', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ vote: choice, teamName: pollTeam.trim() }),
+      });
+      const d = await r.json().catch(() => ({}));
+      if (!r.ok || !d.ok) throw new Error(d.error || 'Could not record your vote.');
+      setVoted(true);
+    } catch (e) {
+      setErr(e.message || 'Something went wrong.');
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div className="full-root">
+      <div className="reg-halftone" aria-hidden="true"></div>
+      <div className="reg-grain" aria-hidden="true"></div>
+      <div className="reg-close" onClick={onClose} aria-label="Close">&times;</div>
+
+      <div className="full-body">
+        <div className="full-badge">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="10" rx="2" stroke="#ff5159" strokeWidth="1.8"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="#ff5159" strokeWidth="1.8" strokeLinecap="round"/></svg>
+        </div>
+        <div className="full-kicker">REGISTRATION CLOSED</div>
+        <h2 className="full-title">All slots are <span className="hot">FULL</span></h2>
+        <p className="full-lead">Every team slot for Act 1 has been taken. But it&rsquo;s not over yet.</p>
+
+        {!voted ? (
+          <React.Fragment>
+            <div className="full-divider" aria-hidden="true"></div>
+            <div className="full-poll-q">Should we open up more slots?</div>
+            <div className="full-poll-sub">Your vote helps us decide whether to give more teams a chance. One vote per team.</div>
+            <input className="full-input" value={pollTeam} maxLength={60}
+              onChange={(e) => { setPollTeam(e.target.value); setErr(''); }} placeholder="Your team name" />
+            <div className="full-poll-btns">
+              <button className="full-vote yes" disabled={busy} onClick={() => vote('yes')}>
+                <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M4 9.5l3.2 3.2L14 5.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                Yes, open more!
+              </button>
+              <button className="full-vote no" disabled={busy} onClick={() => vote('no')}>
+                <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M5 5l8 8M13 5l-8 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
+                No, keep it 35
+              </button>
+            </div>
+            {err && <div className="full-err">{err}</div>}
+          </React.Fragment>
+        ) : (
+          <div className="full-thanks">
+            <div className="full-check">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="#e0354a" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </div>
+            <div className="full-thanks-1">Vote counted!</div>
+            <div className="full-thanks-2">Thanks. If enough teams want in, we&rsquo;ll open more slots. Watch Discord.</div>
+            <button className="full-done" onClick={onClose}>Got it</button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const [tab, setTab] = useState(0);
   const [opened, setOpened] = useState(false);
@@ -709,6 +809,8 @@ function App() {
   const [rbClosing, setRbClosing] = useState(false);
   const [regShown, setRegShown] = useState(false);
   const [regClosing, setRegClosing] = useState(false);
+  const [fullShown, setFullShown] = useState(false);
+  const [checkingSlots, setCheckingSlots] = useState(false);
   const crowdTimer = useRef(null);
   const regTimer = useRef(null);
   const rbTimer = useRef(null);
@@ -746,7 +848,20 @@ function App() {
       sobsTimer.current = setTimeout(() => setSobs(false), 2200);
     }
   }
-  function openReg() {
+  async function openReg() {
+    if (checkingSlots) return;
+    setCheckingSlots(true);
+    let full = false;
+    try {
+      const r = await fetch('/api/slots');
+      const d = await r.json();
+      full = !!d.full;
+    } catch { /* if check fails, let them through to the form */ }
+    setCheckingSlots(false);
+    if (full) {
+      setFullShown(true);
+      return;
+    }
     if (regTimer.current) clearTimeout(regTimer.current);
     setRegShown(true); setRegClosing(false);
   }
@@ -754,8 +869,9 @@ function App() {
     setRegClosing(true);
     regTimer.current = setTimeout(() => { setRegShown(false); setRegClosing(false); }, 200);
   }
+  function closeFull() { setFullShown(false); }
 
-  const anyModal = rulebook || regShown;
+  const anyModal = rulebook || regShown || fullShown;
   useEffect(() => {
     document.body.style.overflow = anyModal ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -910,8 +1026,8 @@ function App() {
 
           {/* CLOSED hint */}
           {!opened && (
-            <div className={'sh-hint' + (agh ? ' agh' : '') + (sobs && !hover && !agh ? ' sob' : '') + (hover && !agh ? ' nudge' : '')} onClick={sealClick}>
-              {agh ? 'NOOOO' : hover ? "stoppp, you'll hurt me" : sobs ? '(sobs)' : ''}
+            <div className={'sh-hint' + (agh ? ' agh' : '') + (sobs && !hover && !agh ? ' sob' : '') + (hover && !agh ? ' nudge' : '') + (!hover && !agh && !sobs ? ' rest' : '')} onClick={sealClick}>
+              {agh ? 'NOOOO' : hover ? 'pleasee' : sobs ? '(sobs)' : "don't wake me"}
             </div>
           )}
 
@@ -975,6 +1091,16 @@ function App() {
           <div className="reg-backdrop" onClick={closeReg}></div>
           <div className={'reg-card ' + (regClosing ? 'closing' : 'opening')}>
             <RegisterModal onClose={closeReg} />
+          </div>
+        </div>
+      )}
+
+      {/* ====== SLOTS FULL + POLL MODAL ====== */}
+      {fullShown && (
+        <div className="reg-overlay" role="dialog" aria-modal="true">
+          <div className="reg-backdrop" onClick={closeFull}></div>
+          <div className="full-card opening">
+            <SlotsFullModal onClose={closeFull} />
           </div>
         </div>
       )}
