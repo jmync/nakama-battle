@@ -920,6 +920,8 @@ a.judge-link:hover{color:var(--pink-soft);border-color:var(--pink);box-shadow:0 
 .hiw-body .tline-row.fin .tline-num{color:#ff3b47;}
 .hiw-body .tline-name{font-family:'Archivo Black',sans-serif;font-size:20px;line-height:1;color:#f4ece4;letter-spacing:.3px;}
 .hiw-body .tline-dates{display:flex;flex-wrap:wrap;gap:8px 10px;margin-bottom:12px;}
+.hiw-body .tline-date.days{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#0d0709;background:#ffc04d;border-color:#ffc04d;}
+.hiw-body .tline-row.fin .tline-date.days{background:#ff3b47;border-color:#ff3b47;color:#0d0709;}
 .hiw-body .tline-date{display:inline-flex;align-items:center;gap:7px;font-family:'Inter',sans-serif;font-size:12.5px;color:#cdc3ba;
   background:rgba(255,184,77,.08);border:1px solid rgba(255,184,77,.2);border-radius:999px;padding:5px 12px;}
 .hiw-body .tline-date b{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8f8079;}

@@ -182,8 +182,8 @@ function Rules() {
     ['Record in Smule', 'All entries must be recorded within Smule.'],
     ['Tag your entry', 'Every entry must include #NKMACB1 in the description.'],
     ['Songbook format', 'Title your entry exactly like this: 【#NKMACB1】song_name 【team_name】.'],
-    ['Finalists on record', 'Finalist entries get an empty track from our official account, so they stay saved on our Smule profile as the permanent record of the Act 1 finalists.'],
-    ['Finalists cover photo', 'Finalists use the custom graphic we provide as their entry’s cover photo.'],
+    ['Finalists on our profile', 'We add an empty track from our official account to each finalist entry, so it stays saved on our Smule profile as the permanent record of the Act 1 finalists.'],
+    ['Finalists use our cover photo', 'Finalists must set the custom graphic we provide as their entry’s cover photo.'],
   ];
   const donts = [
     ['No late entries', 'Late entries will not be accepted under any circumstances.'],
@@ -248,15 +248,15 @@ function Rules() {
 /* ---------- FORMAT ---------- */
 function Format() {
   const timeline = [
-    { num: 'STAGE 01', name: 'Qualifiers', run: 'July 01 – July 09', judge: 'July 10 – July 12',
+    { num: 'STAGE 01', name: 'Qualifiers', run: 'July 01 – July 09', days: '9 days', judge: 'July 10 – July 12',
       body: 'A roulette picks the language: Japanese, Korean, or English. Pick any song in the language you land on. Only the Top 16 teams advance to the bracket, so give it everything you’ve got.' },
-    { num: 'STAGE 02', name: 'Group Clash', run: 'July 13 – July 21', judge: 'July 22 – July 24',
+    { num: 'STAGE 02', name: 'Group Clash', run: 'July 13 – July 21', days: '9 days', judge: 'July 22 – July 24',
       body: 'Head-to-head begins here, all the way to the Finals. An artist or producer is spun via roulette for each group. Pick any song from the artist or producer you land on. The Top 8 teams advance.' },
-    { num: 'STAGE 03', name: 'Showdown', run: 'July 25 – August 02', judge: 'August 03 – August 05',
+    { num: 'STAGE 03', name: 'Showdown', run: 'July 25 – August 02', days: '9 days', judge: 'August 03 – August 05',
       body: 'Group winners go head-to-head. Songs are picked by us, and matchups are assigned via roulette. Winners advance to the Semi-Finals.' },
-    { num: 'STAGE 04', name: 'Semi-Finals', run: 'August 06 – August 19', judge: 'August 20 – August 22',
+    { num: 'STAGE 04', name: 'Semi-Finals', run: 'August 06 – August 19', days: '14 days', judge: 'August 20 – August 22',
       body: 'A genre is spun via roulette, then head-to-head rivals pick a song within that genre for each other. Same genre for both teams, keeping every pick fair.' },
-    { num: 'STAGE 05', name: 'Finals', run: 'August 23 – September 05', judge: 'September 06 – September 08', fin: true,
+    { num: 'STAGE 05', name: 'Finals', run: 'August 23 – September 05', days: '14 days', judge: 'September 06 – September 08', fin: true,
       theme: '7 Deadly Sins',
       body: 'Theme: 7 Deadly Sins (#RRTB-inspired). Both teams choose their own song based on the theme assigned to them via roulette. Sung full version with a touch of mashup to unleash your creativity. You’ll also submit a short interpretation so we can see if you captured the theme.' },
   ];
@@ -291,6 +291,7 @@ function Format() {
               </div>
               <div className="tline-dates">
                 <span className="tline-date"><b>Run</b>{s.run}</span>
+                {s.days && <span className="tline-date days">{s.days}</span>}
                 <span className="tline-date"><b>{s.fin ? 'Final Judging' : 'Judging'}</b>{s.judge}</span>
               </div>
               <p className="tline-body">{s.body}</p>
