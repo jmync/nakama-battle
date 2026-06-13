@@ -75,7 +75,7 @@ function Bracket() {
     <div className="card fmt-wide">
       <span className="tag">Tournament Bracket · Head-to-Head</span>
       <h3 style={{ marginBottom: 4 }}>Group Clash <span style={{ margin: '0 8px' }}>→</span> Showdown <span style={{ margin: '0 8px' }}>→</span> Semi-Finals <span style={{ margin: '0 8px' }}>→</span> Finals</h3>
-      <p>Before the battle begins, all teams are drawn into Groups A–D via a live roulette. Group winners then climb the ladder to the Finals.</p>
+      <p>Before the Group Clash begins, all teams are drawn into Groups A–D via a live roulette. Group winners then climb the ladder to the Finals.</p>
       <div className="bk-legend">
         {['A', 'B', 'C', 'D'].map((g) => (
           <span className="lg" key={g}><i style={{ background: GROUP_COLOR[g] }}></i>Group {g}</span>
@@ -239,7 +239,7 @@ function Format() {
     { num: 'STAGE 01', name: 'Qualifiers', run: 'July 01 – July 09', judge: 'July 10 – July 12',
       body: 'A roulette picks the language: Japanese, Korean, or English. Pick any song in the language you land on. Only the Top 16 teams advance to the bracket, so give it everything you’ve got.' },
     { num: 'STAGE 02', name: 'Group Clash', run: 'July 13 – July 21', judge: 'July 22 – July 24',
-      body: 'An artist or producer is spun via roulette for each group. Pick any song from the artist or producer you land on. The Top 8 teams advance.' },
+      body: 'Head-to-head begins here, all the way to the Finals. An artist or producer is spun via roulette for each group. Pick any song from the artist or producer you land on. The Top 8 teams advance.' },
     { num: 'STAGE 03', name: 'Showdown', run: 'July 25 – August 02', judge: 'August 03 – August 05',
       body: 'Group winners go head-to-head. Songs are picked by us, and matchups are assigned via roulette. Winners advance to the Semi-Finals.' },
     { num: 'STAGE 04', name: 'Semi-Finals', run: 'August 06 – August 19', judge: 'August 20 – August 22',
