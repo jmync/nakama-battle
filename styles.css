@@ -42,6 +42,7 @@ body{
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
   line-height:1.55;
+  zoom:1.1;
 }
 
 /* background layers */
@@ -564,7 +565,7 @@ a.judge-link:hover{color:var(--pink-soft);border-color:var(--pink);box-shadow:0 
 @keyframes nk-zoomin { from{opacity:0;transform:scale(.55)} to{opacity:1;transform:scale(1)} }
 @keyframes nk-zoomout { from{opacity:1;transform:scale(1)} to{opacity:0;transform:scale(.55)} }
 
-.sealhero{position:relative;width:100%;min-height:100vh;min-height:100dvh;overflow:hidden;
+.sealhero{position:relative;width:100%;min-height:calc(100vh / 1.1);min-height:calc(100dvh / 1.1);overflow:hidden;
   background:radial-gradient(125% 100% at 50% 40%, #1c0d10 0%, #0d0709 52%, #050304 100%);
   font-family:'Oswald',sans-serif;color:#ede6da;}
 
