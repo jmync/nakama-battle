@@ -288,10 +288,10 @@ function Format() {
               <div className="tline-head">
                 <span className="tline-num">{s.num}</span>
                 <span className="tline-name">{s.name}</span>
+                {s.days && <span className="tline-days">{s.days}</span>}
               </div>
               <div className="tline-dates">
                 <span className="tline-date"><b>Run</b>{s.run}</span>
-                {s.days && <span className="tline-date days">{s.days}</span>}
                 <span className="tline-date"><b>{s.fin ? 'Final Judging' : 'Judging'}</b>{s.judge}</span>
               </div>
               <p className="tline-body">{s.body}</p>

@@ -41,9 +41,6 @@
 <body>
   <div id="loader"><div class="ring"></div></div>
 
-  <canvas id="bg-canvas"></canvas>
-  <div class="bg-glow"></div>
-  <div class="bg-grain"></div>
 
   <div id="root"></div>
 
@@ -67,17 +64,11 @@
       }
       var done = false;
       function ready() { if (done) return; done = true; hide(); }
-      var fontsReady = document.fonts && document.fonts.ready
-        ? document.fonts.ready : Promise.resolve();
-      Promise.all([
-        fontsReady,
-        new Promise(function (res) {
-          if (document.readyState === 'complete') res();
-          else window.addEventListener('load', res, { once: true });
-        })
-      ]).then(ready);
-      // Safety: never let the loader hang longer than 4s
-      setTimeout(ready, 4000);
+      // The React app lazy-loads, so wait until it signals it has mounted.
+      window.__nkmaReady = ready;
+      window.addEventListener('nkma-ready', ready, { once: true });
+      // Safety: never let the loader hang longer than 6s
+      setTimeout(ready, 6000);
     })();
   </script>
 </body>
