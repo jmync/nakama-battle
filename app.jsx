@@ -245,32 +245,78 @@ function Rules() {
   );
 }
 
+/* ---------- STAGE ICONS (line-art, design set) ---------- */
+function StageIcon({ glyph }) {
+  const c = { fill: 'none', stroke: 'currentColor', strokeWidth: 2.6, strokeLinejoin: 'round', strokeLinecap: 'round' };
+  const f = { fill: 'currentColor', stroke: 'none' };
+  return (
+    <svg viewBox="0 0 96 96" width="100%" height="100%" {...c} style={{ display: 'block', overflow: 'visible' }}>
+      {glyph === 'star' && <g>
+        <polygon points="48,10 56.82,35.86 84.14,36.26 62.27,52.64 70.34,78.74 48,63 25.66,78.74 33.73,52.64 11.86,36.26 39.18,35.86" />
+        <polygon points="48,30 52.11,42.34 65.12,42.44 54.66,50.16 58.58,62.56 48,55 37.42,62.56 41.34,50.16 30.88,42.44 43.89,42.34" />
+      </g>}
+      {glyph === 'blades' && <g>
+        <polygon points="16,16 40.22,55.78 80,80 55.78,40.22" />
+        <polygon points="80,16 55.78,55.78 16,80 40.22,40.22" />
+        <polygon points="48,40 56,48 48,56 40,48" {...f} />
+      </g>}
+      {glyph === 'fire' && <g>
+        <path d="M48,85 C32,85 22,73 22,59 C22,47 31,41 35,31 C37,26 38,20 36,14 C45,18 53,26 53,36 C53,41 51,45 51,49 C56,47 59,41 59,36 C66,43 74,50 74,61 C74,74 63,85 48,85 Z" />
+        <path d="M48,79 C40,79 34,71 34,63 C34,56 39,51 42,45 C44,50 44,53 47,55 C50,52 50,48 50,44 C55,50 59,56 59,64 C59,72 55,79 48,79 Z" {...f} />
+      </g>}
+      {glyph === 'skull' && <g>
+        <path d="M48,13 C64,13 75,27 75,45 C75,57 68,64 60,66 L36,66 C28,64 21,57 21,45 C21,27 32,13 48,13 Z" />
+        <path d="M36,66 L36,73 C36,77 39,80 44,80 L52,80 C57,80 60,77 60,73 L60,66" />
+        <line x1="42" y1="66" x2="42" y2="75" /><line x1="48" y1="66" x2="48" y2="76" /><line x1="54" y1="66" x2="54" y2="75" />
+        <circle cx="39" cy="42" r="7.5" {...f} /><circle cx="57" cy="42" r="7.5" {...f} />
+        <polygon points="44,51 52,51 48,59" {...f} />
+      </g>}
+      {glyph === 'crown' && <g>
+        <rect x="22" y="60" width="52" height="9" rx="2" />
+        <path d="M22,60 L22,33 L35,49 L43,42" /><path d="M53,42 L61,49 L74,33 L74,60" />
+        <circle cx="48" cy="46.5" r="7" {...f} />
+        <line x1="55" y1="46.5" x2="55" y2="15" /><path d="M55,15 C62,16.5 62,25 56.5,28" />
+        <circle cx="22" cy="33" r="2.6" {...f} /><circle cx="74" cy="33" r="2.6" {...f} />
+      </g>}
+    </svg>
+  );
+}
+
 /* ---------- FORMAT ---------- */
 function Format() {
   const timeline = [
-    { num: 'STAGE 01', name: 'Qualifiers', run: 'July 01 – July 09', days: '9 days', judge: 'July 10 – July 12',
+    { num: 'STAGE 01', name: 'Qualifiers', glyph: 'star', run: 'July 01 – July 09', days: '9 days', judge: 'July 10 – July 12',
       body: 'A roulette picks the language: Japanese, Korean, or English. Pick any song in the language you land on. Only the Top 16 teams advance to the bracket, so give it everything you’ve got.' },
-    { num: 'STAGE 02', name: 'Group Clash', run: 'July 13 – July 21', days: '9 days', judge: 'July 22 – July 24',
+    { num: 'STAGE 02', name: 'Group Clash', glyph: 'blades', run: 'July 13 – July 21', days: '9 days', judge: 'July 22 – July 24',
       body: 'Head-to-head begins here, all the way to the Finals. An artist or producer is spun via roulette for each group. Pick any song from the artist or producer you land on. The Top 8 teams advance.' },
-    { num: 'STAGE 03', name: 'Showdown', run: 'July 25 – August 02', days: '9 days', judge: 'August 03 – August 05',
+    { num: 'STAGE 03', name: 'Showdown', glyph: 'skull', run: 'July 25 – August 02', days: '9 days', judge: 'August 03 – August 05',
       body: 'Group winners go head-to-head. Songs are picked by us, and matchups are assigned via roulette. Winners advance to the Semi-Finals.' },
-    { num: 'STAGE 04', name: 'Semi-Finals', run: 'August 06 – August 19', days: '14 days', judge: 'August 20 – August 22',
+    { num: 'STAGE 04', name: 'Semi-Finals', glyph: 'fire', run: 'August 06 – August 19', days: '14 days', judge: 'August 20 – August 22',
       body: 'A genre is spun via roulette, then head-to-head rivals pick a song within that genre for each other. Same genre for both teams, keeping every pick fair.' },
-    { num: 'STAGE 05', name: 'Finals', run: 'August 23 – September 05', days: '14 days', judge: 'September 06 – September 08', fin: true,
+    { num: 'STAGE 05', name: 'Finals', glyph: 'crown', run: 'August 23 – September 05', days: '14 days', judge: 'September 06 – September 08', fin: true,
       theme: '7 Deadly Sins',
       body: 'Theme: 7 Deadly Sins (#RRTB-inspired). Both teams choose their own song based on the theme assigned to them via roulette. Sung full version with a touch of mashup to unleash your creativity. You’ll also submit a short interpretation so we can see if you captured the theme.' },
   ];
   const [sub, setSub] = useState('schedule');
+  const subWrap = useRef(null);
+  const subBtns = useRef({});
+  const [subGlider, setSubGlider] = useState({ opacity: 0 });
+  useEffect(() => {
+    const move = () => { const b = subBtns.current[sub]; if (b) setSubGlider({ left: b.offsetLeft + 'px', top: b.offsetTop + 'px', width: b.offsetWidth + 'px', height: b.offsetHeight + 'px', opacity: 1 }); };
+    const t = setTimeout(move, 20); window.addEventListener('resize', move);
+    return () => { clearTimeout(t); window.removeEventListener('resize', move); };
+  }, [sub]);
   return (
     <div className="panel">
       <SecHead idx="03" title="Format & Schedule" wide />
 
-      <div className="fmt-subtabs fmt-wide">
-        <button className={'fmt-subtab' + (sub === 'schedule' ? ' active' : '')} onClick={() => setSub('schedule')}>
+      <div className="fmt-subtabs fmt-wide" ref={subWrap}>
+        <span className="fmt-subglider" style={subGlider}></span>
+        <button ref={(el) => (subBtns.current.schedule = el)} className={'fmt-subtab' + (sub === 'schedule' ? ' active' : '')} onClick={() => setSub('schedule')}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" strokeWidth="1.8"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>
           Schedule
         </button>
-        <button className={'fmt-subtab' + (sub === 'bracket' ? ' active' : '')} onClick={() => setSub('bracket')}>
+        <button ref={(el) => (subBtns.current.bracket = el)} className={'fmt-subtab' + (sub === 'bracket' ? ' active' : '')} onClick={() => setSub('bracket')}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 5h5v6h5v8M4 17h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><path d="M14 11h6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>
           Tournament Bracket
         </button>
@@ -285,6 +331,8 @@ function Format() {
           <div className={'tline-row' + (s.fin ? ' fin' : '')} key={s.num}>
             <div className="tline-rail" aria-hidden="true"><img className="tline-dot" src={s.fin ? '/panda-mark.png' : '/panda-mark-gold.png'} alt="" /></div>
             <div className="tline-card">
+              <div className="tline-iconbox"><StageIcon glyph={s.glyph} /></div>
+              <div className="tline-content">
               <div className="tline-head">
                 <span className="tline-num">{s.num}</span>
                 <span className="tline-name">{s.name}</span>
@@ -316,6 +364,7 @@ function Format() {
                   ))}
                 </div>
               )}
+              </div>
             </div>
           </div>
         ))}
@@ -543,7 +592,7 @@ function RegisterModal({ onClose }) {
       <div className="reg-halftone" aria-hidden="true"></div>
       <div className="reg-grain" aria-hidden="true"></div>
 
-      {!sealed && <div className="reg-close" onClick={onClose} aria-label="Close">&times;</div>}
+      {!sealed && <div className="reg-close" onClick={onClose} aria-label="Close"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg></div>}
 
       {!sealed && (
         <div id="rg-scroll" className="reg-scroll">
@@ -753,7 +802,7 @@ function SlotsFullModal({ onClose }) {
     <div className="full-root">
       <div className="reg-halftone" aria-hidden="true"></div>
       <div className="reg-grain" aria-hidden="true"></div>
-      <div className="reg-close" onClick={onClose} aria-label="Close">&times;</div>
+      <div className="reg-close" onClick={onClose} aria-label="Close"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg></div>
 
       <div className="full-body">
         <div className="full-badge">
@@ -817,6 +866,9 @@ function App() {
   const regTimer = useRef(null);
   const rbTimer = useRef(null);
   const rbPanelRef = useRef(null);
+  const tabsRef = useRef(null);
+  const tabBtns = useRef([]);
+  const [glider, setGlider] = useState({ opacity: 0 });
   const [agh, setAgh] = useState(false);
   const aghTimer = useRef(null);
   const [sobs, setSobs] = useState(false);
@@ -896,6 +948,18 @@ function App() {
   useEffect(() => {
     if (rbPanelRef.current) rbPanelRef.current.scrollTop = 0;
   }, [tab]);
+
+  // slide the active-tab highlight (glider) to the current tab
+  useEffect(() => {
+    if (!rulebook) return;
+    const move = () => {
+      const btn = tabBtns.current[tab];
+      if (btn) setGlider({ left: btn.offsetLeft + 'px', top: btn.offsetTop + 'px', width: btn.offsetWidth + 'px', height: btn.offsetHeight + 'px', opacity: 1 });
+    };
+    const t = setTimeout(move, 20); // wait for layout
+    window.addEventListener('resize', move);
+    return () => { clearTimeout(t); window.removeEventListener('resize', move); };
+  }, [tab, rulebook]);
 
   const anyModal = rulebook || regShown || fullShown;
   useEffect(() => {
@@ -1092,12 +1156,13 @@ function App() {
       {/* ====== CB INFO RULEBOOK MODAL (real content) ====== */}
       {rulebook && (
         <div className={'hiw-modal ' + (rbClosing ? 'closing' : 'opening')} role="dialog" aria-modal="true">
-          <button className="hiw-close" onClick={closeRulebook} aria-label="Close">&times;</button>
+          <button className="hiw-close" onClick={closeRulebook} aria-label="Close"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg></button>
           <div className="hiw-head">
             <div className="hiw-tag">ACT 1 &middot; RULEBOOK</div>
-            <div className="hiw-tabs">
+            <div className="hiw-tabs" ref={tabsRef}>
+              <span className="hiw-tab-glider" style={glider}></span>
               {TABS.map(([name], i) => (
-                <button key={name} className={'hiw-tab' + (tab === i ? ' active' : '')} onClick={() => setTab(i)}>
+                <button key={name} ref={(el) => (tabBtns.current[i] = el)} className={'hiw-tab' + (tab === i ? ' active' : '')} onClick={() => setTab(i)}>
                   <span className="hiw-tab-num">{String(i + 1).padStart(2, '0')}</span>{name}
                 </button>
               ))}
