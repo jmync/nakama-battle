@@ -722,8 +722,8 @@ function buildDebris() {
 const CROWD = buildCrowd();
 const PARTICLES = buildParticles();
 const DEBRIS = buildDebris();
-const WAVE_BIG = wavePath(224, 9, 50, 620);
-const WAVE_SMALL = wavePath(212, 5, 34, 620);
+const WAVE_BIG = wavePath(224, 9, 50, 300);
+const WAVE_SMALL = wavePath(212, 5, 34, 220);
 
 function SlotsFullModal({ onClose }) {
   const [voted, setVoted] = useState(false);

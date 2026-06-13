@@ -928,3 +928,36 @@ a.judge-link:hover{color:var(--pink-soft);border-color:var(--pink);box-shadow:0 
   .hiw-body .tline-name{font-size:18px;}
 }
 
+
+/* ============ PERFORMANCE: GPU compositing for animated layers ============ */
+/* Promote continuously-animated hero elements to their own GPU layer so the
+   browser composites them instead of repainting on the main thread. */
+.sh-wave-spin,
+.sh-ruler-rot,
+.sh-seal,
+.sh-glow,
+.sh-cone,
+.sh-beam,
+.sh-spark,
+.sh-prise,
+.sh-stick,
+.sh-badge,
+.sh-marquee{ will-change:transform; transform:translateZ(0); backface-visibility:hidden; }
+.sh-grain,
+.reg-grain{ will-change:background-position; }
+/* contain layout/paint so heavy regions don't trigger page-wide reflow */
+.sealhero{ contain:layout paint; }
+.sh-crowd{ contain:layout paint; }
+
+/* Respect users who prefer less motion: keep the design, drop the churn. */
+@media (prefers-reduced-motion: reduce){
+  .sh-grain, .reg-grain,
+  .sh-wave-spin, .sh-ruler-rot,
+  .sh-glow, .sh-seal,
+  .sh-spark, .sh-prise, .sh-stick,
+  .sh-marquee, .sh-beam,
+  .sh-hint, .sh-hint.rest{
+    animation:none !important;
+  }
+}
+
