@@ -26,7 +26,38 @@ const NOCODB_POLL_TABLE_ID = process.env.NOCODB_POLL_TABLE_ID; // poll votes tab
 const NOCODB_TOKEN = process.env.NOCODB_TOKEN;         // xc-token
 const SLOT_LIMIT = Number(process.env.SLOT_LIMIT || 35); // max teams; set in env to adjust
 
+// --- Staff area config ---
+const STAFF_PASSCODE = process.env.STAFF_PASSCODE || '';   // shared passcode (server-only)
+const NOCODB_ROULETTE_OPTIONS_TABLE_ID = process.env.NOCODB_ROULETTE_OPTIONS_TABLE_ID; // roulette options
+const NOCODB_ROULETTE_RESULTS_TABLE_ID = process.env.NOCODB_ROULETTE_RESULTS_TABLE_ID; // roulette spin results
+
 const nocoHeaders = { 'Content-Type': 'application/json', 'xc-token': NOCODB_TOKEN };
+
+// fetch all records from a NocoDB table (returns [] on any failure)
+async function nocoList(tableId) {
+  if (!tableId || !NOCODB_TOKEN) return [];
+  try {
+    const url = `${NOCODB_BASE_URL}/api/v2/tables/${tableId}/records?limit=1000`;
+    const r = await fetch(url, { headers: nocoHeaders });
+    if (!r.ok) return [];
+    const data = await r.json();
+    return Array.isArray(data?.list) ? data.list : [];
+  } catch { return []; }
+}
+async function nocoCreate(tableId, record) {
+  const url = `${NOCODB_BASE_URL}/api/v2/tables/${tableId}/records`;
+  const r = await fetch(url, { method: 'POST', headers: nocoHeaders, body: JSON.stringify(record) });
+  return r.ok;
+}
+async function nocoDelete(tableId, id) {
+  const url = `${NOCODB_BASE_URL}/api/v2/tables/${tableId}/records`;
+  const r = await fetch(url, { method: 'DELETE', headers: nocoHeaders, body: JSON.stringify({ Id: id }) });
+  return r.ok;
+}
+// guard: require the correct passcode in the x-staff-pass header
+function staffOk(req) {
+  return STAFF_PASSCODE && req.get('x-staff-pass') === STAFF_PASSCODE;
+}
 
 // how many registrations exist right now
 async function registrationCount() {
@@ -184,6 +215,66 @@ app.post('/api/register', async (req, res) => {
     console.error('register failed', err);
     return res.status(500).json({ ok: false, error: 'Something went wrong. Try again.' });
   }
+});
+
+// ============ STAFF AREA ============
+// verify the passcode (frontend calls this on login)
+app.post('/api/staff/login', (req, res) => {
+  if (!STAFF_PASSCODE) return res.status(503).json({ ok: false, error: 'Staff area not configured.' });
+  if (String(req.body?.passcode || '') === STAFF_PASSCODE) return res.json({ ok: true });
+  return res.status(401).json({ ok: false, error: 'Wrong passcode.' });
+});
+
+// all staff data in one call (teams, poll tally, roulette options)
+app.get('/api/staff/data', async (req, res) => {
+  if (!staffOk(req)) return res.status(401).json({ ok: false, error: 'Unauthorized.' });
+  const [regs, votes, rOpts, rResults] = await Promise.all([
+    nocoList(NOCODB_TABLE_ID),
+    nocoList(NOCODB_POLL_TABLE_ID),
+    nocoList(NOCODB_ROULETTE_OPTIONS_TABLE_ID),
+    nocoList(NOCODB_ROULETTE_RESULTS_TABLE_ID),
+  ]);
+  const teams = regs.map((r) => ({
+    team: r['Team Name'] || '', leader: r['Leader'] || '', members: r['Members'] || '',
+    count: r['Member Count'] || '', at: r['Submitted At'] || '',
+  }));
+  const yes = votes.filter((v) => String(v['Vote']).toLowerCase() === 'yes');
+  const no = votes.filter((v) => String(v['Vote']).toLowerCase() === 'no');
+  const poll = { yes: yes.length, no: no.length, total: votes.length,
+    yesTeams: yes.map((v) => v['Team Name']).filter((t) => t && t !== 'Anonymous') };
+  const options = rOpts.map((o) => ({ id: o.Id, category: o['Category'] || '', label: o['Option'] || '' }));
+  const results = rResults.map((r) => ({ category: r['Category'] || '', result: r['Result'] || '', at: r['Submitted At'] || '' }))
+    .reverse().slice(0, 30);
+  res.json({ ok: true, teams, poll, options, results, slotLimit: SLOT_LIMIT });
+});
+
+// add a roulette option
+app.post('/api/staff/roulette/option', async (req, res) => {
+  if (!staffOk(req)) return res.status(401).json({ ok: false, error: 'Unauthorized.' });
+  const category = String(req.body?.category || '').trim();
+  const label = String(req.body?.label || '').trim();
+  if (!category || !label) return res.status(400).json({ ok: false, error: 'Missing fields.' });
+  const ok = await nocoCreate(NOCODB_ROULETTE_OPTIONS_TABLE_ID, { 'Category': category, 'Option': label });
+  res.status(ok ? 200 : 502).json({ ok });
+});
+
+// remove a roulette option
+app.post('/api/staff/roulette/option/delete', async (req, res) => {
+  if (!staffOk(req)) return res.status(401).json({ ok: false, error: 'Unauthorized.' });
+  const ok = await nocoDelete(NOCODB_ROULETTE_OPTIONS_TABLE_ID, req.body?.id);
+  res.status(ok ? 200 : 502).json({ ok });
+});
+
+// record a spin result
+app.post('/api/staff/roulette/result', async (req, res) => {
+  if (!staffOk(req)) return res.status(401).json({ ok: false, error: 'Unauthorized.' });
+  const category = String(req.body?.category || '').trim();
+  const result = String(req.body?.result || '').trim();
+  if (!result) return res.status(400).json({ ok: false, error: 'No result.' });
+  const ok = await nocoCreate(NOCODB_ROULETTE_RESULTS_TABLE_ID, {
+    'Category': category, 'Result': result, 'Submitted At': new Date().toISOString(),
+  });
+  res.status(ok ? 200 : 502).json({ ok });
 });
 
 // serve the built site

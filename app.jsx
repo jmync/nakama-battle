@@ -35,6 +35,10 @@ function Bracket() {
     const inner = innerRef.current;
     if (!inner) return;
     const ir = inner.getBoundingClientRect();
+    // getBoundingClientRect is in zoomed CSS px; the SVG canvas uses unzoomed
+    // layout px (scrollWidth/Height). Divide rect coords by the zoom factor so
+    // the line coordinates land in the same space as the SVG.
+    const z = ir.width ? inner.offsetWidth / ir.width : 1;
     const lines = [];
     Object.entries(BK).forEach(([id, m]) => {
       if (!m.feeders) return;
@@ -42,18 +46,18 @@ function Bracket() {
       if (!tgt) return;
       const tr = tgt.getBoundingClientRect();
       const tcx = tr.left + tr.width / 2;
-      const y2 = tr.top - ir.top + tr.height / 2;
+      const y2 = ((tr.top - ir.top) + tr.height / 2) * z;
       m.feeders.forEach((fid) => {
         const f = refs.current[fid];
         if (!f) return;
         const fr = f.getBoundingClientRect();
         const fcx = fr.left + fr.width / 2;
         let x1, x2;
-        if (fcx < tcx) { x1 = fr.right - ir.left; x2 = tr.left - ir.left; }
-        else { x1 = fr.left - ir.left; x2 = tr.right - ir.left; }
-        const y1 = fr.top - ir.top + fr.height / 2;
+        if (fcx < tcx) { x1 = (fr.right - ir.left) * z; x2 = (tr.left - ir.left) * z; }
+        else { x1 = (fr.left - ir.left) * z; x2 = (tr.right - ir.left) * z; }
+        const y1 = ((fr.top - ir.top) + fr.height / 2) * z;
         const midX = (x1 + x2) / 2;
-        lines.push({ d: `M${x1} ${y1} H${midX} V${y2} H${x2}`, c: GROUP_COLOR[m.g || BK[fid].g] || '#5a4f86' });
+        lines.push({ d: `M${x1} ${y1} H${midX} V${y2} H${x2}`, c: m.fin ? '#ff3b47' : (GROUP_COLOR[m.g || BK[fid].g] || '#5a4f86'), fin: !!m.fin });
       });
     });
     setDim({ w: inner.scrollWidth, h: inner.scrollHeight });
@@ -65,10 +69,18 @@ function Bracket() {
     const ro = new ResizeObserver(() => compute());
     if (innerRef.current) ro.observe(innerRef.current);
     window.addEventListener('resize', compute);
-    const t1 = setTimeout(compute, 250);
-    const t2 = setTimeout(compute, 700);
+    // recompute after the modal zoom-in settles (transformed rects are wrong mid-animation)
+    const timers = [120, 350, 700, 1100].map((ms) => setTimeout(compute, ms));
+    // recompute as the bracket is scrolled horizontally
+    const scroller = innerRef.current?.parentElement;
+    if (scroller) scroller.addEventListener('scroll', compute, { passive: true });
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(compute);
-    return () => { ro.disconnect(); window.removeEventListener('resize', compute); clearTimeout(t1); clearTimeout(t2); };
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', compute);
+      if (scroller) scroller.removeEventListener('scroll', compute);
+      timers.forEach(clearTimeout);
+    };
   }, []);
 
   return (
@@ -85,7 +97,7 @@ function Bracket() {
         <div className="bk-inner" ref={innerRef}>
           <svg className="bk-svg" width={dim.w} height={dim.h}>
             {paths.map((p, i) => (
-              <path key={i} d={p.d} fill="none" stroke={p.c} strokeOpacity="0.5" strokeWidth="2" strokeLinejoin="round" />
+              <path key={i} d={p.d} fill="none" stroke={p.c} strokeOpacity={p.fin ? 0.95 : 0.5} strokeWidth={p.fin ? 2.6 : 2} strokeLinejoin="round" style={p.fin ? { filter: 'drop-shadow(0 0 5px rgba(255,59,71,.9))' } : undefined} />
             ))}
           </svg>
           {BK_COLS.map((r, ci) => (
@@ -251,7 +263,7 @@ function Format() {
   const [sub, setSub] = useState('schedule');
   return (
     <div className="panel">
-      <SecHead idx="03" title="Event Format" wide />
+      <SecHead idx="03" title="Format & Schedule" wide />
 
       <div className="fmt-subtabs fmt-wide">
         <button className={'fmt-subtab' + (sub === 'schedule' ? ' active' : '')} onClick={() => setSub('schedule')}>
@@ -429,14 +441,9 @@ function VisitCounter() {
 
 /* ---------- PRIZES ---------- */
 function Prizes() {
-  const sched = [
-    ['Opens', 'Registration opens', 'Released during the CB opening. 20 to 35 slots.'],
-    ['Jul 1', 'Registration closes', 'Last call.'],
-    ['Jul – Sep', 'Battle window', 'Qualifiers through Finals run across this estimated window.'],
-  ];
   return (
     <div className="panel">
-      <SecHead idx="05" title="Prizes & Schedule" />
+      <SecHead idx="05" title="Prizes" />
       <div className="podium" style={{ marginBottom: 30 }}>
         <div className="prize gold">
           <div className="medal">
@@ -471,18 +478,6 @@ function Prizes() {
         <p style={{ marginTop: 8 }}>Prizes are sent via <strong>PayPal</strong>. If every member of the winning team is Filipino, <strong>GCash</strong> is also an option.</p>
       </div>
 
-      <div className="card outline">
-        <span className="tag">Schedule · Estimated Jul – Sep · UPDATE!</span>
-        <div className="timeline" style={{ marginTop: 8 }}>
-          {sched.map(([when, what, sub]) => (
-            <div className="tl" key={what}>
-              <div className="when">{when}</div>
-              <div className="what">{what}<small>{sub}</small></div>
-            </div>
-          ))}
-        </div>
-      </div>
-
     </div>
   );
 }
@@ -491,9 +486,9 @@ function Prizes() {
 const TABS = [
   ['Mechanics', 'c-pink', Mechanics],
   ['Rules', 'c-blue', Rules],
-  ['Format', 'c-gold', Format],
+  ['Format & Schedule', 'c-gold', Format],
   ['Judging', 'c-pink', Judging],
-  ['Prizes & Schedule', 'c-ember', Prizes],
+  ['Prizes', 'c-ember', Prizes],
 ];
 
 function RegisterModal({ onClose }) {
